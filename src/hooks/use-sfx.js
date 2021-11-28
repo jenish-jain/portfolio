@@ -1,4 +1,4 @@
-// import { useSettings } from '../context/settings.js';
+import { useSettings } from '../context/settings.js';
 
 const sfxCache = {};
 
@@ -22,10 +22,9 @@ function useSound(url, { soundEnabled }) {
 }
 
 export function useSfx() {
-  //   const { soundEnabled } = useSettings();
-  const { soundEnabled } = { soundEnabled: true };
+  const { soundEnabled } = useSettings();
 
-  const [playBoop] = useSound('https://res.cloudinary.com/jlengstorf/video/upload/q_auto/v1593395252/jason.af/sfx/boop.mp3', {
+  const [playBoop] = useSound('https://res.cloudinary.com/jenishjain/video/upload/v1638096412/portfolio/audio/boop.mp3', {
     soundEnabled,
     volume: 0.5,
   });

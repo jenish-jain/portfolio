@@ -1,14 +1,17 @@
+import { Layout } from './components/layout';
+import { SEO } from './components/seo';
 import Block from './components/block/index';
 import Hero from './components/hero/index';
 
 function App() {
-  return (
-    <div className='App'>
+  return [
+    <SEO />,
+    <Layout>
       <Block color='yellow'>
-        <Hero/>
+        <Hero />
       </Block>
-    </div>
-  );
+    </Layout>,
+  ];
 }
 
 export default App;

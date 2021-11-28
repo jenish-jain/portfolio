@@ -26,7 +26,7 @@ export const taglines = [
     size: '5.5vw',
     'size-lg': '64.5px',
     text: `
-      <span class="love">love</span>s pavbhaji
+      <span class="love">love</span>'s pavbhaji
     `,
   },
   {
@@ -38,17 +38,15 @@ export const taglines = [
       likes fixing circuits & codes
     `,
     top: '0.025em',
-  }
+  },
 ];
 
 const CycleTagline = ({ clickHandler }) => {
   const [active, setActive] = useState(false);
 
   const images = {
-    off:
-      'https://res.cloudinary.com/jlengstorf/image/upload/q_auto,f_auto/v1593806081/jason.af/rotate-off.png',
-    on:
-      'https://res.cloudinary.com/jlengstorf/image/upload/q_auto,f_auto/v1593806090/jason.af/rotate-on.png',
+    off: 'https://res.cloudinary.com/jlengstorf/image/upload/q_auto,f_auto/v1593806081/jason.af/rotate-off.png',
+    on: 'https://res.cloudinary.com/jlengstorf/image/upload/q_auto,f_auto/v1593806090/jason.af/rotate-on.png',
   };
 
   const handleClick = event => {
@@ -61,20 +59,12 @@ const CycleTagline = ({ clickHandler }) => {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      class={`hero-cycle ${active ? 'cycle-is-active' : ''}`}
-    >
-      <img
-        src={images[active ? 'on' : 'off']}
-        alt="drawing of two arrows pointing in a circle"
-      />
-      <span class="visually-hidden">change tagline</span>
+    <button onClick={handleClick} className={`hero-cycle ${active ? 'cycle-is-active' : ''}`}>
+      <img src={images[active ? 'on' : 'off']} alt='drawing of two arrows pointing in a circle' />
+      <span className='visually-hidden'>change tagline</span>
     </button>
   );
-
-}
-
+};
 
 function Hero() {
   const { addCool, count } = useCool();
@@ -84,16 +74,15 @@ function Hero() {
 
   useEffect(() => {
     addCool();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function cycleTagline() {
     addCool();
     if (count < MAXIMUM_COOLS) {
       playBoop();
-      console.log('adding cool');
     } else {
       playAirhorn();
-      console.log('No doubt!');
     }
 
     const index = taglineIndex + 1;
@@ -106,22 +95,18 @@ function Hero() {
       <span className='hero-first-line'>Jenish</span>
       <span className='hero-box'>Jain</span>
       <span
-            class="hero-tagline"
-            style={{
-              '--top': tagline.top || '-7px',
-              '--rotation': tagline['rotation'] || '0deg',
-              '--scale': tagline.scale || 1.1,
-              '--size': tagline.size|| '3.42vw',
-              '--size-lg': tagline['size-lg'] || '44px',
-            }}
-            dangerouslySetInnerHTML={{ __html: tagline.text }}
-          />
-      
-      {/* <span className='temp-tagline' onClick={cycleTagline}>
-        click me!
-      </span> */}
-      <CycleTagline clickHandler={cycleTagline} />
+        className='hero-tagline'
+        style={{
+          '--top': tagline.top || '-7px',
+          '--rotation': tagline['rotation'] || '0deg',
+          '--scale': tagline.scale || 1.1,
+          '--size': tagline.size || '3.42vw',
+          '--size-lg': tagline['size-lg'] || '44px',
+        }}
+        dangerouslySetInnerHTML={{ __html: tagline.text }}
+      />
     </div>,
+    <CycleTagline clickHandler={cycleTagline} />,
   ];
 }
 

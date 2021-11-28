@@ -6,7 +6,7 @@ export function CoolDrop(props) {
   return (
     <canvas
       ref={coolRef}
-      class={props.class}
+      className={props.class}
       style={{
         height: '100%',
         left: 0,

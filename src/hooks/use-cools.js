@@ -67,7 +67,7 @@ export function useCool() {
     Runner.run(runner, engine);
   }, [ref]);
 
-  const coolImage = process.env.PUBLIC_URL + 'images/cool_small.png';
+  const coolImage = 'https://res.cloudinary.com/jenishjain/image/upload/v1638093951/portfolio/images/cool.png';
 
   const addCool = () => {
     createCool(coolImage);
