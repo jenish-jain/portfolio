@@ -1,0 +1,10 @@
+.bio-profiles {
+    align-content: center;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, 60px);
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }

@@ -16,6 +16,7 @@ export function SEO({
         <link rel="canonical" href={url} />
         <meta name="description" content={description} />
         <meta name="image" content={image} />
+        <meta name="theme-color" content="#ffe742" />
   
         <meta property="og:type" content={post ? 'article' : 'website'} />
         <meta property="og:url" content={url} />
