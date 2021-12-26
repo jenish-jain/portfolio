@@ -10,3 +10,8 @@
     background: var(--yellow);
     border-color: var(--yellow-dark);
   }
+
+  .block.dirty-white {
+    background: var(--dirty-white);
+    border-color: var(--white);
+  }

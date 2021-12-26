@@ -1,11 +1,11 @@
-import { useCool } from '../../hooks/use-cools';
+import { useAttractor } from '../../hooks/use-attractor';
 
-export function CoolDrop(props) {
-  const { coolRef } = useCool();
+export function Attractor(props) {
+  const { ref } = useAttractor();
 
   return (
     <canvas
-      ref={coolRef}
+      ref={ref}
       className={props.class}
       style={{
         height: '100%',

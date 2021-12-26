@@ -10,7 +10,7 @@ export function Layout({ children }) {
       <div className={`outer ${darkMode ? 'dark' : 'light'}`}>
         <Header />
         <Main>{children}</Main>
-        <Footer>powered by boops</Footer>
+        <Footer/>
       </div>
     );
   }
