@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useCool } from '../../hooks/use-cools';
+import { useDominoes } from '../../hooks/use-domino';
 import { useSfx } from '../../hooks/use-sfx';
-import { CoolDrop } from '../cool-drop';
+// import { CoolDrop } from '../cool-drop';
+// import { RenderDominoes } from '../dominoes';
+import { SwingingSticks } from '../swingingSticks';
+import { useSwingingSticks } from '../../hooks/use-swinging-sticks';
 import './style.css';
 
 const MAXIMUM_COOLS = 20;
 export const taglines = [
   {
-    size: '4.2vw',
+    size: '4.8vw',
     'size-lg': '64px',
     text: `
       has a lot of ideas
@@ -68,12 +72,16 @@ const CycleTagline = ({ clickHandler }) => {
 
 function Hero() {
   const { addCool, count } = useCool();
+  // const { addDominoes } = useDominoes();
+  const { addSwingingSticks} = useSwingingSticks();
   const { playBoop, playAirhorn } = useSfx();
   const [taglineIndex, setTaglineIndex] = useState(0);
   const tagline = taglines[taglineIndex];
 
   useEffect(() => {
-    addCool();
+    // addCool();
+    // addDominoes();
+    addSwingingSticks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -90,7 +98,9 @@ function Hero() {
   }
 
   return [
-    <CoolDrop className='cools' />,
+    // <CoolDrop className='cools' />,
+    // <RenderDominoes className='dominoes' />,
+    <SwingingSticks className='swingingSticks'/>,
     <div className='hero'>
       <span className='hero-first-line'>Jenish</span>
       <span className='hero-box'>Jain</span>

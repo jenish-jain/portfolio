@@ -6,7 +6,7 @@
   overflow: hidden;
   position: relative;
   text-align: center;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   width: 90vw;
   z-index: 1;
 }
