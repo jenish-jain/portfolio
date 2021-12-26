@@ -25,7 +25,7 @@
 
 .hero-box {
   background: var(--black);
-  color: var(--yellow);
+  color: var(--background);
   display: block;
   margin: auto;
   text-align: center;

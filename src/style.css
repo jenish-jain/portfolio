@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,100;1,300;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,700;1,700&display=swap");
 :root {
   --white: white;
+  --dirty-white:#f0f0f0;
   --text: #403c4a;
   --text-emphasized: #201d29;
   --text-muted: #78757f;
@@ -81,7 +82,22 @@ img {
   max-width: 100%;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; /* added line */
+}
 .cools {
   mix-blend-mode: overlay;
   z-index: 10;
 }
+
+.attractor {
+  z-index: 10;
+}
+
+/* ------------------------ */
+
