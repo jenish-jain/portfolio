@@ -28,7 +28,7 @@ export function useSfx() {
     soundEnabled,
     volume: 0.5,
   });
-
+  //TODO: download and replace these with your urls
   const [playPop] = useSound('https://res.cloudinary.com/jlengstorf/video/upload/q_auto/v1593395252/jason.af/sfx/pop.mp3', {
     soundEnabled,
     volume: 0.5,
