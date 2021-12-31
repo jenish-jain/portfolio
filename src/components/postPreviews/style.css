@@ -1,0 +1,107 @@
+.post-preview {
+    margin: 3rem auto 0;
+    max-width: 250px;
+    position: relative;
+    background-color: white;
+    padding: 1rem;
+  }
+  
+  .post-preview-site {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-variant: small-caps;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin: 0 0 1rem;
+    text-transform: lowercase;
+  }
+  
+  .post-preview-site img {
+    margin-right: 0.5rem;
+    width: 16px;
+    vertical-align: middle;
+  }
+  
+  .post-preview-image {
+    width: 100%;
+  }
+  
+  .post-preview-title {
+    margin: 0.5rem 0;
+  }
+  
+  .post-preview-title-link {
+    color: var(--foreground);
+    text-decoration: none;
+  }
+  
+  .post-preview-title-link:focus {
+    outline: none;
+  }
+  
+  .post-preview-title-link::after {
+    background: transparent;
+    bottom: 0;
+    content: '';
+    cursor: pointer;
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .post-preview-title-link:focus::after,
+  .post-preview-title-link:hover::after {
+    outline: 2px solid var(--text-pink);
+    outline-offset: 0.5rem;
+  }
+  
+  .post-preview-description {
+    margin: 0.5rem 0 0;
+    position: relative;
+    z-index: 20;
+  }
+  
+  .post-preview-link {
+    color: var(--text-pink);
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin: 0.5rem 0 0;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  
+  @media (min-width: 500px) {
+    .post-previews {
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, 250px);
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 1150px;
+      row-gap: 4rem;
+    }
+  
+    .post-preview {
+      margin: 0;
+    }
+  }
+  
+  @media (min-width: 500px) {
+    .post-previews {
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, 250px);
+      row-gap: 4rem;
+      justify-content: center;
+    }
+  
+    .post-preview {
+      margin: 0;
+    }
+  }
+  
