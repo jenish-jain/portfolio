@@ -8,7 +8,7 @@ export default function Button({
   }) {
     return (
       <button
-        class={props.class}
+        className={props.class}
         onKeyPress={event => {
           if (event.key !== 'Enter') return;
           handleClick(event);

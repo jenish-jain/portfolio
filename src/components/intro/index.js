@@ -5,11 +5,11 @@ const Heading = ({ children, post, ...props }) =>
 
 const Intro= function({ headline, children, post = false }) {
   return [
-    <div class="intro">
-      <Heading class="intro-headline" post={post}>
+    <div className="intro">
+      <Heading className="intro-headline" post={post}>
         {headline}
       </Heading>
-      <div class="intro-lede">{children}</div>
+      <div className="intro-lede">{children}</div>
     </div>,
   ];
 }

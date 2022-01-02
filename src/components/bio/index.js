@@ -19,13 +19,13 @@ function BioText() {
 
 function Bio() {
   return (
-    <section class='bio-container'>
+    <section className='bio-container'>
       <div>
         <div className='bio-heading'>Who is He?</div>
         <BioText />
-        <div class='bio-social'>
-          <h2 class='bio-connect'>Connect With Jenish:</h2>
-          <ul class='bio-profiles'>
+        <div className='bio-social'>
+          <h2 className='bio-connect'>Connect With Jenish:</h2>
+          <ul className='bio-profiles'>
             {[
               {
                 id: 'twitter',
@@ -44,8 +44,8 @@ function Bio() {
                 svg: (
                   <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 81 80'>
                     <defs />
-                    <g clip-path='url(#clip0)'>
-                      <path fill='#6B6971' fill-rule='evenodd' d='M40.5 0C18.4 0 .5 17.9.5 40c0 17.68 11.467 32.658 27.354 37.962 1.99.368 2.726-.86 2.726-1.94 0-.958-.025-3.462-.05-6.802-11.123 2.407-13.48-5.353-13.48-5.353C15.233 59.251 12.606 58 12.606 58c-3.635-2.48.27-2.431.27-2.431 4.002.294 6.138 4.125 6.138 4.125 3.56 6.114 9.356 4.346 11.64 3.315.368-2.578 1.4-4.346 2.529-5.353-8.865-.982-18.196-4.42-18.196-19.742 0-4.371 1.547-7.931 4.126-10.73-.418-1.032-1.793-5.084.368-10.584 0 0 3.364-1.08 11 4.1 3.193-.883 6.606-1.325 10.019-1.35 3.389.025 6.826.467 10.018 1.35 7.637-5.18 11.001-4.1 11.001-4.1 2.185 5.5.81 9.577.393 10.583 2.554 2.8 4.1 6.36 4.1 10.73 0 15.372-9.355 18.736-18.268 19.743 1.424 1.228 2.725 3.683 2.725 7.416 0 5.353-.049 9.65-.049 10.976 0 1.08.712 2.308 2.75 1.915C69.057 72.658 80.5 57.68 80.5 40.024 80.5 17.902 62.6 0 40.5 0z' clip-rule='evenodd' />
+                    <g clipPath='url(#clip0)'>
+                      <path fill='#6B6971' fillRule='evenodd' d='M40.5 0C18.4 0 .5 17.9.5 40c0 17.68 11.467 32.658 27.354 37.962 1.99.368 2.726-.86 2.726-1.94 0-.958-.025-3.462-.05-6.802-11.123 2.407-13.48-5.353-13.48-5.353C15.233 59.251 12.606 58 12.606 58c-3.635-2.48.27-2.431.27-2.431 4.002.294 6.138 4.125 6.138 4.125 3.56 6.114 9.356 4.346 11.64 3.315.368-2.578 1.4-4.346 2.529-5.353-8.865-.982-18.196-4.42-18.196-19.742 0-4.371 1.547-7.931 4.126-10.73-.418-1.032-1.793-5.084.368-10.584 0 0 3.364-1.08 11 4.1 3.193-.883 6.606-1.325 10.019-1.35 3.389.025 6.826.467 10.018 1.35 7.637-5.18 11.001-4.1 11.001-4.1 2.185 5.5.81 9.577.393 10.583 2.554 2.8 4.1 6.36 4.1 10.73 0 15.372-9.355 18.736-18.268 19.743 1.424 1.228 2.725 3.683 2.725 7.416 0 5.353-.049 9.65-.049 10.976 0 1.08.712 2.308 2.75 1.915C69.057 72.658 80.5 57.68 80.5 40.024 80.5 17.902 62.6 0 40.5 0z' clipRule='evenodd' />
                     </g>
                     <defs>
                       <clipPath id='clip0'>
@@ -59,10 +59,11 @@ function Bio() {
                 label: 'GitHub',
               },
             ].map(profile => (
-              <li class='bio-profile'>
+              <li className='bio-profile'>
                 <a
                   href={profile.link}
-                  class='bio-link'
+                  key={profile.id}
+                  className='bio-link'
                   onMouseDown={event => {
                     event.stopPropagation();
                   }}
@@ -72,14 +73,14 @@ function Bio() {
                   }}
                 >
                   {profile.svg}
-                  <span class='visually-hidden'>{profile.label}</span>
+                  <span className='visually-hidden'>{profile.label}</span>
                 </a>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <Photos class='bio-image-container' />
+      <Photos className='bio-image-container' />
     </section>
   );
 }

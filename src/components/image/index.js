@@ -21,7 +21,7 @@ export function Image({
   
     return (
       <div
-        class={wrapperClass}
+        className={wrapperClass}
         style={{
           height: 0,
           maxWidth: '100%',
@@ -34,7 +34,7 @@ export function Image({
           loading="lazy"
           src={url}
           alt={alt}
-          class={imageClass}
+          className={imageClass}
           height={height}
           width={width}
           style={{
