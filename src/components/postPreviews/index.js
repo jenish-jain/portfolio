@@ -12,23 +12,23 @@ const PostPreviews = function ({ posts }) {
   }, []);
 
   return (
-    <div class='post-previews'>
+    <div className='post-previews'>
       {posts.map((post, index) => (
-        <div class='post-preview' key={`featured-post-${index}`}>
+        <div className='post-preview' key={`featured-post-${index}`}>
           {post.site && (
-            <p class='post-preview-site'>
+            <p className='post-preview-site'>
               <img src={`https://res.cloudinary.com/jenishjain/image/fetch/w_32,h_32,c_fill,g_face,q_auto,f_auto/${sitesInfo[post.site].icon}`} alt={sitesInfo[post.site].name} loading='lazy' height={16} width={16} />
               {sitesInfo[post.site].name}
             </p>
           )}
-          {index < columns && <img src={post.image.match(/^https:\/\/res.cloudinary/) ? post.thumb || post.image : `https://res.cloudinary.com/jenishjain/image/fetch/w_500,h_250,c_fill,g_face,q_auto,f_auto/${post.image}`} alt='' class='post-preview-image' loading='lazy' width={250} height={125} />}
-          <h3 class='post-preview-title'>
-            <a href={post.url || `/${post.slug}`} class='post-preview-title-link'>
+          {index < columns && <img src={post.image.match(/^https:\/\/res.cloudinary/) ? post.thumb || post.image : `https://res.cloudinary.com/jenishjain/image/fetch/w_500,h_250,c_fill,g_face,q_auto,f_auto/${post.image}`} alt='' className='post-preview-image' loading='lazy' width={250} height={125} />}
+          <h3 className='post-preview-title'>
+            <a href={post.url || `/${post.slug}`} className='post-preview-title-link'>
               {post.title}
             </a>
           </h3>
-          <p class='post-preview-description'>{post.description}</p>
-          <span aria-hidden='true' class='post-preview-link'>
+          <p className='post-preview-description'>{post.description}</p>
+          <span aria-hidden='true' className='post-preview-link'>
             Read this post &rarr;
           </span>
         </div>
