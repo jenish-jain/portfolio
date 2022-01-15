@@ -12,7 +12,7 @@ const writings = [
     {
       title: 'My internship experience at Rapido',
       description:
-        'Everything about my experience as an intern with my first employeer :)',
+        'Everything about my experience as an intern with rapido :)',
       image:
         'https://res.cloudinary.com/jenishjain/image/upload/v1640938458/portfolio/blog-assets/internship-experience-cover.png',
       url: 'https://medium.com/rapido-labs/my-internship-experience-at-rapido-91a141116090',
