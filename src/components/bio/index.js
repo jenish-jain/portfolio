@@ -10,7 +10,7 @@ function BioText() {
       </span>
       <span>&nbsp; He and his team are responsible for building products to control realtime marketplace pricing according to business needs.</span>
       <span>
-        &nbsp; He likes to share his ideas and experiences as <a href='https://medium.com/@jenishjain6'>blogs</a>.
+        &nbsp; He likes to share his ideas and experiences as <a href='https://blog.jenishjain.in'>blogs</a>.
       </span>
       &nbsp; In his free time he likes to draw cartoons and stream movies. He lives in <a href='https://goo.gl/maps/YwjhHvZvzX3je9Q7A'>Surat</a>, Gujarat.
     </div>
