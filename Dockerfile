@@ -1,7 +1,7 @@
-FROM node:14-alpine3.14
+FROM node:14-alpine3.14 as build-step
 
 # Create app directory
-WORKDIR /src
+WORKDIR /app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -20,5 +20,7 @@ RUN npm run build
 CMD [ "npm", "run", "start" ]
 
 # steps to run
-# DOCKER_BUILDKIT=1 docker build --tag jenishjain-mainsite .
-# docker run -d -p 3000:3000 jenishjain-mainsite
+# DOCKER_BUILDKIT=1 docker build --tag portfolio .
+
+# docker run -d -p 3000:3000 portfolio
+# docker pull jenisharchive/asgard:portfolio
