@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Build & Push docker image
       run: docker build . --file Dockerfile --tag portfolio:$(date +%s)
+        echo "{{ secrets.DOCKER_PWD }} | docker login -u "jenisharchive" --password-stdin
+        docker push jenisharchive/asgard:portfolio

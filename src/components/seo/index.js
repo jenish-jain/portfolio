@@ -2,8 +2,8 @@ import { Helmet } from 'react-helmet';
 import { useSettings } from '../../context/settings';
 
 export function SEO({
-    title = "Jenish Jain's Portfolio",
-    description = 'Personal portfolio for jenish jain',
+    title = "Jenish Jain",
+    description = 'My personal website',
     url = 'https://jenishjain.in/',
     image = 'https://res.cloudinary.com/jenishjain/image/upload/v1638108545/portfolio/images/jenishjain.jpg',
     post = false,
