@@ -16,4 +16,5 @@ jobs:
       run: |
         echo "${{ secrets.DOCKER_PWD }}" | docker login -u "jenisharchive" --password-stdin
         DOCKER_BUILDKIT=1 docker build --tag portfolio .
+        docker tag portfolio jenisharchive/asgard:portfolio
         docker push jenisharchive/asgard:portfolio
