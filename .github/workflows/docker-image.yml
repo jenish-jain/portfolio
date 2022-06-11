@@ -3,8 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
 
@@ -15,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build & Push docker image
-      run: docker build . --file Dockerfile --tag portfolio:$(date +%s)
+      run: |
         echo "${{ secrets.DOCKER_PWD }}" | docker login -u "jenisharchive" --password-stdin
+        DOCKER_BUILDKIT=1 docker build --tag portfolio:$(date +%s) .
         docker push jenisharchive/asgard:portfolio
