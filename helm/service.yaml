@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: portfolio-entrypoint
+  name: portfolio
   namespace: default
 spec:
-  type: NodePort
+  ports:
+  - nodePort: 30788
+    port: 3000
+    targetPort: 3000
   selector:
     app: portfolio
-  ports:
-    - port: 3000
-      targetPort: 3000
-      nodePort: 30008
+  type: LoadBalancer
