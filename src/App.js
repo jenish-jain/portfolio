@@ -6,7 +6,6 @@ import Bio from './components/bio/index';
 import  Writings from './components/writings/index';
 
 function App() {
-  console.log(process.env)
   return [
     <SEO />,
     <Layout>
