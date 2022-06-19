@@ -59,7 +59,7 @@ function Bio() {
                 label: 'GitHub',
               },
             ].map(profile => (
-              <li className='bio-profile'>
+              <li className='bio-profile' key={profile.id}>
                 <a
                   href={profile.link}
                   key={profile.id}
