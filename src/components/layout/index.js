@@ -4,8 +4,9 @@ import { Footer } from '../footer/index';
 import { useSettings } from '../../context/settings';
 import { useEffect } from 'react';
 import ReactGA from 'react-ga';
-import { config } from 'dotenv';
+// import { config } from 'dotenv';
 
+console.log(process.env.REACT_APP_GOOGLE_TRACKING_ID)
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING_ID);
 const Layout = ({ children }) => {
   const { darkMode } = useSettings();
