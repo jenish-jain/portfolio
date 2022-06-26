@@ -17,8 +17,10 @@ export function SEO({
         <meta name="description" content={description} />
         <meta name="image" content={image} />
         <meta name="theme-color" content="#ffe742" />
-        <meta name="keywords" content='jenish, jenish jain, software engineer, eletrical engineer, rapido, tech blogs'/>
+        <meta name="keywords" content='jenish, jenish jain, software engineer, electrical engineer, developer, rapido, tech blogs'/>
   
+        <meta property='og:site_name' content='Jenish Jain'/>
+        <meta property='og:title' content={title}/>
         <meta property="og:type" content={post ? 'article' : 'website'} />
         <meta property="og:url" content={url} />
         <meta property="og:description" content={description} />
