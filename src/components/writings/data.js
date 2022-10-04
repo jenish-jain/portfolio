@@ -18,6 +18,26 @@ const writings = [
       url: 'https://medium.com/rapido-labs/my-internship-experience-at-rapido-91a141116090',
       featured: true,
       site: 'rapidolabs',
+    },
+    {
+      title: 'Start your blog site in 10 mins',
+      description:
+        'Start your ready to deploy blog site in 10 mins, built with MDX and preact',
+      image:
+        'https://res.cloudinary.com/jenishjain/image/fetch/v1664880933/https://avatars.dicebear.com/api/micah/blog.svg',
+      url: 'https://blog.jenishjain.in/start-your-blog-in-10-mins',
+      featured: true,
+      site: 'jenishjainin',
+    },
+    {
+      title: 'How to manage multiple git users on single system',
+      description:
+        'An easy way to contribute with multiple github profiles using a single system',
+      image:
+        'https://res.cloudinary.com/jenishjain/image/upload/v1664881338/portfolio/blog-assets/multiple-git-profiles.jpg',
+      url: 'https://blog.jenishjain.in/manage-multiple-git-user-on-1-system',
+      featured: true,
+      site: 'jenishjainin',
     }
   ];
   
