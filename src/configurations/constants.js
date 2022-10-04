@@ -1,7 +1,7 @@
 exports.sitesInfo = {
   jenishjainin: {
     name: 'jenishjain.in',
-    icon: 'https://www.jason.af/favicon-32x32.png',
+    icon: 'https://res.cloudinary.com/jenishjain/image/fetch/v1642959509/https://www.jason.af/favicon-32x32.png',
   },
   rapidolabs: {
     name: 'rapido-labs',
