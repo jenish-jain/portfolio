@@ -6,9 +6,9 @@ import './style.css';
 
 const photos = [
   {
-    publicId: 'v1638108545/portfolio/images/jenishjain',
+    publicId: 'v1700920184/portfolio/images/jenishjain-with-chopsticks',
     alt: 'Jenish Jain smiling',
-    caption: 'This is Jenish’s most common profile photo.',
+    caption: 'This is Jenish’s most common profile photo right now.',
     width: 300,
     height: 400,
   },
@@ -22,9 +22,9 @@ const photos = [
     height: 400,
   },
   {
-    publicId: 'v1640528439/portfolio/images/jenish-jain-1',
-    alt: 'Jenish smiling ',
-    caption: 'Smiling is Jenish’s favourite hobbie',
+    publicId: 'v1700919977/portfolio/images/jenish-on-a-horse',
+    alt: 'Jenish On a horse ',
+    caption: 'A snap from his most recent vacation',
     //   credit: 'paint with stars',
     //   creditLink: 'https://paintwithstars.com/',
     width: 300,
