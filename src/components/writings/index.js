@@ -16,7 +16,7 @@ const Writings = function () {
       <div>
         <PostPreviews posts={featuredPosts} />
       </div>
-      <a href='https://blog.jenishjain.in' className='writing-button'>
+      <a href='https://blog.jenishjain.in/posts' className='writing-button'>
         see all posts{' '}
       </a>
     </section>
