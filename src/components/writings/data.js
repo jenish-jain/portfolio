@@ -20,14 +20,14 @@ const writings = [
       site: 'rapidolabs',
     },
     {
-      title: 'Start your blog site in 10 mins',
+      title: 'Automating GST reporting for my father using Cloud Run',
       description:
-        'Start your ready to deploy blog site in 10 mins, built with MDX and preact',
+        'My journey to create an automated tax reporting tool to save a sunday for me and my father',
       image:
-        'https://res.cloudinary.com/jenishjain/image/fetch/v1664880933/https://avatars.dicebear.com/api/micah/blog.svg',
-      url: 'https://blog.jenishjain.in/start-your-blog-in-10-mins',
+        'https://res.cloudinary.com/jenishjain/image/upload/v1701582547/portfolio/blog-assets/bean_counter.jpg',
+      url: 'https://medium.com/@jenishjain6/how-i-automated-tax-reporting-for-my-father-b4db1edbcbd2',
       featured: true,
-      site: 'jenishjainin',
+      site: 'medium',
     },
     {
       title: 'How to manage multiple git users on single system',
