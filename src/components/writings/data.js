@@ -30,14 +30,13 @@ const writings = [
       site: 'medium',
     },
     {
-      title: 'How to manage multiple git users on single system',
+      title: 'How did i convert my PDFs to audiobooks',
       description:
-        'An easy way to contribute with multiple github profiles using a single system',
+        'This fun guide shows you how to build your own audiobook factory using Google Cloud',
       image:
-        'https://res.cloudinary.com/jenishjain/image/upload/v1664881338/portfolio/blog-assets/multiple-git-profiles.jpg',
-      url: 'https://blog.jenishjain.in/manage-multiple-git-user-on-1-system',
+        'https://res.cloudinary.com/jenishjain/image/upload/v1712392347/portfolio/blog-assets/pdf-to-audiobook-factory.jpg',
       featured: true,
-      site: 'jenishjainin',
+      site: 'medium',
     }
   ];
   
