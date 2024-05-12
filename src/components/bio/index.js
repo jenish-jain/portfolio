@@ -7,7 +7,7 @@ function BioText() {
       <strong>Jenish Jain </strong>
       <span>
         is a Senior Product Engineer on the Pricing team at 
-        <a href="https://rapido.bike/">Rapido</a>.
+        <a href="https://rapido.bike/"> Rapido</a>.
       </span>
       <span>
         &nbsp;There, he tackles the challenge of building products that
@@ -17,15 +17,15 @@ function BioText() {
       <span>
         &nbsp;Passionate about sharing knowledge, Jenish enjoys expressing his
         ideas and experiences through 
-        <a href="https://blog.jenishjain.in">blog posts</a>.
+        <a href="https://blog.jenishjain.in"> blog posts</a>.
       </span>
       &nbsp; When he's not immersed in the world of product development, Jenish
       unleashes his creative side by drawing 
       <a href="https://www.instagram.com/p/BsBp5eDB1UK4ktjQDzdh9bhEyWWcbLf1Ulddww0/">
-        cartoons
+         cartoons
       </a>
       . He also enjoys unwinding with a good movie stream. He lives in 
-      <a href="https://goo.gl/maps/YwjhHvZvzX3je9Q7A">Surat</a>, Gujarat.
+      <a href="https://goo.gl/maps/YwjhHvZvzX3je9Q7A"> Surat</a>, Gujarat.
     </div>
   );
 }
