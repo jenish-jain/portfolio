@@ -3,16 +3,29 @@ import './style.css';
 
 function BioText() {
   return (
-    <div className='bio'>
+    <div className="bio">
       <strong>Jenish Jain </strong>
       <span>
-        works at <a href='https://rapido.bike/'>Rapido</a> as a Senior Product Engineer in pricing team.
+        is a Senior Product Engineer on the Pricing team at
+        <a href="https://rapido.bike/">Rapido</a>.
       </span>
-      <span>&nbsp; He and his team are responsible for building products to control realtime marketplace pricing according to business needs.</span>
       <span>
-        &nbsp; He likes to share his ideas and experiences as <a href='https://blog.jenishjain.in'>blogs</a>.
+        &nbsp; There, he tackles the challenge of building products that
+        dynamically adjust marketplace pricing based on real-time business
+        needs.
       </span>
-      &nbsp; In his free time he likes to draw cartoons and stream movies. He lives in <a href='https://goo.gl/maps/YwjhHvZvzX3je9Q7A'>Surat</a>, Gujarat.
+      <span>
+        &nbsp; Passionate about sharing knowledge, Jenish enjoys expressing his
+        ideas and experiences through
+        <a href="https://blog.jenishjain.in">blog posts</a>.
+      </span>
+      &nbsp; When he's not immersed in the world of product development, Jenish
+      unleashes his creative side by drawing
+      <a href="https://www.instagram.com/p/BsBp5eDB1UK4ktjQDzdh9bhEyWWcbLf1Ulddww0/">
+        cartoons
+      </a>
+      . He also enjoys unwinding with a good movie stream. He lives in
+      <a href="https://goo.gl/maps/YwjhHvZvzX3je9Q7A">Surat</a>, Gujarat.
     </div>
   );
 }
