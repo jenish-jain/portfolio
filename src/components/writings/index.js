@@ -10,7 +10,7 @@ const Writings = function () {
     <section className='writing'>
       <Intro headline='Some of Jenish’s Posts.'>
         <p>
-          Jenish likes to share this experience and knowledge gains in form of <a href='https://blog.jenishjain.in'>blogs</a>, He is not a regular contributor but here are few of his writings.  
+          Jenish likes to share his experiences and knowledge in form of <a href='https://blog.jenishjain.in'>blogs</a>, He is not a regular contributor but here are few of his writings.  
         </p>
       </Intro>
       <div>
