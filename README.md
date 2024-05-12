@@ -7,6 +7,18 @@
 - [ ] check about daily dairy option with mdx pages but without commiting code in github?
 - [ ] showcase major projects ?
 
+# steps to deploy
+run 
+```sh
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+then 
+
+```node
+npm run deploy
+```
+
 ### Deployment Status
 
   [![Deployment Status](https://api.netlify.com/api/v1/badges/b1750240-5592-420d-91be-5c9caea0e885/deploy-status)](https://app.netlify.com/sites/jenishjain/deploys)
