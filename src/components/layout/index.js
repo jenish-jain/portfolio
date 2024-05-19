@@ -16,15 +16,6 @@ const Layout = ({ children }) => {
   return (
     <div className={`outer ${darkMode ? "dark" : "light"}`}>
       <Header />
-      <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-M9D0F8MKP6"
-      ></script>
-      <script>
-        window.dataLayer = window.dataLayer || []; function gtag()
-        {dataLayer.push(arguments)}
-        gtag('js', new Date()); gtag('config', 'G-M9D0F8MKP6');
-      </script>
       <Main>{children}</Main>
       <Footer />
     </div>
