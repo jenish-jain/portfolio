@@ -35,6 +35,7 @@ const writings = [
         'This fun guide shows you how to build your own audiobook factory using Google Cloud',
       image:
         'https://res.cloudinary.com/jenishjain/image/upload/v1712392347/portfolio/blog-assets/pdf-to-audiobook-factory.jpg',
+      url: 'https://medium.com/@jenishjain6/from-pdfs-to-speech-my-diy-audiobook-factory-fcf12df311fe',
       featured: true,
       site: 'medium',
     }
