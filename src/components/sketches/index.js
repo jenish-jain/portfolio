@@ -8,7 +8,7 @@ const Sketches = function () {
 
   return (
     <section className='sketches'>
-      <Intro headline='And yes, I draw sometimes too.'>
+      <Intro headline='And yes, He draw sometimes too.'>
         <p>
           Jenish is creative by heart, he ocassionally shares his drawings <a href='https://drawings.jenishjain.in/posts/'>here</a>  
         </p>
