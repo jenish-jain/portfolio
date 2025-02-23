@@ -1,0 +1,30 @@
+.writing {
+    margin: 0 auto;
+    max-width: 1150px;
+  }
+  
+  .writing-button {
+    background: var(--pink);
+    border: 2px solid transparent;
+    border-radius: 7px;
+    color: var(--black);
+    display: block;
+    font-family: var(--font-family);
+    font-size: 1.25rem;
+    font-weight: 900;
+    padding: 0.25rem 1rem;
+    margin: 3rem auto 0;
+    max-width: 220px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 200ms background linear;
+  }
+  
+  .writing-button:focus,
+  .writing-button:hover {
+    background: var(--text-pink);
+    border-color: var(--foreground);
+    outline: none;
+  }
+  

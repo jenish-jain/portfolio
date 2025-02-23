@@ -21,7 +21,7 @@ const PostPreviews = function ({ posts }) {
               {sitesInfo[post.site].name}
             </p>
           )}
-          {index < columns && <img src={post.image.match(/^https:\/\/res.cloudinary/) ? post.thumb || post.image : `https://res.cloudinary.com/jenishjain/image/fetch/w_500,h_250,c_fill,g_face,q_auto,f_auto/${post.image}`} alt='' className='post-preview-image' loading='lazy' width={250} height={125} />}
+          {index < columns && <img src={post.image.match(/^https:\/\/res.cloudinary/) ? post.thumb || post.image : `https://res.cloudinary.com/jenishjain/image/fetch/w_500,h_250,c_fill,g_face,q_auto,f_auto/${post.image}`} alt='' className='post-preview-image' loading='lazy' width={post.site === 'drawings_jenishjain_in' ? 125 :250} height={post.site === 'drawings_jenishjain_in' ? 250 :125} />}
           <h3 className='post-preview-title'>
             <a href={post.url || `/${post.slug}`} className='post-preview-title-link'>
               {post.title}
@@ -29,7 +29,7 @@ const PostPreviews = function ({ posts }) {
           </h3>
           <p className='post-preview-description'>{post.description}</p>
           <span aria-hidden='true' className='post-preview-link'>
-            Read this post &rarr;
+            See this post &rarr;
           </span>
         </div>
       ))}
