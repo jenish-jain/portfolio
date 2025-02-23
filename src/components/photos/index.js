@@ -30,6 +30,14 @@ const photos = [
     width: 300,
     height: 400,
   },
+  {
+    publicId: 'v1740309081/portfolio/images/jenishxanime',
+    alt: 'How Jenish imagine him in an anime setting',
+    caption: 'How Jenish imagine him in an anime setting',
+    width: 300,
+    height: 400,
+
+  }
 ];
 
 function Thumb({ photo, handleClick }) {
