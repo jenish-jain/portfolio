@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 // Initialize Google Analytics
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+function gtag(){window.dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-BDVPDTHT3S'); // Replace 'YOUR_TRACKING_ID' with your actual tracking ID
 
