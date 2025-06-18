@@ -18,6 +18,16 @@ const sketches = [
       url: 'https://drawings.jenishjain.in/sick-men/',
       featured: true,
       site: 'drawings_jenishjain_in',
+    },
+    {
+      title: 'Shocked Man',
+      describe:
+        'kyaaa !!',
+      image: 
+        'https://res.cloudinary.com/jenishjain/image/upload/v1750274240/drawings/shocked_man.jpg',
+      url: 'https://drawings.jenishjain.in/shocked-man/',
+      featured: true,
+      site: 'drawings_jenishjain_in'
     }
   ];
   
