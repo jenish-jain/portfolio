@@ -21,7 +21,7 @@ const sketches = [
     },
     {
       title: 'Shocked Man',
-      describe:
+      description:
         'kyaaa !!',
       image: 
         'https://res.cloudinary.com/jenishjain/image/upload/v1750274240/drawings/shocked_man.jpg',
