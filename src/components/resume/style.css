@@ -1,0 +1,404 @@
+/* Resume Page Styles */
+.resume-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 2rem 1rem;
+  font-family: 'Lato', 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.resume-container {
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.download-btn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background-color: #c10b7e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(193, 11, 126, 0.3);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.download-btn:hover {
+  background-color: #a00967;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(193, 11, 126, 0.4);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.resume-content {
+  background: white;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Header */
+.resume-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #333;
+}
+
+.resume-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-row a {
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-row a:hover {
+  color: #c10b7e;
+  text-decoration: underline;
+}
+
+.contact-row span {
+  color: #666;
+}
+
+/* Section Styles */
+.resume-section {
+  margin-bottom: 2rem;
+}
+
+.resume-section h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #333;
+  color: #1a1a1a;
+}
+
+/* Experience Styles */
+.experience-item {
+  margin-bottom: 1.5rem;
+}
+
+.experience-item.continuation {
+  margin-top: -0.5rem;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.experience-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+}
+
+.experience-header .position {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin: 0;
+  color: #333;
+}
+
+.experience-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.experience-meta .location {
+  font-size: 0.95rem;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+}
+
+.experience-meta .date {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
+  color: #555;
+}
+
+.experience-details {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.experience-details li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.experience-details li strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Project Styles */
+.project-item {
+  margin-bottom: 1rem;
+}
+
+.project-item h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+}
+
+.project-item h3 a {
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.project-item h3 a:hover {
+  color: #c10b7e;
+  text-decoration: underline;
+}
+
+.project-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Skills Styles */
+.skills-grid {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.skill-item {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.skill-item strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Education Styles */
+.education-item {
+  margin-bottom: 1rem;
+}
+
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.education-header h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+}
+
+.education-header .degree {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin: 0;
+  color: #333;
+}
+
+.education-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.education-meta .location {
+  font-size: 0.95rem;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a1a;
+}
+
+.education-meta .date {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resume-page {
+    padding: 1rem 0.5rem;
+  }
+
+  .resume-content {
+    padding: 2rem 1.5rem;
+    border-radius: 0;
+  }
+
+  .download-btn {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .resume-header h1 {
+    font-size: 2rem;
+  }
+
+  .experience-header,
+  .education-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .experience-meta,
+  .education-meta {
+    text-align: left;
+  }
+
+  .contact-row {
+    font-size: 0.85rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .resume-page {
+    background-color: white;
+    padding: 0;
+  }
+
+  .resume-container {
+    max-width: 100%;
+  }
+
+  .resume-content {
+    padding: 0.5in 0.75in;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .no-print,
+  .download-btn {
+    display: none !important;
+  }
+
+  .resume-header {
+    page-break-after: avoid;
+  }
+
+  .resume-section {
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  .experience-item,
+  .project-item,
+  .education-item {
+    page-break-inside: avoid;
+  }
+
+  .resume-header h1 {
+    font-size: 2rem;
+  }
+
+  .resume-section h2 {
+    font-size: 1.1rem;
+    page-break-after: avoid;
+  }
+
+  /* Ensure links are visible in print */
+  a {
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+
+  /* Optimize font sizes for print */
+  body {
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  .contact-info,
+  .experience-details li,
+  .project-item p,
+  .skill-item {
+    font-size: 10pt;
+  }
+
+  .experience-header h3,
+  .project-item h3,
+  .education-header h3 {
+    font-size: 11pt;
+  }
+
+  .experience-header .position,
+  .experience-meta .date,
+  .education-header .degree {
+    font-size: 10pt;
+  }
+
+  /* Better spacing for print */
+  .experience-item {
+    margin-bottom: 1rem;
+  }
+
+  .experience-details li {
+    margin-bottom: 0.35rem;
+  }
+
+  /* Avoid orphans and widows */
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+}
+
+@page {
+  margin: 0.5in 0.75in;
+  size: letter;
+}
