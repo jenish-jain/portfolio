@@ -14,6 +14,58 @@
   100% { background-position: 0% 50%; }
 }
 
+/* Back Navigation Link */
+.back-link {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.back-link:hover {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(-4px);
+  color: #c10b7e;
+}
+
+/* Swirly Arrow Container */
+.arrow-container {
+  position: fixed;
+  top: 0.5rem;
+  right: 12rem;
+  z-index: 99;
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.arrow-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c10b7e;
+  margin-bottom: -0.5rem;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.swirly-arrow {
+  display: block;
+  filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.6));
+}
+
 .resume-container {
   max-width: 850px;
   margin: 0 auto;
@@ -285,11 +337,23 @@
     border-radius: 0;
   }
 
+  .back-link {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
   .download-btn {
     top: 1rem;
     right: 1rem;
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
+  }
+
+  /* Hide arrow on mobile for cleaner look */
+  .arrow-container {
+    display: none;
   }
 
   .resume-header h1 {
@@ -309,6 +373,13 @@
 
   .contact-row {
     font-size: 0.85rem;
+  }
+}
+
+/* Medium screens - adjust arrow position */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .arrow-container {
+    right: 10rem;
   }
 }
 

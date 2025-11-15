@@ -14,6 +14,38 @@ const Resume = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
+      {/* Back Navigation */}
+      <a href="/" className="back-link no-print">
+        ← Back to Portfolio
+      </a>
+
+      {/* Swirly Arrow with Text */}
+      <div className="arrow-container no-print">
+        <div className="arrow-text">Like my resume?</div>
+        <svg className="swirly-arrow" width="120" height="80" viewBox="0 0 120 80">
+          <path
+            d="M 10 70 Q 40 20, 100 20"
+            fill="none"
+            stroke="#c10b7e"
+            strokeWidth="2"
+            strokeDasharray="5,5"
+            markerEnd="url(#arrowhead)"
+          />
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="10"
+              refX="9"
+              refY="3"
+              orient="auto"
+            >
+              <polygon points="0 0, 10 3, 0 6" fill="#c10b7e" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
       <div className="resume-container">
         <button className="download-btn no-print" onClick={handleDownloadPDF}>
           Download as PDF
