@@ -41,24 +41,21 @@
 /* Swirly Arrow Container */
 .arrow-container {
   position: fixed;
-  top: 0.5rem;
-  right: 12rem;
+  top: 1.5rem;
+  right: 2rem;
   z-index: 99;
-  animation: gentleBounce 2s ease-in-out infinite;
-}
-
-@keyframes gentleBounce {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
 }
 
 .arrow-text {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: #c10b7e;
-  margin-bottom: -0.5rem;
   font-style: italic;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
 }
 
 .swirly-arrow {
@@ -377,9 +374,15 @@
 }
 
 /* Medium screens - adjust arrow position */
-@media (max-width: 1024px) and (min-width: 769px) {
+@media (max-width: 1200px) and (min-width: 769px) {
   .arrow-container {
-    right: 10rem;
+    right: 1.5rem;
+    top: 4rem;
+  }
+
+  .swirly-arrow {
+    width: 200px;
+    height: 100px;
   }
 }
 

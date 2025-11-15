@@ -22,9 +22,9 @@ const Resume = () => {
       {/* Swirly Arrow with Text */}
       <div className="arrow-container no-print">
         <div className="arrow-text">Like my resume?</div>
-        <svg className="swirly-arrow" width="120" height="80" viewBox="0 0 120 80">
+        <svg className="swirly-arrow" width="280" height="120" viewBox="0 0 280 120">
           <path
-            d="M 10 70 Q 40 20, 100 20"
+            d="M 10 60 Q 40 10, 80 30 T 120 80 Q 140 100, 170 90 T 220 60 Q 240 50, 260 55"
             fill="none"
             stroke="#c10b7e"
             strokeWidth="2"
