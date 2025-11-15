@@ -38,31 +38,6 @@
   color: #c10b7e;
 }
 
-/* Swirly Arrow Container */
-.arrow-container {
-  position: fixed;
-  top: 1.5rem;
-  right: 2rem;
-  z-index: 99;
-}
-
-.arrow-text {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #c10b7e;
-  font-style: italic;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-  white-space: nowrap;
-}
-
-.swirly-arrow {
-  display: block;
-  filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.6));
-}
-
 .resume-container {
   max-width: 850px;
   margin: 0 auto;
@@ -348,11 +323,6 @@
     font-size: 0.9rem;
   }
 
-  /* Hide arrow on mobile for cleaner look */
-  .arrow-container {
-    display: none;
-  }
-
   .resume-header h1 {
     font-size: 2rem;
   }
@@ -370,19 +340,6 @@
 
   .contact-row {
     font-size: 0.85rem;
-  }
-}
-
-/* Medium screens - adjust arrow position */
-@media (max-width: 1200px) and (min-width: 769px) {
-  .arrow-container {
-    right: 1.5rem;
-    top: 4rem;
-  }
-
-  .swirly-arrow {
-    width: 200px;
-    height: 100px;
   }
 }
 

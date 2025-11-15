@@ -19,33 +19,6 @@ const Resume = () => {
         ← Back to Portfolio
       </a>
 
-      {/* Swirly Arrow with Text */}
-      <div className="arrow-container no-print">
-        <div className="arrow-text">Like my resume?</div>
-        <svg className="swirly-arrow" width="280" height="120" viewBox="0 0 280 120">
-          <path
-            d="M 10 60 Q 40 10, 80 30 T 120 80 Q 140 100, 170 90 T 220 60 Q 240 50, 260 55"
-            fill="none"
-            stroke="#c10b7e"
-            strokeWidth="2"
-            strokeDasharray="5,5"
-            markerEnd="url(#arrowhead)"
-          />
-          <defs>
-            <marker
-              id="arrowhead"
-              markerWidth="10"
-              markerHeight="10"
-              refX="9"
-              refY="3"
-              orient="auto"
-            >
-              <polygon points="0 0, 10 3, 0 6" fill="#c10b7e" />
-            </marker>
-          </defs>
-        </svg>
-      </div>
-
       <div className="resume-container">
         <button className="download-btn no-print" onClick={handleDownloadPDF}>
           Download as PDF
