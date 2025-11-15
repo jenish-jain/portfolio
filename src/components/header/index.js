@@ -5,8 +5,7 @@ export function Header() {
    // eslint-disable-next-line
   const [isHome, setIsHome] = useState(false);
 
-  // TODO: Replace this URL with your actual Calendly/Cal.com link
-  const schedulingLink = 'https://calendly.com/your-username'; // Update this!
+  const schedulingLink = 'https://cal.com/jenish-jain-gzoo2b/15min';
 
   useEffect(() => {
     setIsHome(window.location.pathname === '/');
