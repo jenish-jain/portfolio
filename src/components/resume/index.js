@@ -22,7 +22,7 @@ const Resume = () => {
       </Helmet>
 
       {/* Back Navigation */}
-      <a href="/" className="back-link no-print">
+      <a href="#/" className="back-link no-print">
         ← Back to Portfolio
       </a>
 
