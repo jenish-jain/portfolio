@@ -306,6 +306,11 @@
 
 /* Print Styles */
 @media print {
+  /* Hide portfolio header */
+  .site-header {
+    display: none !important;
+  }
+
   .resume-page {
     background-color: white;
     padding: 0;
@@ -316,7 +321,7 @@
   }
 
   .resume-content {
-    padding: 0.5in 0.75in;
+    padding: 0;
     box-shadow: none;
     border-radius: 0;
   }
@@ -328,26 +333,47 @@
 
   .resume-header {
     page-break-after: avoid;
-  }
-
-  .resume-section {
-    page-break-inside: avoid;
-    margin-bottom: 1.5rem;
-  }
-
-  .experience-item,
-  .project-item,
-  .education-item {
-    page-break-inside: avoid;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
   }
 
   .resume-header h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-info {
+    gap: 0.15rem;
+  }
+
+  .resume-section {
+    margin-bottom: 0.8rem;
   }
 
   .resume-section h2 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     page-break-after: avoid;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .experience-item {
+    margin-bottom: 0.6rem;
+    page-break-inside: avoid;
+  }
+
+  .experience-item.continuation {
+    margin-top: -0.25rem;
+  }
+
+  .experience-header {
+    margin-bottom: 0.3rem;
+  }
+
+  .project-item,
+  .education-item {
+    page-break-inside: avoid;
+    margin-bottom: 0.5rem;
   }
 
   /* Ensure links are visible in print */
@@ -358,47 +384,63 @@
 
   /* Optimize font sizes for print */
   body {
-    font-size: 10.5pt;
-    line-height: 1.4;
+    font-size: 9.5pt;
+    line-height: 1.35;
   }
 
-  .contact-info,
+  .contact-info {
+    font-size: 9pt;
+  }
+
+  .contact-row {
+    gap: 0.3rem;
+  }
+
+  .experience-details {
+    padding-left: 1rem;
+  }
+
   .experience-details li,
   .project-item p,
   .skill-item {
-    font-size: 10pt;
+    font-size: 9pt;
+    line-height: 1.35;
+    margin-bottom: 0.25rem;
   }
 
   .experience-header h3,
   .project-item h3,
   .education-header h3 {
-    font-size: 11pt;
+    font-size: 10pt;
   }
 
   .experience-header .position,
   .experience-meta .date,
-  .education-header .degree {
-    font-size: 10pt;
+  .experience-meta .location,
+  .education-header .degree,
+  .education-meta .location,
+  .education-meta .date {
+    font-size: 9pt;
   }
 
-  /* Better spacing for print */
-  .experience-item {
-    margin-bottom: 1rem;
-  }
-
-  .experience-details li {
-    margin-bottom: 0.35rem;
+  .skills-grid {
+    gap: 0.3rem;
   }
 
   /* Avoid orphans and widows */
   p,
   li {
+    orphans: 2;
+    widows: 2;
+  }
+
+  h2, h3 {
     orphans: 3;
     widows: 3;
   }
 }
 
 @page {
-  margin: 0.5in 0.75in;
+  margin: 0.4in 0.5in;
   size: letter;
 }
