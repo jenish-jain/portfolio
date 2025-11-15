@@ -443,4 +443,12 @@
 @page {
   margin: 0.4in 0.5in;
   size: letter;
+
+  /* Hide browser default header/footer in print */
+  @top-left { content: none; }
+  @top-center { content: none; }
+  @top-right { content: none; }
+  @bottom-left { content: none; }
+  @bottom-center { content: none; }
+  @bottom-right { content: none; }
 }

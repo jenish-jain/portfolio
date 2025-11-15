@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import './style.css';
 
 const Resume = () => {
@@ -8,6 +9,11 @@ const Resume = () => {
 
   return (
     <div className="resume-page">
+      <Helmet>
+        <title>Jenish Jain - Resume</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
       <div className="resume-container">
         <button className="download-btn no-print" onClick={handleDownloadPDF}>
           Download as PDF
