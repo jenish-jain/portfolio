@@ -14,6 +14,7 @@ export function parseResume(markdownContent) {
 
   const resume = {
     personal: metadata,
+    summary: '',
     experience: [],
     projects: [],
     skills: [],
@@ -24,11 +25,13 @@ export function parseResume(markdownContent) {
     const lines = section.trim().split('\n');
     const sectionTitle = lines[0].trim();
 
-    if (sectionTitle === 'Experience') {
+    if (sectionTitle === 'Professional Summary') {
+      resume.summary = lines.slice(1).join('\n').trim();
+    } else if (sectionTitle === 'Experience' || sectionTitle === 'Professional Experience') {
       resume.experience = parseExperienceSection(lines.slice(1).join('\n'));
     } else if (sectionTitle === 'Personal Projects') {
       resume.projects = parseProjectsSection(lines.slice(1).join('\n'));
-    } else if (sectionTitle === 'Skills') {
+    } else if (sectionTitle === 'Skills' || sectionTitle === 'Technical Skills') {
       resume.skills = parseSkillsSection(lines.slice(1).join('\n'));
     } else if (sectionTitle === 'Education') {
       resume.education = parseEducationSection(lines.slice(1).join('\n'));
@@ -51,7 +54,7 @@ function parseExperienceSection(content) {
     const [company, location] = companyInfo.split('|').map(s => s.trim());
 
     // Find all positions within this company
-    const positionBlocks = lines.slice(1).join('\n').split(/^\*\*(?![\*])/gm).filter(Boolean);
+    const positionBlocks = lines.slice(1).join('\n').split(/^\*\*(?![*])/gm).filter(Boolean);
 
     positionBlocks.forEach(posBlock => {
       const posLines = posBlock.trim().split('\n');
@@ -90,29 +93,37 @@ function parseExperienceSection(content) {
  */
 function parseProjectsSection(content) {
   const projects = [];
-  const projectBlocks = content.split(/^### /gm).filter(Boolean);
+  // Split by ** (similar to how position blocks are parsed in experience)
+  const projectBlocks = content.split(/^\*\*(?![*])/gm).filter(Boolean);
 
   projectBlocks.forEach(block => {
     const lines = block.trim().split('\n');
-    const title = lines[0].trim();
+    const titleLine = lines[0];
 
+    // Extract title (everything before the closing **)
+    const titleMatch = titleLine.match(/^(.+?)\*\*/);
+    if (!titleMatch) return;
+
+    const title = titleMatch[1].trim();
     let url = '';
     let description = '';
 
+    // Parse remaining lines for URL and description
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (line.startsWith('[http')) {
         // Extract URL from markdown link
-        const urlMatch = line.match(/\[([^\]]+)\]\(([^\)]+)\)/);
+        const urlMatch = line.match(/\[([^\]]+)\]\(([^)]+)\)/);
         if (urlMatch) {
           url = urlMatch[2];
         }
       } else if (line && !line.startsWith('[')) {
+        // Collect description text
         description += (description ? ' ' : '') + line;
       }
     }
 
-    projects.push({ title, url, description });
+    projects.push({ title, url, technologies: '', description: description.trim() });
   });
 
   return projects;

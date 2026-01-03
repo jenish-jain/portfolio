@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
-import { Helmet } from 'react-helmet';
-import { resumeMarkdown } from '../../data/resumeContent';
-import { parseResume } from '../../utils/resumeParser';
-import { MarkdownText } from './MarkdownText';
-import './style.css';
+import React, { useMemo } from "react";
+import { Helmet } from "react-helmet";
+import { resumeMarkdown } from "../../data/resumeContent";
+import { parseResume } from "../../utils/resumeParser";
+import { MarkdownText } from "./MarkdownText";
+import "./style.css";
 
 const Resume = () => {
   const handleDownloadPDF = () => {
@@ -12,7 +12,8 @@ const Resume = () => {
 
   // Parse markdown content
   const resumeData = useMemo(() => parseResume(resumeMarkdown), []);
-  const { personal, experience, projects, skills, education } = resumeData;
+  const { personal, summary, experience, skills, projects, education } =
+    resumeData;
 
   return (
     <div className="resume-page">
@@ -37,38 +38,60 @@ const Resume = () => {
             <h1>{personal.name}</h1>
             <div className="contact-info">
               <div className="contact-row">
-                <a href={`https://${personal.linkedin}`} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`https://${personal.linkedin}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {personal.linkedin}
                 </a>
                 <span>•</span>
                 <a href={`mailto:${personal.email}`}>{personal.email}</a>
               </div>
               <div className="contact-row">
-                <a href={`https://${personal.website}`} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`https://${personal.website}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {personal.website}
                 </a>
                 <span>•</span>
                 <span>{personal.phone}</span>
                 <span>•</span>
-                <a href={`https://${personal.github}`} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`https://${personal.github}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {personal.github}
                 </a>
               </div>
             </div>
           </header>
 
+          {/* Professional Summary Section */}
+          {summary && (
+            <section className="resume-section">
+              <h2>Professional Summary</h2>
+              <p>{summary}</p>
+            </section>
+          )}
+
           {/* Experience Section */}
           <section className="resume-section">
             <h2>Experience</h2>
 
             {experience.map((exp, index) => {
-              const isFirstPosition = index === 0;
-              const isContinuation = index > 0 && exp.company === experience[index - 1].company;
+              const isContinuation =
+                index > 0 && exp.company === experience[index - 1].company;
 
               return (
                 <div
                   key={index}
-                  className={`experience-item ${isContinuation ? 'continuation' : ''}`}
+                  className={`experience-item ${
+                    isContinuation ? "continuation" : ""
+                  }`}
                 >
                   <div className="experience-header">
                     <div>
@@ -76,7 +99,9 @@ const Resume = () => {
                       <p className="position">{exp.title}</p>
                     </div>
                     <div className="experience-meta">
-                      {!isContinuation && <p className="location">{exp.location}</p>}
+                      {!isContinuation && (
+                        <p className="location">{exp.location}</p>
+                      )}
                       <p className="date">{exp.period}</p>
                     </div>
                   </div>
@@ -92,29 +117,9 @@ const Resume = () => {
             })}
           </section>
 
-          {/* Projects Section */}
+          {/* Technical Skills Section */}
           <section className="resume-section">
-            <h2>Personal Projects</h2>
-
-            {projects.map((project, index) => (
-              <div key={index} className="project-item">
-                <h3>
-                  {project.url ? (
-                    <a href={project.url} target="_blank" rel="noopener noreferrer">
-                      {project.title}
-                    </a>
-                  ) : (
-                    project.title
-                  )}
-                </h3>
-                <p>{project.description}</p>
-              </div>
-            ))}
-          </section>
-
-          {/* Skills Section */}
-          <section className="resume-section">
-            <h2>Skills</h2>
+            <h2>Technical Skills</h2>
 
             <div className="skills-grid">
               {skills.map((skill, index) => (
@@ -123,6 +128,39 @@ const Resume = () => {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Personal Projects Section */}
+          <section className="resume-section">
+            <h2>Personal Projects</h2>
+
+            {projects.map((project, index) => (
+              <div key={index} className="project-item">
+                <div className="project-header">
+                  <div>
+                    <h3>
+                      {project.url ? (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {project.title}
+                        </a>
+                      ) : (
+                        project.title
+                      )}
+                    </h3>
+                   {/*  {project.technologies && (
+                      <p className="technologies">{project.technologies}</p>
+                    )} */}
+                  </div>
+                </div>
+                <p className="project-description">
+                  <MarkdownText text={project.description} />
+                </p>
+              </div>
+            ))}
           </section>
 
           {/* Education Section */}
