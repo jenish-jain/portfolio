@@ -9,7 +9,7 @@ website: jenishjain.in
 
 ## Professional Summary
 
-Senior Product Engineer with 4+ years of experience in building scalable backend systems d. Proven expertise in database operations, microservices architecture, and performance optimization serving millions of users. Strong background in MongoDB, Kubernetes, GCP, and Go programming with demonstrated leadership in technical architecture and team mentorship.
+Senior Product Engineer with 5+ years of experience in building scalable backend systems. Proven expertise in database operations, microservices architecture, and performance optimization serving millions of users. Strong background in MongoDB, Kubernetes, GCP, and Go programming with demonstrated leadership in technical architecture and team mentorship.
 
 ## Technical Skills
 
@@ -42,7 +42,7 @@ Senior Product Engineer with 4+ years of experience in building scalable backend
 - **Reduced new city launch time from months to weeks** through autonomous route-based analytics platform implementation, supporting successful cabs product launch
 - Implemented dynamic TTL (Time-To-Live) algorithm **reducing disk storage costs by 55-60%** while maintaining customer experience across **2M+ daily rides**
 
-**Product Engineer (Full-Stack)** | Dec 2020 - Nov 2022
+**Product Engineer (Full Stack)** | Dec 2020 - Nov 2022
 
 - Owned and operated critical dynamic pricing engine serving 2M+ daily ride requests at 400 RPS with 99.9% uptime
 - Collaborated with data science teams to implement machine learning-based dynamic pricing optimization processing 5M+ daily transactions
