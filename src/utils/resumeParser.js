@@ -123,7 +123,7 @@ function parseProjectsSection(content) {
       }
     }
 
-    projects.push({ title, url, technologies: '', description: description.trim() });
+    projects.push({ title, url, description: description.trim() });
   });
 
   return projects;
