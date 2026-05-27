@@ -1,31 +1,12 @@
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import Layout from './components/layout';
 import { SEO } from './components/seo';
-import Block from './components/block/index';
-import Hero from './components/hero/index';
-import Bio from './components/bio/index';
-import Writings from './components/writings/index';
-import Sketches from './components/sketches/index';
+import HomePage from './components/home';
 import Resume from './components/resume/index';
 
-// Home page component
-const HomePage = () => (
+const HomePageWithSEO = () => (
   <>
     <SEO />
-    <Layout>
-      <Block color='dirty-white'>
-        <Hero />
-      </Block>
-      <Block id='bio'>
-        <Bio />
-      </Block>
-      <Block id='writings' color='yellow'>
-        <Writings />
-      </Block>
-      <Block id='sketches' color='dirty-white'>
-        <Sketches />
-      </Block>
-    </Layout>
+    <HomePage />
   </>
 );
 
@@ -33,7 +14,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={HomePageWithSEO} />
         <Route exact path="/resume" component={Resume} />
       </Switch>
     </Router>

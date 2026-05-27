@@ -1,13 +1,10 @@
-import './style.css';
-
-export function Footer() {
+export default function Footer() {
   return (
-    <footer className="footer">
-      <span>powered by free weekends</span>
-      <nav className="footer-nav">
-        <a href="/posts">posts</a>
-        <a href="https://github.com/jenish-jain/portfolio">source code</a>
-      </nav>
+    <footer>
+      <span>© Jenish Jain — Surat, IN</span>
+      <div className="col-right">
+        <span>Hand-built with Geist + Instrument Serif</span>
+      </div>
     </footer>
   );
 }
