@@ -20,22 +20,6 @@ eleventyExcludeFromCollections: true
     <priority>0.9</priority>
   </url>
 
-  {# Newsletter page #}
-  <url>
-    <loc>{{ siteUrl }}/newsletter/</loc>
-    <lastmod>{{ page.date | rssDate }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  {# Categories page #}
-  <url>
-    <loc>{{ siteUrl }}/categories/</loc>
-    <lastmod>{{ page.date | rssDate }}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   {# Tags page #}
   <url>
     <loc>{{ siteUrl }}/tags/</loc>

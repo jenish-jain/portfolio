@@ -1,243 +1,121 @@
 ---
-title: Post Tags
-seo_title: Blog Tags | Jenish Jain's Engineering Blog
-description: Explore engineering blog posts by tags - Kafka, system design, Rapido, automation, productivity, and more engineering topics.
+layout: bento.njk
+title: Topics
+seo_title: Blog Topics | Jenish Jain's Engineering Blog
+description: Explore engineering blog posts by topic — Kafka, system design, automation, productivity, and more.
 permalink: /tags/
 ---
 
-{% extends "default.njk" %}
+<main class="tags-page">
 
-{% block seo %}
-<title>{{ seo_title }}</title>
-<link rel="canonical" href="{{ siteUrl }}/tags/" />
-<meta name="description" content="{{ description }}" />
-<meta name="keywords" content="engineering, software engineering, rapido, kafka, system design, automation, productivity" />
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content="{{ siteUrl }}/tags/" />
-<meta property="og:title" content="{{ seo_title }}" />
-<meta property="og:description" content="{{ description }}" />
-<meta property="og:site_name" content="Jenish Jain's Engineering Blog" />
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:creator" content="@jenishjain6" />
-<meta name="twitter:title" content="{{ seo_title }}" />
-<meta name="twitter:description" content="{{ description }}" />
-{% endblock %}
-
-{% block main %}
-<main>
-  <div class="heading" style="text-align: center; margin-bottom: 3rem;">
-    <h1>{{ title }}</h1>
-    <p class="lede">{{ description }}</p>
+  <div class="tags-header">
+    <div class="tags-kicker">/topics</div>
+    <h1 class="tags-title">Browse by topic</h1>
+    <p class="tags-sub">{{ description }}</p>
   </div>
 
-  <div style="max-width: 900px; margin: 0 auto;">
-    {# Tag cloud #}
-    <div style="
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      margin-bottom: 3rem;
-      padding: 2rem;
-      background: var(--color-accent-background);
-      border-radius: 0.5rem;
-    ">
-      {% for tag in tagList %}
-        {% set tagPosts = [] %}
-        {% for post in collections.posts %}
-          {% if post.data.tags and post.data.tags.includes(tag.name) %}
-            {% set tagPosts = tagPosts.concat([post]) %}
-          {% endif %}
-        {% endfor %}
-        {% if tagPosts | length > 0 %}
-        <a href="/tag/{{ tag.slug }}/" style="
-          display: inline-block;
-          padding: 0.5rem 1rem;
-          background: var(--color-background);
-          border: 1px solid var(--color-border);
-          border-radius: 2rem;
-          text-decoration: none;
-          color: var(--color-text-default);
-          font-size: 0.875rem;
-          transition: all 0.2s;
-        " onmouseover="this.style.background='var(--color-yellow-500)'; this.style.borderColor='var(--color-yellow-500)'; this.style.color='var(--color-gray-900)';" onmouseout="this.style.background='var(--color-background)'; this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-default)';">
-          #{{ tag.name }} <span style="font-size: 0.75rem; color: var(--color-text-muted);">({{ tagPosts | length }})</span>
-        </a>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    {# Popular tags #}
-    <h2 style="
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--color-text-heading);
-    ">Popular Tags</h2>
-
-    <div style="
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    ">
-      {# Engineering tag #}
-      {% set engineeringPosts = [] %}
+  <div class="tags-grid">
+    {% for tag in tagList %}
+      {% set tagPosts = [] %}
       {% for post in collections.posts %}
-        {% if post.data.tags and post.data.tags.includes('engineering') %}
-          {% set engineeringPosts = engineeringPosts.concat([post]) %}
+        {% if post.data.tags and post.data.tags.includes(tag.name) %}
+          {% set tagPosts = tagPosts.concat([post]) %}
         {% endif %}
       {% endfor %}
-      {% if engineeringPosts | length > 0 %}
-      <section style="padding: 1.5rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: 0.5rem;">
-        <h3 style="font-size: 1.125rem; margin: 0 0 1rem 0; padding: 0 0 0.5rem 0; border-bottom: 2px solid var(--color-yellow-500); color: var(--color-text-heading);">
-          <a href="/tag/engineering/" style="text-decoration: none; color: inherit;">#engineering</a>
-          <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 400; margin-left: 0.5rem;">({{ engineeringPosts | length }})</span>
-        </h3>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          {% for post in engineeringPosts | reverse | slice(0, 3) %}
-          <li style="margin: 0 0 0.75rem 0;">
-            <a href="/{{ post.data.slug }}/" style="font-size: 0.875rem; text-decoration: none; color: var(--color-text-default); line-height: 1.4;">{{ post.data.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% if engineeringPosts | length > 3 %}
-        <a href="/tag/engineering/" style="display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--color-primary); text-decoration: none;">View all {{ engineeringPosts | length }} posts →</a>
-        {% endif %}
-      </section>
+      {% if tagPosts | length > 0 %}
+      <a class="tag-tile" href="/tag/{{ tag.slug }}/">
+        <div class="tag-tile-name">#{{ tag.name }}</div>
+        <div class="tag-tile-count">{{ tagPosts | length }} post{% if tagPosts | length != 1 %}s{% endif %}</div>
+      </a>
       {% endif %}
-
-      {# Rapido tag #}
-      {% set rapidoPosts = [] %}
-      {% for post in collections.posts %}
-        {% if post.data.tags and post.data.tags.includes('rapido') %}
-          {% set rapidoPosts = rapidoPosts.concat([post]) %}
-        {% endif %}
-      {% endfor %}
-      {% if rapidoPosts | length > 0 %}
-      <section style="padding: 1.5rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: 0.5rem;">
-        <h3 style="font-size: 1.125rem; margin: 0 0 1rem 0; padding: 0 0 0.5rem 0; border-bottom: 2px solid var(--color-yellow-500); color: var(--color-text-heading);">
-          <a href="/tag/rapido/" style="text-decoration: none; color: inherit;">#rapido</a>
-          <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 400; margin-left: 0.5rem;">({{ rapidoPosts | length }})</span>
-        </h3>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          {% for post in rapidoPosts | reverse | slice(0, 3) %}
-          <li style="margin: 0 0 0.75rem 0;">
-            <a href="/{{ post.data.slug }}/" style="font-size: 0.875rem; text-decoration: none; color: var(--color-text-default); line-height: 1.4;">{{ post.data.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% if rapidoPosts | length > 3 %}
-        <a href="/tag/rapido/" style="display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--color-primary); text-decoration: none;">View all {{ rapidoPosts | length }} posts →</a>
-        {% endif %}
-      </section>
-      {% endif %}
-
-      {# Productivity tag #}
-      {% set productivityPosts = [] %}
-      {% for post in collections.posts %}
-        {% if post.data.tags and post.data.tags.includes('productivity') %}
-          {% set productivityPosts = productivityPosts.concat([post]) %}
-        {% endif %}
-      {% endfor %}
-      {% if productivityPosts | length > 0 %}
-      <section style="padding: 1.5rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: 0.5rem;">
-        <h3 style="font-size: 1.125rem; margin: 0 0 1rem 0; padding: 0 0 0.5rem 0; border-bottom: 2px solid var(--color-yellow-500); color: var(--color-text-heading);">
-          <a href="/tag/productivity/" style="text-decoration: none; color: inherit;">#productivity</a>
-          <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 400; margin-left: 0.5rem;">({{ productivityPosts | length }})</span>
-        </h3>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          {% for post in productivityPosts | reverse | slice(0, 3) %}
-          <li style="margin: 0 0 0.75rem 0;">
-            <a href="/{{ post.data.slug }}/" style="font-size: 0.875rem; text-decoration: none; color: var(--color-text-default); line-height: 1.4;">{{ post.data.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% if productivityPosts | length > 3 %}
-        <a href="/tag/productivity/" style="display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--color-primary); text-decoration: none;">View all {{ productivityPosts | length }} posts →</a>
-        {% endif %}
-      </section>
-      {% endif %}
-
-      {# System Design tag #}
-      {% set systemDesignPosts = [] %}
-      {% for post in collections.posts %}
-        {% if post.data.tags and post.data.tags.includes('system-design') %}
-          {% set systemDesignPosts = systemDesignPosts.concat([post]) %}
-        {% endif %}
-      {% endfor %}
-      {% if systemDesignPosts | length > 0 %}
-      <section style="padding: 1.5rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: 0.5rem;">
-        <h3 style="font-size: 1.125rem; margin: 0 0 1rem 0; padding: 0 0 0.5rem 0; border-bottom: 2px solid var(--color-yellow-500); color: var(--color-text-heading);">
-          <a href="/tag/system-design/" style="text-decoration: none; color: inherit;">#system-design</a>
-          <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 400; margin-left: 0.5rem;">({{ systemDesignPosts | length }})</span>
-        </h3>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          {% for post in systemDesignPosts | reverse | slice(0, 3) %}
-          <li style="margin: 0 0 0.75rem 0;">
-            <a href="/{{ post.data.slug }}/" style="font-size: 0.875rem; text-decoration: none; color: var(--color-text-default); line-height: 1.4;">{{ post.data.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% if systemDesignPosts | length > 3 %}
-        <a href="/tag/system-design/" style="display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--color-primary); text-decoration: none;">View all {{ systemDesignPosts | length }} posts →</a>
-        {% endif %}
-      </section>
-      {% endif %}
-
-      {# Kafka tag #}
-      {% set kafkaPosts = [] %}
-      {% for post in collections.posts %}
-        {% if post.data.tags and (post.data.tags.includes('kafka') or post.data.tags.includes('apache-kafka')) %}
-          {% set kafkaPosts = kafkaPosts.concat([post]) %}
-        {% endif %}
-      {% endfor %}
-      {% if kafkaPosts | length > 0 %}
-      <section style="padding: 1.5rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: 0.5rem;">
-        <h3 style="font-size: 1.125rem; margin: 0 0 1rem 0; padding: 0 0 0.5rem 0; border-bottom: 2px solid var(--color-yellow-500); color: var(--color-text-heading);">
-          <a href="/tag/kafka/" style="text-decoration: none; color: inherit;">#kafka</a>
-          <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 400; margin-left: 0.5rem;">({{ kafkaPosts | length }})</span>
-        </h3>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          {% for post in kafkaPosts | reverse | slice(0, 3) %}
-          <li style="margin: 0 0 0.75rem 0;">
-            <a href="/{{ post.data.slug }}/" style="font-size: 0.875rem; text-decoration: none; color: var(--color-text-default); line-height: 1.4;">{{ post.data.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% if kafkaPosts | length > 3 %}
-        <a href="/tag/kafka/" style="display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--color-primary); text-decoration: none;">View all {{ kafkaPosts | length }} posts →</a>
-        {% endif %}
-      </section>
-      {% endif %}
-
-      {# Automation tag #}
-      {% set automationPosts = [] %}
-      {% for post in collections.posts %}
-        {% if post.data.tags and post.data.tags.includes('automation') %}
-          {% set automationPosts = automationPosts.concat([post]) %}
-        {% endif %}
-      {% endfor %}
-      {% if automationPosts | length > 0 %}
-      <section style="padding: 1.5rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: 0.5rem;">
-        <h3 style="font-size: 1.125rem; margin: 0 0 1rem 0; padding: 0 0 0.5rem 0; border-bottom: 2px solid var(--color-yellow-500); color: var(--color-text-heading);">
-          <a href="/tag/automation/" style="text-decoration: none; color: inherit;">#automation</a>
-          <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 400; margin-left: 0.5rem;">({{ automationPosts | length }})</span>
-        </h3>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          {% for post in automationPosts | reverse | slice(0, 3) %}
-          <li style="margin: 0 0 0.75rem 0;">
-            <a href="/{{ post.data.slug }}/" style="font-size: 0.875rem; text-decoration: none; color: var(--color-text-default); line-height: 1.4;">{{ post.data.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% if automationPosts | length > 3 %}
-        <a href="/tag/automation/" style="display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--color-primary); text-decoration: none;">View all {{ automationPosts | length }} posts →</a>
-        {% endif %}
-      </section>
-      {% endif %}
-    </div>
+    {% endfor %}
   </div>
+
 </main>
-{% endblock %}
+
+<style>
+  .tags-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px) 80px;
+  }
+
+  .tags-header {
+    padding: clamp(40px, 6vw, 72px) 0 clamp(32px, 4vw, 48px);
+    border-bottom: 1px solid var(--hair);
+    max-width: 640px;
+  }
+  .tags-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tags-kicker::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .tags-title {
+    font-family: var(--display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  .tags-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .tag-tile {
+    background: var(--tile);
+    border: 1px solid var(--hair);
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    min-height: 110px;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s, background .2s;
+  }
+  .tag-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    background: var(--accent);
+  }
+  .tag-tile-name {
+    font-family: var(--display);
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .tag-tile-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>

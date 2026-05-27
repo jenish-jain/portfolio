@@ -1,39 +1,79 @@
 ---
-layout: post-list
-
+layout: bento.njk
+title: Posts — Jenish Jain
+seo_title: Posts — Jenish Jain's Engineering Blog
 slug: posts
 description: >
     I like to share my learnings, process of building something with others. I am not a regular writer but you can expect something rolling every few months ;)
 ---
 
-<div class="post-previews">
-  {% for post in collections.posts %}
-  <div class="post-preview" style="--bg-image: url({{post.data.seo_title | seoImage}})">
-    <img src="{{post.data.thumb}}" alt='{{ post.data.title }}' class='post-preview' loading='lazy' width=250 height=125/>
-    {% if post.data.url%}
-    <h2><a href="{{post.data.url}}" target="_blank" rel="noopener noreferrer">{{ post.data.title }}</a></h2>
-    {% else %}
-    <h2><a href="/{{post.data.slug}}/">{{ post.data.title }}</a></h2>
-     {% endif %}
-    <p class="description">{{ post.data.description }}</p>
-    <span aria-hidden="true">read this post &rarr;</span>
-  </div>
-  {% endfor %}
-</div>
+<main class="bento">
 
-<div style="text-align: center; margin-top: 3rem;">
-  <a href="/tags/" style="
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: var(--color-background);
-    border: 2px solid var(--color-primary);
-    border-radius: 0.25rem;
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.875rem;
-    transition: all 0.2s;
-  " onmouseover="this.style.background='var(--color-primary)'; this.style.color='var(--color-background)';" onmouseout="this.style.background='var(--color-background)'; this.style.color='var(--color-primary)';">
-    Navigate by tags?
+  {% for post in collections.posts %}
+    {% if post.data.url %}
+      {% set postHref = post.data.url %}
+      {% set isExternal = true %}
+    {% else %}
+      {% set postHref = "/" + post.data.slug + "/" %}
+      {% set isExternal = false %}
+    {% endif %}
+
+    {% if loop.index === 1 %}
+
+  <a class="tile t-feature" href="{{ postHref }}"{% if isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+    <div class="label">/latest</div>
+    <h2>{{ post.data.title }}</h2>
+    <p class="desc">{{ post.data.description }}</p>
+    <div class="post-meta">
+      <span>{{ post.data.category }}</span>
+      <span>{{ post.date | simpleDate }}</span>
+    </div>
   </a>
-</div>
+
+    {% elif loop.index === 2 %}
+
+  <a class="tile t-second" href="{{ postHref }}"{% if isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+    <div class="label">/featured</div>
+    <h2>{{ post.data.title }}</h2>
+    <div class="post-meta">
+      <span>{{ post.data.category }}</span>
+      <span>{{ post.date | simpleDate }}</span>
+    </div>
+  </a>
+
+    {% else %}
+
+  <a class="tile t-post" href="{{ postHref }}"{% if isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+    <div class="label">{{ post.data.category }}</div>
+    <div class="ttl">{{ post.data.title }}</div>
+    <div class="post-meta">
+      <span>{{ post.date | simpleDate }}</span>
+    </div>
+  </a>
+
+    {% endif %}
+  {% endfor %}
+
+  <section class="tile t-topics">
+    <div class="label">/topics</div>
+    <div class="cloud">
+      <a href="/tag/kafka/">kafka</a>
+      <a href="/tag/system-design/">system-design</a>
+      <a href="/tag/productivity/">productivity</a>
+      <a href="/tag/golang/">golang</a>
+      <a href="/tag/terraform/">terraform</a>
+      <a href="/tag/google-cloud/">google-cloud</a>
+      <a href="/tag/distributed-systems/">distributed-systems</a>
+      <a href="/tag/diy/">diy</a>
+      <a href="/tag/automation/">automation</a>
+      <a href="/tags/">all topics →</a>
+    </div>
+  </section>
+
+  <a class="tile t-subscribe" href="/feed.xml">
+    <div class="label">/subscribe</div>
+    <div class="rss-head">RSS feed</div>
+    <div class="rss-sub">Stay updated · new posts via feed reader</div>
+  </a>
+
+</main>

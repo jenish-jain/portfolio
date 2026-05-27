@@ -6,10 +6,8 @@ Array.from(footnotes).forEach((fnLink) => {
 
     const [, id] = event.target.href.split('#');
     const footnote = document.querySelector(`#${id} .footnote-content`);
-    const newStatus =
-      footnote.dataset.status === 'visible' ? 'hidden' : 'visible';
-
-    footnote.dataset.status = newStatus;
+    const isVisible = footnote.dataset.visible !== 'false';
+    footnote.dataset.visible = isVisible ? 'false' : 'true';
   });
 });
 
@@ -19,7 +17,7 @@ Array.from(footnoteCloseLinks).forEach((closeLink) => {
     event.preventDefault();
 
     const footnote = event.target.closest('.footnote-content');
-    footnote.dataset.status = 'hidden';
+    footnote.dataset.visible = 'false';
   });
 });
 
@@ -34,14 +32,15 @@ function handleIntersection(entries) {
       entry.target.offsetTop - window.pageYOffset <
       window.innerHeight - window.innerHeight * 0.1
     ) {
-      const tocLinks = document.querySelectorAll('.table-of-contents a');
+      const tocLinks = document.querySelectorAll('.toc-content a');
       Array.from(tocLinks).forEach((l) => {
         l.classList.remove('active');
       });
 
-      document
-        .querySelector(`.table-of-contents a[href$=${entry.target.id}]`)
-        .classList.add('active');
+      const activeLink = document.querySelector(
+        `.toc-content a[href$=${entry.target.id}]`
+      );
+      if (activeLink) activeLink.classList.add('active');
     }
   });
 }
@@ -52,7 +51,7 @@ function updateActiveToCItem() {
     threshold: [0.75, 0.8, 0.85, 0.9, 0.95, 1],
   });
 
-  const headings = document.querySelectorAll('.content h2');
+  const headings = document.querySelectorAll('.post-content h2');
   Array.from(headings).forEach((h2) => {
     observer.observe(h2);
   });
@@ -76,5 +75,4 @@ function addGoogleAnalytics(trackingId) {
   };
 }
 
-// Replace 'YOUR_TRACKING_ID' with your actual Google Analytics tracking ID
 addGoogleAnalytics('G-BDVPDTHT3S');

@@ -1,310 +1,665 @@
-{% extends "default.njk" %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-{% block seo %}
-<title>{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-<link rel="canonical" href="{{ siteUrl }}/{{ slug }}/" />
-<meta name="author" content="Jenish Jain" />
-<meta name="description" content="{{ description }}" />
-<meta name="keywords" content="{{ tags | join(', ') }}, engineering, tech blog, Jenish Jain{% if category == 'work-culture' %}, engineering at Rapido, Rapido{% endif %}" />
-{% if image %}
-<meta name="image" content="{{ image | cloudinary(page.inputPath, 1200) }}" />
-{% else %}
-<meta name="image" content="{{ title | seoImage }}" />
-{% endif %}
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ '/apple-touch-icon.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | url }}" />
+    <link rel="manifest" href="{{ '/site.webmanifest' | url }}" />
+    <meta name="msapplication-TileColor" content="#ffe742" />
+    <meta name="theme-color" content="#ffe742" />
 
-<meta property="og:type" content="article" />
-<meta property="og:url" content="{{ siteUrl }}/{{ slug }}/" />
-<meta property="og:site_name" content="Jenish Jain's Engineering Blog" />
-<meta property="og:description" content="{{ description }}" />
-{% if image %}
-<meta property="og:image" content="{{ image | cloudinary(page.inputPath, 1200) }}" />
-{% else %}
-<meta property="og:image" content="{{ title | seoImage }}" />
-{% endif %}
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="article:published_time" content="{{ date | rssDate }}" />
-<meta property="article:author" content="Jenish Jain" />
-<meta property="article:section" content="{{ category }}" />
-{% for tag in tags %}<meta property="article:tag" content="{{ tag }}" />
-{% endfor %}
+    <title>{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %}</title>
+    <link rel="canonical" href="{{ siteUrl }}/{{ slug }}/" />
+    <meta name="author" content="Jenish Jain" />
+    <meta name="description" content="{{ description }}" />
+    <meta name="keywords" content="{{ tags | join(', ') }}, engineering, tech blog, Jenish Jain" />
+    {% if image %}
+    <meta name="image" content="{{ image | cloudinary(page.inputPath, 1200) }}" />
+    {% else %}
+    <meta name="image" content="{{ title | seoImage }}" />
+    {% endif %}
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ siteUrl }}/{{ slug }}/" />
+    <meta property="og:site_name" content="Jenish Jain's Engineering Blog" />
+    <meta property="og:description" content="{{ description }}" />
+    {% if image %}
+    <meta property="og:image" content="{{ image | cloudinary(page.inputPath, 1200) }}" />
+    {% else %}
+    <meta property="og:image" content="{{ title | seoImage }}" />
+    {% endif %}
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="article:published_time" content="{{ date | rssDate }}" />
+    <meta property="article:author" content="Jenish Jain" />
+    <meta property="article:section" content="{{ category }}" />
+    {% for tag in tags %}<meta property="article:tag" content="{{ tag }}" />{% endfor %}
+    <meta name="twitter:dnt" content="on" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@jenishjain6" />
+    <meta name="twitter:title" content="{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %}" />
+    <meta name="twitter:description" content="{{ description }}" />
+    {% if image %}
+    <meta name="twitter:image" content="{{ image | cloudinary(page.inputPath, 1200) }}" />
+    {% else %}
+    <meta name="twitter:image" content="{{ title | seoImage }}" />
+    {% endif %}
 
-<meta name="twitter:dnt" content="on" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:creator" content="@jenishjain6" />
-<meta name="twitter:title" content="{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %}" />
-<meta name="twitter:description" content="{{ description }}" />
-{% if image %}
-<meta name="twitter:image" content="{{ image | cloudinary(page.inputPath, 1200) }}" />
-{% else %}
-<meta name="twitter:image" content="{{ title | seoImage }}" />
-{% endif %}
-{% endblock %}
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/feed.xml" />
 
-{% block main %}
-<main>
-  <nav aria-label="Breadcrumb" class="breadcrumb" style="
-    grid-column: 1 / -1;
-    margin-bottom: 0.5rem;
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-  ">
-    <ol style="
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    ">
-      <li style="margin: 0;">
-        <a href="/" style="color: var(--color-link); text-decoration: none;">Home</a>
-      </li>
-      <li aria-hidden="true" style="margin: 0;">&rsaquo;</li>
-      <li style="margin: 0;">
-        <a href="/posts/" style="color: var(--color-link); text-decoration: none;">Posts</a>
-      </li>
-      <li aria-hidden="true" style="margin: 0;">&rsaquo;</li>
-      <li aria-current="page" style="margin: 0; color: var(--color-text-emphasized);">{{ title }}</li>
-    </ol>
-  </nav>
+    <style>
+      :root {
+        --paper:    #efeae0;
+        --tile:     #f7f3ea;
+        --tile-2:   #ece4d2;
+        --ink:      #15120e;
+        --ink-soft: #2b2620;
+        --muted:    #837a6d;
+        --hair:     rgba(21,18,14,0.12);
+        --accent:   #ffe742;
+        --accent-2: #1f3df1;
+        --display:  "Instrument Serif", "Times New Roman", serif;
+        --sans:     "Geist", system-ui, sans-serif;
+        --mono:     "JetBrains Mono", ui-monospace, monospace;
+        --radius:   16px;
+        --content-width: 680px;
+      }
 
-  <article class="post">
-    {% block heading %}
-    <div class="heading" style="margin-top: 0;">
-      <h1>{{title}}</h1>
-      <p class="lede">{{description}}</p>
-    </div>
-    {% endblock %}
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      a { color: inherit; }
+      ::selection { background: var(--accent); color: var(--ink); }
 
-    {% block details %}
-    <div class="details">
-      <figure class="author">
-        <img
-          src="https://res.cloudinary.com/jenishjain/image/upload/q_auto,f_auto,c_thumb,w_260,h_260,g_faces,z_0.55/v1700920184/portfolio/images/jenishjain-with-chopsticks.jpg"
-          alt="Jenish Jain"
-          width="260"
-          height="260"
-          style="object-fit: cover; aspect-ratio: 1 / 1;" />
-        <figcaption>written by Jenish</figcaption>
-      </figure>
-      <div class="post-meta">
-        <time datetime="{{ date | rssDate }}" style="
-          display: block;
-          font-size: 0.75rem;
-          color: var(--color-text-muted);
-          margin-top: 0.75rem;
-          text-align: center;
-        ">{{ date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }}</time>
-        <span style="
-          display: block;
-          font-size: 0.75rem;
-          color: var(--color-text-muted);
-          margin-top: 0.5rem;
-          text-align: center;
-        ">{{ content | readingTime }}</span>
-      </div>
-    </div>
-    {% endblock %}
+      /* ── Top bar ── */
+      .bento-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px clamp(20px, 4vw, 40px);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .bento-top .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .bento-top .brand .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent);
+        flex-shrink: 0;
+      }
+      .bento-top .nav-links {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .bento-top .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: color .18s, border-color .18s, background .18s;
+      }
+      .bento-top .nav-links a:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+        background: var(--accent);
+      }
 
-    {% block sidebar %}
-    <div class="sidebar">
-      <div class="sticky-sidebar">
-        <div class="newsletter-nudge">
-          <p>
-            Hey, friends! I share posts like these regularly in my
-            newsletter.
-            <strong
-              >Sign up to get my best stuff direct to your inbox.</strong
-            >
-          </p>
-          <a href="/newsletter/" class="button">I love stuff!</a>
-        </div>
+      /* ── Page layout ── */
+      .post-page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 48px) 80px;
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        grid-template-rows: auto;
+        gap: 0 48px;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .post-page { grid-template-columns: 1fr; }
+        .post-sidebar { display: none; }
+      }
 
-        <details class="table-of-contents" open>
-          <summary>Table of Contents</summary>
+      /* ── Breadcrumb ── */
+      .post-breadcrumb {
+        grid-column: 1 / -1;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 32px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .post-breadcrumb a { color: var(--muted); text-decoration: none; transition: color .15s; }
+      .post-breadcrumb a:hover { color: var(--ink); }
+      .post-breadcrumb .sep { opacity: 0.4; }
 
-          {{ content | toc | safe }}
-        </details>
-      </div>
-    </div>
-    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-      data-id="jenishjain" data-description="Support me on Buy me a pizza!" data-message="Buy me a pizza!"
-      data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
-    {% endblock %}
+      /* ── Post header ── */
+      .post-header { grid-column: 1; }
 
-    {% block content %}
-    <div class="content">
-      {{ content | safe }}
-    </div>
-    {% endblock %}
-  </article>
+      .post-header h1 {
+        font-family: var(--display);
+        font-size: clamp(36px, 5vw, 64px);
+        line-height: 1.05;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        margin: 0 0 20px;
+        color: var(--ink);
+      }
 
-  {# Related Posts Section - Below entire article #}
-  {% set relatedPostsList = collections.posts | relatedPosts(slug, tags, 3) %}
-  {% if relatedPostsList.length > 0 %}
-  <aside class="related-posts" style="
-    margin: 3rem auto 2rem;
-    padding: 2.5rem 0 0;
-    border-top: 3px solid var(--color-yellow-500);
-    max-width: 100%;
-  ">
-    <h2 style="
-      font-size: 1.75rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--color-text-heading);
-    ">Continue Reading</h2>
+      .post-lede {
+        font-size: 18px;
+        line-height: 1.6;
+        color: var(--ink-soft);
+        margin: 0 0 24px;
+        max-width: 58ch;
+      }
 
-    <div style="
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 280px));
-      justify-content: center;
-    ">
-      {% for post in relatedPostsList %}
-      <article class="related-post-card" style="
-        background: var(--color-background);
-        border: 1px solid var(--color-border);
-        border-radius: 0.25rem;
-        transition: all 0.3s ease;
+      .post-meta-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 40px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--hair);
+      }
+      .post-meta-bar .pill {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--hair);
+        background: var(--tile);
+        color: var(--muted);
+        text-decoration: none;
+        transition: background .18s, color .18s, border-color .18s;
+      }
+      .post-meta-bar .pill:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+      .post-meta-bar .pill.cat { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+
+      /* ── Prose content ── */
+      .post-body { grid-column: 1; }
+
+      .post-content {
+        font-size: 17px;
+        line-height: 1.75;
+        color: var(--ink-soft);
+      }
+      .post-content h2 {
+        font-family: var(--display);
+        font-size: clamp(26px, 3vw, 36px);
+        font-weight: 400;
+        line-height: 1.1;
+        color: var(--ink);
+        margin: 2.5em 0 0.6em;
+        letter-spacing: -0.01em;
+      }
+      .post-content h3 {
+        font-family: var(--display);
+        font-size: clamp(20px, 2.4vw, 26px);
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--ink);
+        margin: 2em 0 0.5em;
+      }
+      .post-content h4 {
+        font-family: var(--sans);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 1.8em 0 0.5em;
+      }
+      .post-content p { margin: 0 0 1.4em; }
+      .post-content a {
+        color: var(--ink);
+        text-decoration: underline;
+        text-decoration-color: var(--accent);
+        text-underline-offset: 3px;
+        transition: text-decoration-color .18s, color .18s;
+      }
+      .post-content a:hover {
+        color: var(--accent-2);
+        text-decoration-color: var(--accent-2);
+      }
+      .post-content strong { font-weight: 600; color: var(--ink); }
+      .post-content em { font-style: italic; }
+      .post-content ul, .post-content ol {
+        margin: 0 0 1.4em;
+        padding-left: 1.5em;
+      }
+      .post-content li { margin-bottom: 0.4em; }
+      .post-content blockquote {
+        margin: 2em 0;
+        padding: 18px 22px;
+        border-left: 4px solid var(--accent);
+        background: var(--tile);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 1.1em;
+        color: var(--ink);
+      }
+      .post-content blockquote p { margin: 0; }
+      .post-content code {
+        font-family: var(--mono);
+        font-size: 0.875em;
+        background: var(--tile-2);
+        padding: 2px 7px;
+        border-radius: 5px;
+        border: 1px solid var(--hair);
+        color: var(--ink);
+      }
+      .post-content pre {
+        background: var(--ink);
+        color: var(--paper);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        overflow-x: auto;
+        margin: 1.6em 0;
+        font-family: var(--mono);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .post-content pre code {
+        background: none;
+        border: none;
+        padding: 0;
+        color: inherit;
+        font-size: inherit;
+      }
+      .post-content img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius);
+        border: 1px solid var(--hair);
+        display: block;
+        margin: 1.8em auto;
+      }
+      .post-content hr {
+        border: none;
+        border-top: 1px solid var(--hair);
+        margin: 2.5em 0;
+      }
+      .post-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.6em 0;
+        font-size: 15px;
+      }
+      .post-content th, .post-content td {
+        padding: 10px 14px;
+        border: 1px solid var(--hair);
+        text-align: left;
+      }
+      .post-content th {
+        background: var(--tile-2);
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      /* Footnote shortcodes */
+      .footnote-phrase {
+        border-bottom: 2px solid var(--accent);
+        cursor: pointer;
+      }
+      .footnote { margin: 1.5em 0; }
+      .footnote-content {
+        background: var(--tile);
+        border-left: 3px solid var(--accent);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        padding: 14px 18px;
+        font-size: 15px;
+      }
+      .footnote-content[data-visible="false"] { display: none; }
+
+      /* Tweet shortcode */
+      .post-tweet-box {
+        background: var(--tile);
+        border: 1px solid var(--hair);
+        border-radius: var(--radius);
+        padding: 20px 24px;
+        margin: 1.6em 0;
+      }
+      .post-tweet-link a {
+        font-family: var(--mono);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* Figure shortcode */
+      .post-figure { margin: 2em 0; }
+      .post-figure-caption { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+      /* ── Tags row ── */
+      .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 40px;
+        padding-top: 32px;
+        border-top: 1px solid var(--hair);
+      }
+      .post-tags a {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--hair);
+        background: var(--tile);
+        color: var(--muted);
+        text-decoration: none;
+        transition: background .18s, color .18s, border-color .18s;
+      }
+      .post-tags a:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+      /* ── Sidebar ── */
+      .post-sidebar {
+        grid-column: 2;
+        grid-row: 2 / span 3;
+        position: sticky;
+        top: 24px;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
-        position: relative;
-      " onmouseover="this.style.borderColor='var(--color-yellow-500)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='var(--color-border)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+        gap: 16px;
+      }
 
-        {% if post.data.thumb %}
-        <img src="{{ post.data.thumb }}" alt="{{ post.data.title }}" loading="lazy" style="
-          width: 100%;
-          height: 140px;
-          object-fit: cover;
-          display: block;
-          margin: 0;
-        " />
-        {% endif %}
+      .sidebar-tile {
+        background: var(--tile);
+        border: 1px solid var(--hair);
+        border-radius: var(--radius);
+        padding: 20px;
+      }
+      .sidebar-tile .tile-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sidebar-tile .tile-label::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 1px;
+        flex-shrink: 0;
+      }
 
-        <div style="padding: 1.25rem; display: flex; flex-direction: column; flex: 1;">
-          <h3 style="
-            font-size: 0.875rem;
-            margin: 0 0 0.625rem 0;
-            line-height: 1.3;
-            font-weight: 600;
-            color: var(--color-text-heading);
-            padding: 0;
-          ">
-            <a href="{% if post.data.url %}{{ post.data.url }}{% else %}/{{ post.data.slug }}/{% endif %}"{% if post.data.url %} target="_blank" rel="noopener noreferrer"{% endif %} style="
-              text-decoration: none;
-              color: inherit;
-            " onmouseover="this.style.color='var(--color-link)';" onmouseout="this.style.color='var(--color-text-heading)';">
-              {{ post.data.title }}
-            </a>
-          </h3>
+      /* TOC */
+      .toc-tile .toc-content { font-size: 13px; line-height: 1.5; }
+      .toc-tile .toc-content div { margin-bottom: 6px; }
+      .toc-tile .toc-content a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color .15s;
+      }
+      .toc-tile .toc-content a:hover { color: var(--ink); }
 
-          <p style="
-            margin: 0 0 auto;
-            color: var(--color-text-default);
-            font-size: 0.75rem;
-            line-height: 1rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          ">
-            {{ post.data.description }}
-          </p>
+      /* Newsletter nudge */
+      .newsletter-tile p {
+        font-size: 13px;
+        line-height: 1.55;
+        color: var(--muted);
+        margin: 0 0 14px;
+      }
+      .newsletter-tile a {
+        display: block;
+        text-align: center;
+        background: var(--accent);
+        color: var(--ink);
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 10px 16px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: background .18s, box-shadow .18s;
+      }
+      .newsletter-tile a:hover { box-shadow: 0 4px 12px rgba(255,231,66,0.5); }
 
-          <span aria-hidden="true" style="
-            display: block;
-            color: var(--color-primary);
-            font-size: 0.5rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-top: 0.75rem;
-          ">read this post &rarr;</span>
+      /* ── Related posts ── */
+      .related-posts {
+        grid-column: 1 / -1;
+        margin-top: 56px;
+        padding-top: 48px;
+        border-top: 1px solid var(--hair);
+      }
+      .related-posts .related-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .related-posts .related-label::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 1px;
+      }
+      .related-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      @media (max-width: 760px) {
+        .related-grid { grid-template-columns: 1fr; }
+      }
+      .related-card {
+        background: var(--tile);
+        border: 1px solid var(--hair);
+        border-radius: var(--radius);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+      }
+      .related-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); }
+      .related-card .rel-cat {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .related-card .rel-cat::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: var(--accent);
+        border-radius: 1px;
+        flex-shrink: 0;
+      }
+      .related-card .rel-title {
+        font-family: var(--display);
+        font-size: 20px;
+        line-height: 1.15;
+        margin: 0 0 auto;
+        color: var(--ink);
+      }
+      .related-card .rel-arrow {
+        margin-top: 16px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ── Footer ── */
+      .bento-foot {
+        display: flex;
+        justify-content: space-between;
+        padding: 18px clamp(20px, 4vw, 48px) 60px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .bento-foot a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hair); transition: color .18s; }
+      .bento-foot a:hover { color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <header class="bento-top">
+      <a class="brand" href="/">
+        <span class="dot"></span>
+        Jenish Jain
+      </a>
+      <nav class="nav-links">
+        <a href="/posts/">posts</a>
+        <a href="/tags/">topics</a>
+      </nav>
+    </header>
+
+    <main class="post-page">
+      <nav class="post-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">home</a>
+        <span class="sep">/</span>
+        <a href="/posts/">posts</a>
+        <span class="sep">/</span>
+        <span>{{ title }}</span>
+      </nav>
+
+      <header class="post-header">
+        <h1>{{ title }}</h1>
+        <p class="post-lede">{{ description }}</p>
+        <div class="post-meta-bar">
+          {% if category %}
+          <a class="pill cat" href="/category/{{ category | lower | replace(' ', '-') }}/">{{ category }}</a>
+          {% endif %}
+          <span class="pill">{{ date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}</span>
+          <span class="pill">{{ content | readingTime }}</span>
         </div>
-      </article>
-      {% endfor %}
-    </div>
-  </aside>
-  {% endif %}
-</main>
-{% endblock %}
+      </header>
 
-{% block scripts %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{ title }}",
-  "description": "{{ description }}",
-  "author": {
-    "@type": "Person",
-    "name": "Jenish Jain",
-    "url": "https://jenishjain.in",
-    "sameAs": [
-      "https://twitter.com/jenishjain6",
-      "https://github.com/jenish-jain",
-      "https://www.linkedin.com/in/jenish-jain"
-    ]
-  },
-  "datePublished": "{{ date | rssDate }}",
-  "dateModified": "{{ date | rssDate }}",
-  {% if image %}
-  "image": "{{ image | cloudinary(page.inputPath, 1200) }}",
-  {% else %}
-  "image": "{{ title | seoImage }}",
-  {% endif %}
-  "publisher": {
-    "@type": "Person",
-    "name": "Jenish Jain",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://res.cloudinary.com/jenishjain/image/upload/q_auto,f_auto,c_thumb,w_260,h_260,g_faces,z_0.55/v1700920184/portfolio/images/jenishjain-with-chopsticks.jpg"
+      <aside class="post-sidebar">
+        {% if content | toc %}
+        <div class="sidebar-tile toc-tile">
+          <div class="tile-label">/contents</div>
+          <div class="toc-content">{{ content | toc | safe }}</div>
+        </div>
+        {% endif %}
+        <div class="sidebar-tile newsletter-tile">
+          <div class="tile-label">/subscribe</div>
+          <p>New posts via RSS — add the feed to your reader to stay updated.</p>
+          <a href="/feed.xml">RSS feed</a>
+        </div>
+      </aside>
+
+      <div class="post-body">
+        <div class="post-content">
+          {{ content | safe }}
+        </div>
+
+        {% if tags and tags.length > 0 %}
+        <div class="post-tags">
+          {% for tag in tags %}
+          <a href="/tag/{{ tag }}/">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      {% set relatedPostsList = collections.posts | relatedPosts(slug, tags, 3) %}
+      {% if relatedPostsList.length > 0 %}
+      <aside class="related-posts">
+        <div class="related-label">/continue reading</div>
+        <div class="related-grid">
+          {% for post in relatedPostsList %}
+          <a class="related-card" href="{% if post.data.url %}{{ post.data.url }}{% else %}/{{ post.data.slug }}/{% endif %}"{% if post.data.url %} target="_blank" rel="noopener noreferrer"{% endif %}>
+            <div class="rel-cat">{{ post.data.category }}</div>
+            <div class="rel-title">{{ post.data.title }}</div>
+            <div class="rel-arrow">read →</div>
+          </a>
+          {% endfor %}
+        </div>
+      </aside>
+      {% endif %}
+    </main>
+
+    <footer class="bento-foot">
+      <span>© Jenish Jain</span>
+      <a href="/feed.xml">RSS</a>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ title }}",
+      "description": "{{ description }}",
+      "author": { "@type": "Person", "name": "Jenish Jain", "url": "https://jenishjain.in" },
+      "datePublished": "{{ date | rssDate }}",
+      "publisher": { "@type": "Person", "name": "Jenish Jain" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ siteUrl }}/{{ slug }}/" },
+      "keywords": "{{ tags | join(', ') }}",
+      "articleSection": "{{ category }}"
     }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ siteUrl }}/{{ slug }}/"
-  },
-  "keywords": "{{ tags | join(', ') }}, engineering, tech blog, Jenish Jain",
-  "articleSection": "{{ category }}"
-}
-</script>
+    </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://jenishjain.in"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Blog",
-      "item": "{{ siteUrl }}/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Posts",
-      "item": "{{ siteUrl }}/posts/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "{{ title }}",
-      "item": "{{ siteUrl }}/{{ slug }}/"
-    }
-  ]
-}
-</script>
-
-<script src="/scripts/post.min.js"></script>
-{% endblock %}
+    <script src="/scripts/post.min.js"></script>
+  </body>
+</html>
