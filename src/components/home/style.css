@@ -405,8 +405,8 @@
   position: absolute;
   top: clamp(180px, 24vh, 240px);
   right: var(--pad-x);
-  width: clamp(140px, 14vw, 180px);
-  height: clamp(175px, 18vw, 225px);
+  width: clamp(170px, 17vw, 220px);
+  height: clamp(210px, 21vw, 275px);
   transform: rotate(3deg);
   z-index: 4;
   background: var(--accent);

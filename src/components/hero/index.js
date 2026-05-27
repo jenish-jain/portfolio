@@ -1,39 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Reveal from '../reveal';
 import useClock from '../../hooks/use-clock';
 
 const ROLES = ['engineer', 'go gopher', 'tinkerer', 'writer', 'learner'];
 
 function ImageSlot() {
-  const [src, setSrc] = useState(() => {
-    try { return localStorage.getItem('hero-portrait') || null; } catch { return null; }
-  });
-  const inputRef = useRef(null);
-
-  const loadFile = (file) => {
-    if (!file || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const data = ev.target.result;
-      setSrc(data);
-      try { localStorage.setItem('hero-portrait', data); } catch {}
-    };
-    reader.readAsDataURL(file);
-  };
-
   return (
-    <div
-      className="hero-polaroid"
-      onDrop={(e) => { e.preventDefault(); loadFile(e.dataTransfer?.files[0]); }}
-      onDragOver={(e) => e.preventDefault()}
-      onClick={() => inputRef.current?.click()}
-      title="Drop a photo or click to upload"
-    >
-      {src
-        ? <img src={src} alt="Portrait" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-        : <div className="polaroid-placeholder">drop a photo</div>
-      }
-      <input ref={inputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={(e) => loadFile(e.target.files[0])} />
+    <div className="hero-polaroid">
+      <img
+        src="/portrait.jpg"
+        alt="Jenish Jain"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
     </div>
   );
 }
