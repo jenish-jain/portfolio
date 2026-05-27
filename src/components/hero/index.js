@@ -8,7 +8,7 @@ function ImageSlot() {
   return (
     <div className="hero-polaroid">
       <img
-        src="https://res.cloudinary.com/jenishjain/image/upload/v1638108545/portfolio/images/jenishjain.jpg"
+        src="/portrait.jpg"
         alt="Jenish Jain"
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
       />
