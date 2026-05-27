@@ -87,6 +87,13 @@ module.exports = function (eleventyConfig) {
    */
   eleventyConfig.addNunjucksAsyncFilter('cloudinary', cloudinary.asyncFilter);
 
+  eleventyConfig.addFilter('limit', (arr, n) => arr.slice(0, n));
+
+  eleventyConfig.addFilter('simpleDate', (date) => {
+    const d = date instanceof Date ? date : new Date(date);
+    return d.toISOString().split('T')[0];
+  });
+
   eleventyConfig.addFilter('seoImage', (content) => {
     return getShareImage({
       title: content.toUpperCase(),
