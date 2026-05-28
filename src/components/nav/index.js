@@ -9,6 +9,12 @@ const NAV_LINKS = [
   { id: 'contact',  label: 'Contact'  },
 ];
 
+function scrollTo(id) {
+  if (id === 'top') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  const el = document.getElementById(id);
+  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' });
+}
+
 export default function Nav({ active, onOpenPalette }) {
   const [scrolled, setScrolled] = useState(false);
 
@@ -20,13 +26,13 @@ export default function Nav({ active, onOpenPalette }) {
 
   return (
     <header className={'nav' + (scrolled ? ' scrolled' : '')}>
-      <a href="#top" className="nav-mark" data-hot>
+      <a href="/" onClick={(e) => { e.preventDefault(); scrollTo('top'); }} className="nav-mark" data-hot>
         <span className="dot" />
         <span>JJ / Portfolio</span>
       </a>
       <nav className="nav-links">
         {NAV_LINKS.map((l) => (
-          <a key={l.id} href={'#' + l.id} className={active === l.id ? 'active' : ''} data-hot>
+          <a key={l.id} href="/" onClick={(e) => { e.preventDefault(); scrollTo(l.id); }} className={active === l.id ? 'active' : ''} data-hot>
             {l.label}
           </a>
         ))}
