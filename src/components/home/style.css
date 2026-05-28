@@ -39,6 +39,17 @@
   box-sizing: border-box;
 }
 
+/* Override global h2-h6 color rule from src/style.css */
+.portfolio-home h1,
+.portfolio-home h2,
+.portfolio-home h3,
+.portfolio-home h4,
+.portfolio-home h5,
+.portfolio-home h6 {
+  color: var(--ink);
+  font-weight: 400;
+}
+
 .portfolio-home {
   background: var(--paper);
   color: var(--ink);
