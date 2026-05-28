@@ -15,6 +15,7 @@ const ALL_ITEMS = [
   { id: 'writing',  label: 'Writing',                     kind: 'Nav',    action: () => scrollToSection('writing')  },
   { id: 'drawings', label: 'Drawings',                    kind: 'Nav',    action: () => scrollToSection('drawings') },
   { id: 'contact',  label: 'Contact',                     kind: 'Nav',    action: () => scrollToSection('contact')  },
+  { id: 'resume',   label: 'View resume',                  kind: 'Link',   action: () => window.open('/#/resume', '_blank')                              },
   { id: 'gh',       label: 'Open GitHub',                 kind: 'Link',   action: () => window.open('https://github.com/jenish-jain', '_blank')           },
   { id: 'blog',     label: 'Open blog',                   kind: 'Link',   action: () => window.open('https://blog.jenishjain.in', '_blank')              },
   { id: 'art',      label: 'Open drawings',               kind: 'Link',   action: () => window.open('https://drawings.jenishjain.in', '_blank')          },

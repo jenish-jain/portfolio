@@ -3,7 +3,7 @@ export default function Footer() {
     <footer>
       <span>© Jenish Jain — Surat, IN</span>
       <div className="col-right">
-        <span>Hand-built with Geist + Instrument Serif</span>
+        <span>Powered by free weekends</span>
       </div>
     </footer>
   );

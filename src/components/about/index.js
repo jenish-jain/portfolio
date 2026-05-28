@@ -44,8 +44,7 @@ export default function About() {
             </div>
             <NowRow k="Building"   v="An AI intern that picks up its own tickets"  sub="Go · LLM tool-use"           />
             <NowRow k="Shipping"   v="Pricing experiments at Rapido"               sub="Production, ~30M+ rides"      />
-            <NowRow k="Reading"    v="Designing Data-Intensive Apps"               sub="Re-read, third time round"    />
-            <NowRow k="Listening"  v="Lo-fi house, late-night refactor edition"                                       />
+            <NowRow k="Reading"    v="Why we sleep"                                sub="By Mathew Walker"    />
             <NowRow k="Tinkering"  v="A bean-counter for monthly expenses"         sub="Go + a stubbornly bad CLI"   />
           </div>
         </Reveal>

@@ -39,6 +39,17 @@
   box-sizing: border-box;
 }
 
+/* Override global h2-h6 color rule from src/style.css */
+.portfolio-home h1,
+.portfolio-home h2,
+.portfolio-home h3,
+.portfolio-home h4,
+.portfolio-home h5,
+.portfolio-home h6 {
+  color: var(--ink);
+  font-weight: 400;
+}
+
 .portfolio-home {
   background: var(--paper);
   color: var(--ink);
@@ -433,7 +444,13 @@
   letter-spacing: 0.08em;
 }
 
-@media (max-width: 720px) { .hero-polaroid { display: none; } }
+@media (max-width: 720px) {
+  .hero-polaroid {
+    width: 88px;
+    height: 110px;
+    top: 60px;
+  }
+}
 
 /* === Marquee === */
 .marquee {
@@ -1192,3 +1209,22 @@
 :root[data-theme="ink"] .contact-card { box-shadow: 10px 10px 0 var(--accent); }
 :root[data-theme="ink"] .contact-card h2 em { -webkit-text-stroke-color: var(--ink); }
 :root[data-theme="ink"] .hero-polaroid { box-shadow: 6px 6px 0 var(--accent); }
+
+/* Yellow-background elements must keep dark text in ink mode
+   (--ink flips to cream, so text on yellow becomes unreadable) */
+:root[data-theme="ink"] .marquee-track,
+:root[data-theme="ink"] .marquee-track .star { color: var(--accent-ink); }
+
+:root[data-theme="ink"] .about-headline em { color: var(--accent-ink); }
+:root[data-theme="ink"] .now-row .v { color: var(--accent-ink); }
+
+:root[data-theme="ink"] .stack-cell:nth-child(1),
+:root[data-theme="ink"] .stack-cell:nth-child(6),
+:root[data-theme="ink"] .stack-cell:nth-child(8),
+:root[data-theme="ink"] .stack-cell:nth-child(11) { color: var(--accent-ink); }
+
+:root[data-theme="ink"] .contact-card { color: var(--accent-ink); }
+:root[data-theme="ink"] .contact-card .contact-row a { color: var(--accent-ink); border-color: rgba(20,17,13,0.22); }
+:root[data-theme="ink"] .contact-card .contact-row a:hover { color: var(--accent); background: var(--accent-ink); border-color: var(--accent-ink); }
+
+:root[data-theme="ink"] .btn:not(.primary):hover { color: var(--accent-ink); }
