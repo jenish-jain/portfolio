@@ -1,7 +1,7 @@
 const ITEMS = [
   'Distributed systems', 'Backend engineering', 'Go · Java · Python',
-  'Kafka & event streaming', 'Cloud-native on GCP', 'Pricing systems at scale',
-  'Tinkering with AI agents', 'Drawing sometimes',
+  'Kafka & event streaming', 'Drawing sometimes',
+  'Tinkering with AI agents', 'Pricing systems at scale',
 ];
 
 export default function Marquee() {
