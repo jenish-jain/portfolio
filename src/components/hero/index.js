@@ -60,10 +60,10 @@ export default function Hero() {
               and the satisfying click of a problem becoming a service.
             </p>
             <div className="hero-ctas">
-              <a className="btn primary" href="#work" data-hot>
+              <a className="btn primary" href="/" onClick={(e) => { e.preventDefault(); const el = document.getElementById('work'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' }); }} data-hot>
                 See the work <span className="arrow">↗</span>
               </a>
-              <a className="btn" href="#contact" data-hot>
+              <a className="btn" href="/" onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' }); }} data-hot>
                 Say hello <span className="arrow">↗</span>
               </a>
             </div>
