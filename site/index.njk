@@ -1,18 +1,15 @@
-{% extends "default.njk" %}
-
-{% block seo %}
-<title>I am fixing the link here , bear with me till now and click on post above</title>
-
-<link rel="canonical" href="{{ siteUrl }}/{{slug}}/" />
-<meta name="description" content="{{description}}" />
-{% endblock %}
-
-{% block heading %}
-
-<div class="heading post-list">
-  <h1>I am fixing the redirection here , bear with me till then and click on posts above</h1>
-  <p class="lede">{{description}}</p>
-</div>
-
-{% endblock %}
-
+---
+permalink: /index.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0;url=/posts/" />
+  <title>Jenish Jain — Drawings</title>
+</head>
+<body>
+  <a href="/posts/">→ drawings</a>
+</body>
+</html>

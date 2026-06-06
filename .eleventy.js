@@ -18,6 +18,17 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ 'site/static': '/' });
 
+  eleventyConfig.addFilter('simpleDate', (date) => {
+    const d = date instanceof Date ? date : new Date(date);
+    return d.toISOString().split('T')[0];
+  });
+
+  eleventyConfig.addFilter('relatedDrawings', function(collection, currentSlug, limit = 3) {
+    return collection
+      .filter((item) => item.data.slug !== currentSlug)
+      .slice(0, limit);
+  });
+
   eleventyConfig.addCollection('posts', (collectionApi) => {
     // I was already using tags, so this is a workaround
     return collectionApi
