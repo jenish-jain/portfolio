@@ -17,6 +17,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
 
   eleventyConfig.addPassthroughCopy({ 'site/static': '/' });
+  eleventyConfig.addPassthroughCopy('site/posts/**/images/**');
 
   eleventyConfig.addCollection('posts', (collectionApi) => {
     // I was already using tags, so this is a workaround
