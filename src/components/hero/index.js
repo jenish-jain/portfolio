@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Reveal from '../reveal';
 import useClock from '../../hooks/use-clock';
+import { trackClick } from '../../utils/analytics';
 
 const ROLES = ['engineer', 'go gopher', 'tinkerer', 'writer', 'learner'];
 
@@ -60,10 +61,10 @@ export default function Hero() {
               and the satisfying click of a problem becoming a service.
             </p>
             <div className="hero-ctas">
-              <a className="btn primary" href="/" onClick={(e) => { e.preventDefault(); const el = document.getElementById('work'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' }); }} data-hot>
+              <a className="btn primary" href="/" onClick={(e) => { e.preventDefault(); trackClick('cta', 'see_the_work'); const el = document.getElementById('work'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' }); }} data-hot>
                 See the work <span className="arrow">↗</span>
               </a>
-              <a className="btn" href="/" onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' }); }} data-hot>
+              <a className="btn" href="/" onClick={(e) => { e.preventDefault(); trackClick('cta', 'say_hello'); const el = document.getElementById('contact'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' }); }} data-hot>
                 Say hello <span className="arrow">↗</span>
               </a>
             </div>

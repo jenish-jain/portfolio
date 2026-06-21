@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import Reveal from '../reveal';
 import SectionTag from '../section-tag';
+import { trackClick } from '../../utils/analytics';
 
 const PROJECTS = [
   {
@@ -34,7 +35,7 @@ const PROJECTS = [
     tag: 'Ongoing',
     desc: "I wrote some Go code to help my dad with his taxes so I wouldn't have to do them myself",
     stack: ['Go', 'Excel','Cloud Run'],
-    href: '#',
+    href: 'https://github.com/jenish-jain/bean_counter',
   },
   {
     id: 'blog',
@@ -62,6 +63,7 @@ function ProjectCard({ p }) {
       target="_blank"
       rel="noopener noreferrer"
       className={'project' + (p.large ? ' large' : '')}
+      onClick={() => trackClick('project', p.name, p.href)}
       data-hot
     >
       <div className="project-head">

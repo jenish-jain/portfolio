@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { trackClick } from '../../utils/analytics';
 
 const NAV_LINKS = [
   { id: 'about',    label: 'About'    },
@@ -32,7 +33,7 @@ export default function Nav({ active, onOpenPalette }) {
       </a>
       <nav className="nav-links">
         {NAV_LINKS.map((l) => (
-          <a key={l.id} href="/" onClick={(e) => { e.preventDefault(); scrollTo(l.id); }} className={active === l.id ? 'active' : ''} data-hot>
+          <a key={l.id} href="/" onClick={(e) => { e.preventDefault(); trackClick('nav', l.label); scrollTo(l.id); }} className={active === l.id ? 'active' : ''} data-hot>
             {l.label}
           </a>
         ))}

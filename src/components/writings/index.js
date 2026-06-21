@@ -1,5 +1,6 @@
 import Reveal from '../reveal';
 import SectionTag from '../section-tag';
+import { trackClick } from '../../utils/analytics';
 
 const POSTS = [
   { yr: '2025', title: 'Build your own PDF → audiobook with GCP Vision & TTS',        tag: 'Cloud',       href: 'https://blog.jenishjain.in' },
@@ -18,7 +19,7 @@ export default function Writings() {
       <SectionTag idx={4} label="Writing" />
       <Reveal as="div" className="writing-list">
         {POSTS.map((p) => (
-          <a key={p.title} className="write-row" href={p.href} target="_blank" rel="noopener noreferrer" data-hot>
+          <a key={p.title} className="write-row" href={p.href} target="_blank" rel="noopener noreferrer" onClick={() => trackClick('writing', p.title, p.href)} data-hot>
             <div className="yr">{p.yr}</div>
             <div className="ttl">{p.title}</div>
             <div className="tag">{p.tag}</div>

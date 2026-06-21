@@ -3,6 +3,7 @@ import './style.css';
 
 import useMagneticCursor from '../../hooks/use-magnetic-cursor';
 import useActiveSection   from '../../hooks/use-active-section';
+import { trackSectionView } from '../../utils/analytics';
 
 import Nav        from '../nav';
 import Hero       from '../hero';
@@ -24,7 +25,16 @@ export default function HomePage() {
   const cursorRef = useRef(null);
   const active = useActiveSection(SECTIONS);
 
+  const viewedRef = useRef(new Set());
+
   useMagneticCursor(cursorRef);
+
+  useEffect(() => {
+    if (active && !viewedRef.current.has(active)) {
+      viewedRef.current.add(active);
+      trackSectionView(active);
+    }
+  }, [active]);
 
   useEffect(() => {
     document.documentElement.dataset.theme = 'paper';

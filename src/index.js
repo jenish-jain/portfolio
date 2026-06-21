@@ -4,12 +4,6 @@ import './style.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Initialize Google Analytics
-window.dataLayer = window.dataLayer || [];
-function gtag(){window.dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-BDVPDTHT3S'); // Replace 'YOUR_TRACKING_ID' with your actual tracking ID
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -17,7 +11,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
