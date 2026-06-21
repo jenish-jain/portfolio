@@ -1,18 +1,16 @@
-export NODE_OPTIONS=--openssl-legacy-provider
-
 .PHONY: install dev build deploy clean
 
 install:
 	npm install
 
 dev: install
-	npm start
+	NODE_OPTIONS=--openssl-legacy-provider npm start
 
 build: install
-	npm run build
+	NODE_OPTIONS=--openssl-legacy-provider npm run build
 
 deploy: build
-	npm run deploy
+	NODE_OPTIONS=--openssl-legacy-provider npm run deploy
 
 clean:
 	rm -rf build node_modules/.cache
