@@ -9,9 +9,9 @@ category: sketch
 tags: [sketch, caricature, drawings, art]
 cta: hot
 site: drawings_jenishjain_in
-thumb: 'site/posts/10-mid-thirties-men'
+thumb: 'https://asset.cloudinary.com/jenishjain/fe5df2b85dcad127a44012e5a0e27413'
 ---
 
-![Mid Thirties Men](site/posts/10-mid-thirties-men)
+![Mid Thirties Men](https://asset.cloudinary.com/jenishjain/fe5df2b85dcad127a44012e5a0e27413)
 
 inspired from [cameronmarkart](https://www.instagram.com/cameronmarkart/)
