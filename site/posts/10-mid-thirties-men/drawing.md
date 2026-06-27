@@ -7,11 +7,11 @@ slug: mid-thirties-men
 description: 
 category: sketch
 tags: [sketch, caricature, drawings, art]
-cta: hot
+cta: men
 site: drawings_jenishjain_in
-thumb: 'https://asset.cloudinary.com/jenishjain/fe5df2b85dcad127a44012e5a0e27413'
+thumb: 'https://res.cloudinary.com/jenishjain/image/upload/v1782544778/drawings/mid_thirties_men.jpg'
 ---
 
-![Mid Thirties Men](https://asset.cloudinary.com/jenishjain/fe5df2b85dcad127a44012e5a0e27413)
+![Mid Thirties Men](https://res.cloudinary.com/jenishjain/image/upload/v1782544778/drawings/mid_thirties_men.jpg)
 
 inspired from [cameronmarkart](https://www.instagram.com/cameronmarkart/)
