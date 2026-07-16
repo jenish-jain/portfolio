@@ -1,0 +1,7 @@
+{% macro sectionTag(idx, label) %}
+<div class="section-tag">
+  <span>{% if idx < 10 %}0{% endif %}{{ idx }}</span>
+  <span>—</span>
+  <span>{{ label }}</span>
+</div>
+{% endmacro %}

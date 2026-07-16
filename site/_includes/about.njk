@@ -1,0 +1,47 @@
+{% from "macros.njk" import sectionTag %}
+<section id="about">
+  {{ sectionTag(1, "About") }}
+  <div class="about-grid">
+    <div class="reveal intro">
+      <h2 class="about-headline">
+        An electrical engineer who fell in love with <em>shipping software</em>—and never quite stopped.
+      </h2>
+      <div class="about-body">
+        <p>
+          I started out poking at IoT prototypes as a freelancer, then joined Rapido as an intern
+          in 2019. Five years and a lot of pricing experiments later, I'm a senior engineer on the
+          team that decides what every ride should cost.
+        </p>
+        <p>
+          When I'm not at work I'm usually building something small in Go, writing on
+          <a href="https://blog.jenishjain.in" target="_blank" rel="noopener noreferrer" style="border-bottom: 1px solid var(--accent);">blog.jenishjain.in</a>,
+          or trying to teach an AI agent to do my standups for me.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal intro" data-reveal-delay="120">
+      <div class="about-card">
+        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(20,17,13,0.65);">
+          /now
+        </div>
+        <div class="now-row">
+          <div class="k">Building</div>
+          <div class="v">An AI intern that picks up its own tickets<small>Go · LLM tool-use</small></div>
+        </div>
+        <div class="now-row">
+          <div class="k">Shipping</div>
+          <div class="v">Pricing experiments at Rapido<small>Production, ~30M+ rides</small></div>
+        </div>
+        <div class="now-row">
+          <div class="k">Reading</div>
+          <div class="v">Why we sleep<small>By Mathew Walker</small></div>
+        </div>
+        <div class="now-row">
+          <div class="k">Tinkering</div>
+          <div class="v">A bean-counter for monthly expenses<small>Go + a stubbornly bad CLI</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

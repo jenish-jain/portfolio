@@ -1,0 +1,23 @@
+{% set navLinks = [
+  { id: "about", label: "About" },
+  { id: "work", label: "Work" },
+  { id: "projects", label: "Projects" },
+  { id: "writing", label: "Writing" },
+  { id: "drawings", label: "Drawings" },
+  { id: "contact", label: "Contact" }
+] %}
+<header class="nav" id="site-nav">
+  <a href="#top" class="nav-mark" data-hot>
+    <span class="dot"></span>
+    <span>JJ / Portfolio</span>
+  </a>
+  <nav class="nav-links">
+    {% for l in navLinks %}
+    <a href="#{{ l.id }}" data-section="{{ l.id }}" data-hot data-track-category="nav" data-track-label="{{ l.label }}">{{ l.label }}</a>
+    {% endfor %}
+  </nav>
+  <button class="nav-cmd" id="palette-open" data-hot>
+    <span>Search</span>
+    <kbd>/</kbd>
+  </button>
+</header>

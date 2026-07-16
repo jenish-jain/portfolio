@@ -1,0 +1,22 @@
+{% from "macros.njk" import sectionTag %}
+<section id="work">
+  {{ sectionTag(2, "Experience") }}
+  <div class="timeline">
+    <div class="timeline-side">
+      <div>Years shipping</div>
+      <div class="count">7</div>
+    </div>
+    <div class="reveal intro timeline-list">
+      {% for r in experience %}
+      <div class="role-row" data-hot>
+        <div class="yr">{{ r.year }}</div>
+        <div class="ttl">
+          <em>{{ r.title }}</em>
+          <small>{{ r.sub }}</small>
+        </div>
+        <div class="at"><span class="badge">@ {{ r.at }}</span></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

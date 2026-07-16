@@ -12,7 +12,24 @@ permalink: /
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div class="portfolio-home">
-    <p>Eleventy scaffold placeholder — home page content lands in a later phase.</p>
+    <div class="cursor" id="cursor"></div>
+    <div class="yellow-stripe" aria-hidden="true"></div>
+
+    {% include "nav.njk" %}
+
+    <main>
+      {% include "hero.njk" %}
+      {% include "marquee.njk" %}
+      {% include "about.njk" %}
+      {% include "experience.njk" %}
+      {% include "projects.njk" %}
+      {% include "writings.njk" %}
+      {% include "drawings.njk" %}
+      {% include "stack.njk" %}
+      {% include "contact.njk" %}
+    </main>
+
+    {% include "footer.njk" %}
   </div>
   <script src="/scripts/analytics.min.js"></script>
 </body>

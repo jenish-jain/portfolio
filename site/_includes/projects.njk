@@ -1,0 +1,30 @@
+{% from "macros.njk" import sectionTag %}
+<section id="projects">
+  {{ sectionTag(3, "Selected work") }}
+  <div class="reveal intro project-grid">
+    {% for p in projects %}
+    <a
+      href="{{ p.href }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="project{% if p.large %} large{% endif %}"
+      data-hot
+      data-track-category="project"
+      data-track-label="{{ p.name }}"
+      data-track-url="{{ p.href }}"
+    >
+      <div class="project-head">
+        <h3 class="project-name">{{ p.name }}</h3>
+        <span class="project-tag">{{ p.tag }}</span>
+      </div>
+      <p class="project-desc">{{ p.desc }}</p>
+      <div class="project-foot">
+        <div class="stack">
+          {% for s in p.stack %}<span>{{ s }}</span>{% endfor %}
+        </div>
+        <span class="link">view <span class="arrow">↗</span></span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
