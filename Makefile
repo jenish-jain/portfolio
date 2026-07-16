@@ -1,4 +1,4 @@
-.PHONY: install dev build deploy clean
+.PHONY: install dev build clean
 
 install:
 	npm install
@@ -8,9 +8,6 @@ dev: install
 
 build: install
 	NODE_OPTIONS=--openssl-legacy-provider npm run build
-
-deploy: build
-	NODE_OPTIONS=--openssl-legacy-provider npm run deploy
 
 clean:
 	rm -rf build node_modules/.cache
