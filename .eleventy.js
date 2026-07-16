@@ -6,6 +6,18 @@ const autoprefixer = require('autoprefixer');
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'site/static': '/' });
 
+  // Renders `**bold**` markdown segments as <strong> — used for resume
+  // highlight/description text. Escapes everything else first since the
+  // filter's output is marked `| safe` in templates.
+  eleventyConfig.addFilter('mdBold', (text) => {
+    if (!text) return '';
+    const escaped = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    return escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  });
+
   eleventyConfig.addTemplateFormats('site.js');
 
   eleventyConfig.addExtension('site.js', {
