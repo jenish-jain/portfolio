@@ -1,0 +1,33 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Jenish Jain's personal portfolio",
+  "author": "jenishjain",
+  "license": "MIT",
+  "homepage": "https://jenishjain.in",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "autoprefixer": "^10.4.2",
+    "csso": "^5.0.2",
+    "gray-matter": "^4.0.3",
+    "postcss": "^8.2.9",
+    "terser": "^5.10.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
