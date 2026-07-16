@@ -151,9 +151,6 @@ const Resume = () => {
                         project.title
                       )}
                     </h3>
-                   {/*  {project.technologies && (
-                      <p className="technologies">{project.technologies}</p>
-                    )} */}
                   </div>
                 </div>
                 <p className="project-description">
