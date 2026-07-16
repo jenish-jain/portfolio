@@ -5,6 +5,11 @@ permalink: /
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+  // old HashRouter bookmarks pointed at /#/resume — hash fragments never
+  // reach the server, so redirect client-side to the real /resume/ URL
+  if (window.location.hash === '#/resume') window.location.replace('/resume/');
+</script>
 {% include "head.njk" %}
 <link rel="stylesheet" href="/styles/base.css">
 <link rel="stylesheet" href="/styles/home.css">
