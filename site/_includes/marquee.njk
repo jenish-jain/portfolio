@@ -1,0 +1,11 @@
+{% set marqueeItems = [
+  "Distributed systems", "Backend engineering", "Go · Java · Python",
+  "Kafka & event streaming", "Drawing sometimes",
+  "Tinkering with AI agents", "Pricing systems at scale"
+] %}
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {% for t in marqueeItems %}<span>{{ t }} <span class="star">✺</span></span>{% endfor %}
+    {% for t in marqueeItems %}<span>{{ t }} <span class="star">✺</span></span>{% endfor %}
+  </div>
+</div>

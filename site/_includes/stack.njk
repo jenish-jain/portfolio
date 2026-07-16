@@ -1,0 +1,18 @@
+{% from "macros.njk" import sectionTag %}
+<section id="stack">
+  {{ sectionTag(6, "Stack") }}
+  <div class="stack-wrap">
+    <div class="reveal intro stack-side">
+      <h2>Tools I reach for, without thinking.</h2>
+      <p>A short list. Languages move; the muscle of "small services, clear contracts, observable everything" doesn't.</p>
+    </div>
+    <div class="reveal intro stack-grid" data-reveal-delay="120">
+      {% for s in stack %}
+      <div class="stack-cell">
+        <div class="nm">{{ s.nm }}</div>
+        <div class="ds">{{ s.ds }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

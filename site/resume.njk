@@ -1,0 +1,120 @@
+---
+title: Jenish Jain - Resume
+permalink: /resume/
+noindex: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+{% include "head.njk" %}
+<link rel="stylesheet" href="/styles/base.css">
+<link rel="stylesheet" href="/styles/resume.css">
+</head>
+<body>
+  <div class="resume-page">
+    <a href="/" class="back-link no-print">← Back to Portfolio</a>
+
+    <div class="resume-container">
+      <button class="download-btn no-print" onclick="window.print()">Download as PDF</button>
+
+      <div class="resume-content">
+        <header class="resume-header">
+          <h1>{{ resume.personal.name }}</h1>
+          <div class="contact-info">
+            <div class="contact-row">
+              <a href="https://{{ resume.personal.linkedin }}" target="_blank" rel="noopener noreferrer">{{ resume.personal.linkedin }}</a>
+              <span>•</span>
+              <a href="mailto:{{ resume.personal.email }}">{{ resume.personal.email }}</a>
+            </div>
+            <div class="contact-row">
+              <a href="https://{{ resume.personal.website }}" target="_blank" rel="noopener noreferrer">{{ resume.personal.website }}</a>
+              <span>•</span>
+              <span>{{ resume.personal.phone }}</span>
+              <span>•</span>
+              <a href="https://{{ resume.personal.github }}" target="_blank" rel="noopener noreferrer">{{ resume.personal.github }}</a>
+            </div>
+          </div>
+        </header>
+
+        {% if resume.summary %}
+        <section class="resume-section">
+          <h2>Professional Summary</h2>
+          <p>{{ resume.summary }}</p>
+        </section>
+        {% endif %}
+
+        <section class="resume-section">
+          <h2>Experience</h2>
+          {% for exp in resume.experience %}
+          {% set isContinuation = loop.index0 > 0 and exp.company == resume.experience[loop.index0 - 1].company %}
+          <div class="experience-item{% if isContinuation %} continuation{% endif %}">
+            <div class="experience-header">
+              <div>
+                {% if not isContinuation %}<h3>{{ exp.company }}</h3>{% endif %}
+                <p class="position">{{ exp.title }}</p>
+              </div>
+              <div class="experience-meta">
+                {% if not isContinuation %}<p class="location">{{ exp.location }}</p>{% endif %}
+                <p class="date">{{ exp.period }}</p>
+              </div>
+            </div>
+            <ul class="experience-details">
+              {% for highlight in exp.highlights %}
+              <li>{{ highlight | mdBold | safe }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </section>
+
+        <section class="resume-section">
+          <h2>Technical Skills</h2>
+          <div class="skills-grid">
+            {% for skill in resume.skills %}
+            <div class="skill-item"><strong>{{ skill.category }}:</strong> {{ skill.items }}</div>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="resume-section">
+          <h2>Personal Projects</h2>
+          {% for project in resume.projects %}
+          <div class="project-item">
+            <div class="project-header">
+              <div>
+                <h3>
+                  {% if project.url %}
+                  <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+                  {% else %}
+                  {{ project.title }}
+                  {% endif %}
+                </h3>
+              </div>
+            </div>
+            <p class="project-description">{{ project.description | mdBold | safe }}</p>
+          </div>
+          {% endfor %}
+        </section>
+
+        {% if resume.education %}
+        <section class="resume-section">
+          <h2>Education</h2>
+          <div class="education-item">
+            <div class="education-header">
+              <div>
+                <h3>{{ resume.education.school }}</h3>
+                <p class="degree">{{ resume.education.degree }}</p>
+              </div>
+              <div class="education-meta">
+                <p class="location">{{ resume.education.location }}</p>
+                <p class="date">{{ resume.education.period }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

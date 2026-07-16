@@ -1,0 +1,43 @@
+module.exports = [
+  {
+    id: 'intern',
+    name: 'intern',
+    tag: 'Featured · 2025',
+    desc: "An AI intern that looks up tickets assigned to it and autonomously works on them. The kind of teammate that doesn't complain about Mondays.",
+    stack: ['Go', 'LLM tool-use', 'GitHub API'],
+    href: 'https://github.com/jenish-jain/intern',
+    large: true,
+  },
+  {
+    id: 'sidekick',
+    name: 'sidekick',
+    tag: '2024',
+    desc: 'A tiny Go companion process that tells me dadjoke, helps with my 2fa and whatever i tame it for.',
+    stack: ['Go', 'CLI'],
+    href: 'https://github.com/jenish-jain/sidekick',
+  },
+  {
+    id: 'pdf2audiobook',
+    name: 'pdf2audiobook',
+    tag: '2023',
+    desc: 'Turn any PDF into a free audiobook. Cloud Functions + Natural Jenks + Text-to-Speech, glued together with a stubborn weekend.',
+    stack: ['Python', 'Cloud Functions'],
+    href: 'https://github.com/jenish-jain/pdf2audiobook',
+  },
+  {
+    id: 'bean_counter',
+    name: 'bean_counter',
+    tag: 'Ongoing',
+    desc: "I wrote some Go code to help my dad with his taxes so I wouldn't have to do them myself",
+    stack: ['Go', 'Excel', 'Cloud Run'],
+    href: 'https://github.com/jenish-jain/bean_counter',
+  },
+  {
+    id: 'blog',
+    name: 'blog.jenishjain.in',
+    tag: '2022 →',
+    desc: 'Notes on Kafka, system design, Terraform, and the occasional rant about engineering culture.',
+    stack: ['Preact', 'MDX'],
+    href: 'https://blog.jenishjain.in',
+  },
+];

@@ -7,17 +7,15 @@
 - [ ] check about daily dairy option with mdx pages but without commiting code in github?
 - [ ] showcase major projects ?
 
-# steps to deploy
-run 
+# development
+
 ```sh
-export NODE_OPTIONS=--openssl-legacy-provider
+npm install
+npm run dev    # eleventy --serve
+npm run build  # outputs to dist/
 ```
 
-then 
-
-```node
-npm run deploy
-```
+Deploys automatically on push to `master` via Netlify. See `netlify.toml`.
 
 ### Deployment Status
 

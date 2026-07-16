@@ -1,0 +1,43 @@
+---
+title: Jenish Jain — Software Engineer
+permalink: /
+---
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+  // old HashRouter bookmarks pointed at /#/resume — hash fragments never
+  // reach the server, so redirect client-side to the real /resume/ URL
+  if (window.location.hash === '#/resume') window.location.replace('/resume/');
+</script>
+{% include "head.njk" %}
+<link rel="stylesheet" href="/styles/base.css">
+<link rel="stylesheet" href="/styles/home.css">
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div class="portfolio-home">
+    <div class="cursor" id="cursor"></div>
+    <div class="yellow-stripe" aria-hidden="true"></div>
+
+    {% include "nav.njk" %}
+
+    <main>
+      {% include "hero.njk" %}
+      {% include "marquee.njk" %}
+      {% include "about.njk" %}
+      {% include "experience.njk" %}
+      {% include "projects.njk" %}
+      {% include "writings.njk" %}
+      {% include "drawings.njk" %}
+      {% include "stack.njk" %}
+      {% include "contact.njk" %}
+    </main>
+
+    {% include "footer.njk" %}
+    {% include "palette.njk" %}
+  </div>
+  <script src="/scripts/analytics.min.js"></script>
+  <script src="/scripts/home.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% from "macros.njk" import sectionTag %}
+<section id="drawings">
+  {{ sectionTag(5, "Drawings") }}
+  <div class="reveal intro drawing-list">
+    {% for d in drawings %}
+    <a class="draw-row" href="{{ d.url }}" target="_blank" rel="noopener noreferrer" data-hot>
+      <img
+        class="draw-thumb"
+        src="https://res.cloudinary.com/jenishjain/image/fetch/w_120,h_150,c_fill,g_face,q_auto,f_auto/{{ d.image }}"
+        alt="{{ d.title }}"
+        loading="lazy"
+        width="60"
+        height="75"
+      >
+      <div class="draw-info">
+        <div class="draw-title">{{ d.title }}</div>
+        {% if d.description %}<div class="draw-desc">{{ d.description }}</div>{% endif %}
+      </div>
+      <div class="arrow">↗</div>
+    </a>
+    {% endfor %}
+  </div>
+  <div style="margin-top: 24px; font-family: var(--mono); font-size: 12px; color: var(--muted);">
+    → all drawings at
+    <a href="https://drawings.jenishjain.in/posts" target="_blank" rel="noopener noreferrer" style="border-bottom: 1px solid var(--accent);">drawings.jenishjain.in</a>
+  </div>
+</section>

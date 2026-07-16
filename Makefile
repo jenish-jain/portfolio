@@ -4,10 +4,10 @@ install:
 	npm install
 
 dev: install
-	NODE_OPTIONS=--openssl-legacy-provider npm start
+	npm run dev
 
 build: install
-	NODE_OPTIONS=--openssl-legacy-provider npm run build
+	npm run build
 
 clean:
-	rm -rf build node_modules/.cache
+	rm -rf dist node_modules/.cache

@@ -1,0 +1,19 @@
+{% from "macros.njk" import sectionTag %}
+<section id="writing">
+  {{ sectionTag(4, "Writing") }}
+  <div class="reveal intro writing-list">
+    {% for p in writings %}
+    <a class="write-row" href="{{ p.href }}" target="_blank" rel="noopener noreferrer" data-hot
+       data-track-category="writing" data-track-label="{{ p.title }}" data-track-url="{{ p.href }}">
+      <div class="yr">{{ p.yr }}</div>
+      <div class="ttl">{{ p.title }}</div>
+      <div class="tag">{{ p.tag }}</div>
+      <div class="arrow">↗</div>
+    </a>
+    {% endfor %}
+  </div>
+  <div style="margin-top: 24px; font-family: var(--mono); font-size: 12px; color: var(--muted);">
+    → all posts at
+    <a href="https://blog.jenishjain.in" target="_blank" rel="noopener noreferrer" style="border-bottom: 1px solid var(--accent);">blog.jenishjain.in</a>
+  </div>
+</section>
