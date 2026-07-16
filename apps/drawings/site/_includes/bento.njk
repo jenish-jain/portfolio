@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ '/apple-touch-icon.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | url }}" />
+    <link rel="manifest" href="{{ '/site.webmanifest' | url }}" />
+    <meta name="msapplication-TileColor" content="#ffe742" />
+    <meta name="theme-color" content="#ffe742" />
+
+    {% block seo %}
+    <title>{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="author" content="Jenish Jain" />
+    <link rel="canonical" href="{{ siteUrl }}/posts/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ siteUrl }}/posts/" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@jenishjain6" />
+    {% endblock %}
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/feed.xml" />
+
+    <style>
+      :root {
+        --paper:    #efeae0;
+        --tile:     #f7f3ea;
+        --tile-2:   #ece4d2;
+        --ink:      #15120e;
+        --muted:    #837a6d;
+        --hair:     rgba(21,18,14,0.12);
+        --accent:   #ffe742;
+        --accent-2: #1f3df1;
+        --accent-3: #ff6a3d;
+        --display:  "Instrument Serif", "Times New Roman", serif;
+        --sans:     "Geist", system-ui, sans-serif;
+        --mono:     "JetBrains Mono", ui-monospace, monospace;
+        --radius:   22px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      ::selection { background: var(--accent); color: var(--ink); }
+
+      /* ── Top bar ── */
+      .bento-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px clamp(20px, 4vw, 40px);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .bento-top .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+      }
+      .bento-top .brand .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent);
+        flex-shrink: 0;
+      }
+      .bento-top .nav-links {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .bento-top .nav-links a {
+        color: var(--muted);
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: color .18s, border-color .18s, background .18s;
+      }
+      .bento-top .nav-links a:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+        background: var(--accent);
+      }
+
+      /* ── Bento grid ── */
+      .bento {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 4px clamp(16px, 3vw, 32px) clamp(56px, 8vw, 84px);
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: 168px;
+        gap: 12px;
+      }
+      @media (max-width: 960px) {
+        .bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 148px; }
+      }
+      @media (max-width: 640px) {
+        .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+      }
+
+      /* ── Base tile ── */
+      .tile {
+        background: var(--tile);
+        border: 1px solid var(--hair);
+        border-radius: var(--radius);
+        padding: 22px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+      }
+      .tile:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+      }
+      .tile .label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .tile .label::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 1px;
+        flex-shrink: 0;
+      }
+
+      /* ── Footer ── */
+      .bento-foot {
+        display: flex;
+        justify-content: space-between;
+        padding: 18px clamp(20px, 4vw, 40px) 60px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .bento-foot a {
+        color: var(--muted);
+        border-bottom: 1px solid var(--hair);
+        transition: color .18s, border-color .18s;
+      }
+      .bento-foot a:hover { color: var(--ink); border-color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <header class="bento-top">
+      <div class="brand">
+        <span class="dot"></span>
+        <a href="/posts/">Jenish Jain</a>
+      </div>
+      <nav class="nav-links">
+        <a href="/posts/">drawings</a>
+        <a href="https://jenishjain.in" target="_blank" rel="noopener">portfolio ↗</a>
+      </nav>
+    </header>
+
+    {% block content %}{{ content | safe }}{% endblock %}
+
+    <footer class="bento-foot">
+      <span>© Jenish Jain — drawings</span>
+      <a href="/feed.xml">RSS</a>
+    </footer>
+  </body>
+</html>
