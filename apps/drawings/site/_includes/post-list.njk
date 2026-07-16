@@ -1,0 +1,18 @@
+{% extends "default.njk" %}
+
+{% block seo %}
+<title>{{ collections.posts | length }} times the muse has struck</title>
+
+<link rel="canonical" href="{{ siteUrl }}/{{slug}}/" />
+<meta name="description" content="{{description}}" />
+{% endblock %}
+
+{% block heading %}
+
+<div class="heading post-list">
+  <h1>{{ collections.posts | length }} times the muse has struck</h1>
+  <p class="lede">{{description}}</p>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,121 @@
+---
+layout: bento.njk
+title: Topics
+seo_title: Blog Topics | Jenish Jain's Engineering Blog
+description: Explore engineering blog posts by topic — Kafka, system design, automation, productivity, and more.
+permalink: /tags/
+---
+
+<main class="tags-page">
+
+  <div class="tags-header">
+    <div class="tags-kicker">/topics</div>
+    <h1 class="tags-title">Browse by topic</h1>
+    <p class="tags-sub">{{ description }}</p>
+  </div>
+
+  <div class="tags-grid">
+    {% for tag in tagList %}
+      {% set tagPosts = [] %}
+      {% for post in collections.posts %}
+        {% if post.data.tags and post.data.tags.includes(tag.name) %}
+          {% set tagPosts = tagPosts.concat([post]) %}
+        {% endif %}
+      {% endfor %}
+      {% if tagPosts | length > 0 %}
+      <a class="tag-tile" href="/tag/{{ tag.slug }}/">
+        <div class="tag-tile-name">#{{ tag.name }}</div>
+        <div class="tag-tile-count">{{ tagPosts | length }} post{% if tagPosts | length != 1 %}s{% endif %}</div>
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+</main>
+
+<style>
+  .tags-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px) 80px;
+  }
+
+  .tags-header {
+    padding: clamp(40px, 6vw, 72px) 0 clamp(32px, 4vw, 48px);
+    border-bottom: 1px solid var(--hair);
+    max-width: 640px;
+  }
+  .tags-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tags-kicker::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .tags-title {
+    font-family: var(--display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  .tags-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .tag-tile {
+    background: var(--tile);
+    border: 1px solid var(--hair);
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    min-height: 110px;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s, background .2s;
+  }
+  .tag-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    background: var(--accent);
+  }
+  .tag-tile-name {
+    font-family: var(--display);
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .tag-tile-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>

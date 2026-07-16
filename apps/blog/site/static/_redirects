@@ -1,0 +1,17 @@
+/api/stats/*                    /.netlify/functions/stats-:splat  200
+/api/*                          /.netlify/functions/:splat  200
+
+# shortcut for linking to my preferred headshot
+/headshot.jpg                   https://res.cloudinary.com/jenishjain/image/upload/v1700920184/portfolio/images/jenishjain-with-chopsticks.jpg 200
+
+# partner links
+/cloudinary                     https://cloudinary.com/?ap=lwj
+
+# social links
+/twitter                        https://twitter.com/jenishjain6
+
+# personal site links
+/newsletter                     https://blog.jenishjain.in/newsletter/
+/blog                           https://blog.jenishjain.in/blog/
+
+/*                              https://blog.jenishjain.in/404 404

@@ -1,0 +1,213 @@
+---
+layout: bento.njk
+pagination:
+  data: tagList
+  size: 1
+  alias: tagData
+permalink: "/tag/{{ tagData.slug }}/"
+eleventyComputed:
+  title: "#{{ tagData.name }} — Jenish Jain"
+  tagName: "{{ tagData.name }}"
+  tagSlug: "{{ tagData.slug }}"
+---
+
+{% set tagPosts = [] %}
+{% for post in collections.posts %}
+  {% if post.data.tags and post.data.tags.includes(tagName) %}
+    {% set tagPosts = tagPosts.concat([post]) %}
+  {% endif %}
+{% endfor %}
+
+<main class="tag-page">
+
+  <nav class="tag-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">home</a>
+    <span>/</span>
+    <a href="/tags/">topics</a>
+    <span>/</span>
+    <span>#{{ tagName }}</span>
+  </nav>
+
+  <div class="tag-header">
+    <div class="tag-kicker">/topic</div>
+    <h1 class="tag-title">#{{ tagName }}</h1>
+    <p class="tag-sub">{{ tagPosts | length }} post{% if tagPosts | length != 1 %}s{% endif %}</p>
+  </div>
+
+  {% if tagPosts | length > 0 %}
+  <div class="tag-posts">
+    {% for post in tagPosts %}
+      {% if post.data.url %}
+        {% set postHref = post.data.url %}
+        {% set isExternal = true %}
+      {% else %}
+        {% set postHref = "/" + post.data.slug + "/" %}
+        {% set isExternal = false %}
+      {% endif %}
+      <a class="tag-post-card" href="{{ postHref }}"{% if isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+        <div class="tpc-cat">{{ post.data.category }}</div>
+        <div class="tpc-title">{{ post.data.title }}</div>
+        <p class="tpc-desc">{{ post.data.description }}</p>
+        <div class="tpc-meta">
+          <span>{{ post.date | simpleDate }}</span>
+          <span class="tpc-arrow">read →</span>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <a class="back-link" href="/tags/">← all topics</a>
+
+</main>
+
+<style>
+  .tag-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px) 80px;
+  }
+
+  .tag-breadcrumb {
+    padding: 20px 0 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .tag-breadcrumb a { color: var(--muted); text-decoration: none; transition: color .15s; }
+  .tag-breadcrumb a:hover { color: var(--ink); }
+
+  .tag-header {
+    padding: clamp(32px, 5vw, 56px) 0 clamp(28px, 4vw, 40px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .tag-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tag-kicker::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .tag-title {
+    font-family: var(--display);
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .tag-sub {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .tag-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+  @media (max-width: 640px) {
+    .tag-posts { grid-template-columns: 1fr; }
+  }
+
+  .tag-post-card {
+    background: var(--tile);
+    border: 1px solid var(--hair);
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    min-height: 180px;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+  }
+  .tag-post-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+
+  .tpc-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tpc-cat::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .tpc-title {
+    font-family: var(--display);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .tpc-desc {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0 0 auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .tpc-meta {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tpc-arrow { transition: transform .2s; }
+  .tag-post-card:hover .tpc-arrow { transform: translateX(3px); }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 2px;
+    transition: color .18s, border-color .18s;
+  }
+  .back-link:hover { color: var(--ink); border-color: var(--ink); }
+</style>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ '/apple-touch-icon.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | url }}" />
+    <link rel="manifest" href="{{ '/site.webmanifest' | url }}" />
+    <meta name="msapplication-TileColor" content="#ffe742" />
+    <meta name="theme-color" content="#ffe742" />
+
+    {% block seo %}
+    <title>{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="author" content="Jenish Jain" />
+    <link rel="canonical" href="{{ siteUrl }}/posts/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ siteUrl }}/posts/" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@jenishjain6" />
+    {% endblock %}
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/feed.xml" />
+
+    <style>
+      :root {
+        --paper:    #efeae0;
+        --tile:     #f7f3ea;
+        --tile-2:   #ece4d2;
+        --ink:      #15120e;
+        --muted:    #837a6d;
+        --hair:     rgba(21,18,14,0.12);
+        --accent:   #ffe742;
+        --accent-2: #1f3df1;
+        --accent-3: #ff6a3d;
+        --display:  "Instrument Serif", "Times New Roman", serif;
+        --sans:     "Geist", system-ui, sans-serif;
+        --mono:     "JetBrains Mono", ui-monospace, monospace;
+        --radius:   22px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      ::selection { background: var(--accent); color: var(--ink); }
+
+      /* ── Top bar ── */
+      .bento-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px clamp(20px, 4vw, 40px);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .bento-top .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+      }
+      .bento-top .brand .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent);
+        flex-shrink: 0;
+      }
+      .bento-top .nav-links {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .bento-top .nav-links a {
+        color: var(--muted);
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: color .18s, border-color .18s, background .18s;
+      }
+      .bento-top .nav-links a:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+        background: var(--accent);
+      }
+
+      /* ── Bento grid ── */
+      .bento {
+        max-width: 1340px;
+        margin: 0 auto;
+        padding: 4px clamp(16px, 3vw, 32px) clamp(56px, 8vw, 84px);
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: 168px;
+        gap: 12px;
+      }
+      @media (max-width: 960px) {
+        .bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 148px; }
+      }
+      @media (max-width: 640px) {
+        .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+      }
+
+      /* ── Base tile ── */
+      .tile {
+        background: var(--tile);
+        border: 1px solid var(--hair);
+        border-radius: var(--radius);
+        padding: 22px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+        cursor: pointer;
+      }
+      .tile:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+      }
+      .tile .label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .tile .label::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 1px;
+        flex-shrink: 0;
+      }
+
+      /* ── Feature tile (latest post) ── */
+      .t-feature {
+        grid-column: span 7;
+        grid-row: span 2;
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .t-feature .label { color: rgba(243,237,225,0.5); }
+      .t-feature .label::before { background: var(--accent); }
+      .t-feature h2 {
+        font-family: var(--display);
+        font-size: clamp(32px, 4vw, 58px);
+        line-height: 1;
+        margin: 10px 0 14px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+      .t-feature h2 em { color: var(--accent); font-style: italic; }
+      .t-feature .desc {
+        color: rgba(243,237,225,0.72);
+        font-size: 14px;
+        line-height: 1.55;
+        margin: 0 0 auto;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .t-feature .post-meta {
+        margin-top: auto;
+        display: flex;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: rgba(243,237,225,0.65);
+        flex-wrap: wrap;
+      }
+      .t-feature .post-meta span {
+        padding: 4px 8px;
+        border: 1px solid rgba(243,237,225,0.18);
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .t-feature:hover {
+        box-shadow: 0 20px 48px rgba(0,0,0,0.22);
+      }
+      .t-feature::after {
+        content: "→";
+        position: absolute;
+        right: 20px;
+        bottom: 16px;
+        font-size: 36px;
+        color: rgba(243,237,225,0.1);
+        pointer-events: none;
+        font-family: var(--display);
+      }
+
+      /* ── Second tile ── */
+      .t-second {
+        grid-column: span 5;
+        grid-row: span 2;
+        background: var(--accent);
+        color: var(--ink);
+      }
+      .t-second .label::before { background: var(--ink); }
+      .t-second .label { color: rgba(21,18,14,0.55); }
+      .t-second h2 {
+        font-family: var(--display);
+        font-size: clamp(26px, 3vw, 40px);
+        line-height: 1.05;
+        margin: 10px 0 auto;
+        font-weight: 400;
+      }
+      .t-second .post-meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: rgba(21,18,14,0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        display: flex;
+        justify-content: space-between;
+      }
+      .t-second:hover { box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+
+      /* ── Regular post tile ── */
+      .t-post {
+        grid-column: span 4;
+      }
+      .t-post .ttl {
+        font-family: var(--display);
+        font-size: clamp(18px, 1.8vw, 24px);
+        line-height: 1.1;
+        margin: auto 0 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .t-post .post-meta {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* ── Topics tile ── */
+      .t-topics {
+        grid-column: span 6;
+        background: var(--accent-2);
+        color: var(--paper);
+      }
+      .t-topics .label { color: rgba(243,237,225,0.6); }
+      .t-topics .label::before { background: var(--accent); }
+      .t-topics .cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 4px;
+        align-content: flex-start;
+      }
+      .t-topics .cloud a {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.18);
+        color: rgba(243,237,225,0.9);
+        transition: background .18s, transform .18s;
+      }
+      .t-topics .cloud a:hover {
+        background: rgba(255,255,255,0.25);
+        transform: translateY(-1px);
+      }
+
+      /* ── Subscribe (RSS) tile ── */
+      .t-subscribe {
+        grid-column: span 6;
+        background: var(--tile-2);
+      }
+      .t-subscribe .rss-head {
+        font-family: var(--display);
+        font-size: clamp(28px, 3vw, 42px);
+        line-height: 1;
+        margin: auto 0 0;
+      }
+      .t-subscribe .rss-sub {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      /* ── Responsive overrides ── */
+      @media (max-width: 960px) {
+        .t-feature   { grid-column: span 6; grid-row: span 2; }
+        .t-second    { grid-column: span 6; grid-row: span 2; }
+        .t-post      { grid-column: span 3; }
+        .t-topics    { grid-column: span 6; }
+        .t-subscribe { grid-column: span 6; }
+      }
+      @media (max-width: 640px) {
+        .t-feature, .t-second, .t-topics, .t-subscribe { grid-column: span 2; grid-row: span 2; }
+        .t-post { grid-column: span 2; }
+      }
+
+      /* ── Footer ── */
+      .bento-foot {
+        display: flex;
+        justify-content: space-between;
+        padding: 18px clamp(20px, 4vw, 40px) 60px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .bento-foot a {
+        color: var(--muted);
+        border-bottom: 1px solid var(--hair);
+        transition: color .18s, border-color .18s;
+      }
+      .bento-foot a:hover { color: var(--ink); border-color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <header class="bento-top">
+      <div class="brand">
+        <span class="dot"></span>
+        <a href="/">Jenish Jain</a>
+      </div>
+      <nav class="nav-links">
+        <a href="/posts/">posts</a>
+        <a href="/tags/">topics</a>
+      </nav>
+    </header>
+
+    {% block content %}{{ content | safe }}{% endblock %}
+
+    <footer class="bento-foot">
+      <span>© Jenish Jain</span>
+      <a href="/feed.xml">RSS</a>
+    </footer>
+  </body>
+</html>
