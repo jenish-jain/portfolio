@@ -1,0 +1,60 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {# Homepage #}
+  <url>
+    <loc>{{ siteUrl }}/</loc>
+    <lastmod>{{ page.date | rssDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  {# Posts listing page #}
+  <url>
+    <loc>{{ siteUrl }}/posts/</loc>
+    <lastmod>{{ page.date | rssDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  {# Tags page #}
+  <url>
+    <loc>{{ siteUrl }}/tags/</loc>
+    <lastmod>{{ page.date | rssDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  {# All blog posts #}
+  {%- for post in collections.posts %}
+  <url>
+    <loc>{{ siteUrl }}/{{ post.data.slug }}/</loc>
+    <lastmod>{{ post.date | rssDate }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {%- endfor %}
+
+  {# Category pages #}
+  {%- for category in categoryList %}
+  <url>
+    <loc>{{ siteUrl }}/category/{{ category.slug }}/</loc>
+    <lastmod>{{ page.date | rssDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {%- endfor %}
+
+  {# Tag pages #}
+  {%- for tag in tagList %}
+  <url>
+    <loc>{{ siteUrl }}/tag/{{ tag.slug }}/</loc>
+    <lastmod>{{ page.date | rssDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {%- endfor %}
+</urlset>
