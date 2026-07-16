@@ -1050,6 +1050,10 @@
   padding-top: 18vh;
 }
 
+.palette-back[hidden] {
+  display: none;
+}
+
 .palette {
   width: min(560px, 92vw);
   background: var(--paper);
