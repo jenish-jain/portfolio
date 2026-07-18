@@ -9,31 +9,33 @@ website: jenishjain.in
 
 ## Professional Summary
 
-Senior Product Engineer with 5+ years of experience in building scalable backend systems. Proven expertise in database operations, microservices architecture, and performance optimization serving millions of users. Strong background in MongoDB, Kubernetes, GCP, and Go programming with demonstrated leadership in technical architecture and team mentorship.
+Senior Backend Engineer with 6+ years of experience designing and building scalable, distributed backend systems. Proven expertise in system design, microservices architecture, database engineering, and performance optimization serving millions of users. Strong background in Go, MongoDB, Kubernetes, and GCP, with demonstrated leadership in technical architecture, mentorship, and cross-functional collaboration.
 
 ## Technical Skills
 
-**Programming Languages:** Go, JavaScript, Java, Python
+**Programming Languages:** Go, Java, Python, JavaScript
 
-**Databases & Caching:** MongoDB, Redis, Elasticsearch, Cloud SQL (MySQL/PostgreSQL)
+**Databases & Caching:** MongoDB, Redis, Elasticsearch, Cloud SQL (MySQL/PostgreSQL) — SQL & NoSQL
+
+**Distributed Systems & APIs:** Microservices Architecture, RESTful APIs, System Design, Apache Kafka, Data Structures & Algorithms
 
 **Cloud & Infrastructure:** Google Cloud Platform (GCP), Cloud Functions, Cloud Run, Kubernetes, Docker, Helm, Terraform, Ansible
 
-**DevOps & CI/CD:** GoCD, Apache Kafka, Kong API Gateway, Grafana, Prometheus, Loki, Alertmanager
-
-**Core Competencies:** System Design, Microservices Architecture, Performance Optimization, Database Management, Team Leadership, Technical Mentorship
+<!-- **DevOps & CI/CD:** GoCD, Kong API Gateway, Grafana, Prometheus, Loki, Alertmanager
+ -->
+**Core Competencies:** Performance Optimization, Database Management, Technical Leadership, Team Mentorship, Cross-functional Collaboration
 
 ## Professional Experience
 
 ### Rapido | Bengaluru, Karnataka
 
-**Senior Product Engineer 2 (Infrastructure & Backend)** | Jan 2025 - Present
+**Senior Product Engineer 2** | Jan 2025 - Present
 
-- Spearheaded end-to-end database operations for **20+ MongoDB clusters** serving millions of users, executing **zero-downtime upgrades** and performance tuning
-- Developed **custom GoCD plugin** to optimize CI/CD artifact management, reducing cloud storage costs and improving pipeline availability
-- Provisioned and managed distributed infrastructure including Redis clusters, Cloud Functions, Cloud SQL, and streaming platforms using Infrastructure as Code (IaC) methodologies
-- Built comprehensive infrastructure cost monitoring dashboard using Google BigQuery data analytics
-- Contributed to in-house platform tooling development, **improving developer experience** and reducing manual operational overhead
+- Designed and built a credential-management service in **Go and JavaScript** integrating **HashiCorp Vault APIs** to issue short-lived, scoped database credentials for operational access, improving security posture over standing credentials
+- Designed and shipped a **Go cron service** for automated CI/CD artifact cleanup, replacing manual processes and reducing cloud storage costs while improving pipeline reliability
+- Owned reliability and performance engineering for **20+ MongoDB clusters** serving millions of users, executing **zero-downtime upgrades** via Terraform/Ansible-driven automation and leading migration planning from MongoDB **v4/v6 to v8**
+- Analyzed and rolled out **basic authentication on production Elasticsearch clusters**, hardening security on customer-facing search infrastructure
+- Provisioned infrastructure including Redis clusters, Cloud Functions, Cloud SQL, and streaming platforms using **Terraform and Ansible**, and built an infrastructure cost-monitoring dashboard on **Google BigQuery**
 
 **Senior Product Engineer (Full Stack)** | Nov 2022 - Dec 2024
 
@@ -49,7 +51,7 @@ Senior Product Engineer with 5+ years of experience in building scalable backend
 - Optimized fare estimation API flow achieving **30-40% reduction in response times**, improving customer conversion rates
 - Built no-code stubbing solution using WireMock for QA teams, improving testability for complex microservices interactions.
 
-**Associate Product Engineer** | Jun 2020 - Dec 2020
+**Associate Product Engineer** | Feb 2020 - Dec 2020
 
 - Developed core microservices components for fare estimation, campaigns, and direction services handling 400 RPS
 - Designed and implemented scalable RESTful APIs with monitoring and alerting for system performance metrics
