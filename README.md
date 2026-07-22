@@ -24,4 +24,15 @@ npm run dev --workspace=apps/drawings
 npm run build --workspace=apps/<app> # outputs to apps/<app>/dist/
 ```
 
+Or via the root `Makefile`:
+
+```sh
+make install         # npm install, once from repo root
+make dev-portfolio    # or dev-blog / dev-drawings
+make build-portfolio   # or build-blog / build-drawings / build (all three)
+make clean             # remove dist/ and .cache/ in every app
+```
+
+Each app also has its own `Makefile` (`make dev`, `make build`, `make clean`) for working inside `apps/<app>` directly. `apps/blog` and `apps/drawings` additionally need a `.env` (copy from `.envtemplate`) with Cloudinary credentials for image handling.
+
 See each app's own README for app-specific notes.
