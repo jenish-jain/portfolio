@@ -206,6 +206,13 @@ module.exports = function (eleventyConfig) {
       .map(item => item.post);
   });
 
+  // Filter to get posts belonging to a series, ordered by seriesOrder
+  eleventyConfig.addFilter('seriesPosts', function(collection, seriesSlug) {
+    return collection
+      .filter((post) => post.data.series === seriesSlug)
+      .sort((a, b) => (a.data.seriesOrder || 0) - (b.data.seriesOrder || 0));
+  });
+
   // Filter to calculate reading time
   eleventyConfig.addFilter('readingTime', function(content) {
     const wordsPerMinute = 200;

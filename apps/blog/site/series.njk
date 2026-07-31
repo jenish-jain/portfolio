@@ -1,0 +1,140 @@
+---
+layout: bento.njk
+title: Series
+seo_title: Blog Series | Jenish Jain's Engineering Blog
+description: Multi-part deep dives on a single topic — read them in order.
+permalink: /series/
+---
+
+<main class="series-index-page">
+
+  <div class="series-index-header">
+    <div class="series-index-kicker">/series</div>
+    <h1 class="series-index-title">Multi-part deep dives</h1>
+    <p class="series-index-sub">{{ description }}</p>
+  </div>
+
+  <div class="series-index-grid">
+    {% for series in seriesList %}
+      {% set seriesPosts = collections.posts | seriesPosts(series.slug) %}
+      <a class="series-card" href="/series/{{ series.slug }}/">
+        <div class="series-card-label">/series</div>
+        <h2 class="series-card-name">{{ series.name }}</h2>
+        <p class="series-card-desc">{{ series.description }}</p>
+        <div class="series-card-meta">
+          {% if seriesPosts | length > 0 %}
+            {{ seriesPosts | length }} part{% if seriesPosts | length != 1 %}s{% endif %}
+          {% else %}
+            coming soon
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+</main>
+
+<style>
+  .series-index-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px) 80px;
+  }
+  .series-index-header {
+    padding: clamp(40px, 6vw, 72px) 0 clamp(32px, 4vw, 48px);
+    border-bottom: 1px solid var(--hair);
+    max-width: 640px;
+  }
+  .series-index-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .series-index-kicker::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .series-index-title {
+    font-family: var(--display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  .series-index-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .series-index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+  @media (max-width: 640px) { .series-index-grid { grid-template-columns: 1fr; } }
+
+  .series-card {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    min-height: 200px;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+  }
+  .series-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,0.22); }
+  .series-card-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(243,237,225,0.5);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .series-card-label::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .series-card-name {
+    font-family: var(--display);
+    font-size: clamp(24px, 2.6vw, 32px);
+    line-height: 1.1;
+    margin: 0 0 12px;
+  }
+  .series-card-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(243,237,225,0.7);
+    margin: 0 0 auto;
+  }
+  .series-card-meta {
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+</style>
