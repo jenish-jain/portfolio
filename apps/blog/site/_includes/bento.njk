@@ -270,9 +270,36 @@
         justify-content: space-between;
       }
 
+      /* ── Series tile ── */
+      .t-series {
+        grid-column: span 4;
+        background: var(--accent-3);
+        color: var(--paper);
+      }
+      .t-series .label { color: rgba(243,237,225,0.6); }
+      .t-series .label::before { background: var(--ink); }
+      .t-series h2 {
+        font-family: var(--display);
+        font-size: clamp(24px, 2.6vw, 32px);
+        line-height: 1.1;
+        margin: 10px 0 auto;
+        font-weight: 400;
+      }
+      .t-series .series-desc {
+        font-size: 12px;
+        line-height: 1.5;
+        color: rgba(243,237,225,0.75);
+        margin-top: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .t-series:hover { box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+
       /* ── Topics tile ── */
       .t-topics {
-        grid-column: span 6;
+        grid-column: span 4;
         background: var(--accent-2);
         color: var(--paper);
       }
@@ -302,7 +329,7 @@
 
       /* ── Subscribe (RSS) tile ── */
       .t-subscribe {
-        grid-column: span 6;
+        grid-column: span 4;
         background: var(--tile-2);
       }
       .t-subscribe .rss-head {
@@ -325,11 +352,12 @@
         .t-feature   { grid-column: span 6; grid-row: span 2; }
         .t-second    { grid-column: span 6; grid-row: span 2; }
         .t-post      { grid-column: span 3; }
+        .t-series    { grid-column: span 6; }
         .t-topics    { grid-column: span 6; }
         .t-subscribe { grid-column: span 6; }
       }
       @media (max-width: 640px) {
-        .t-feature, .t-second, .t-topics, .t-subscribe { grid-column: span 2; grid-row: span 2; }
+        .t-feature, .t-second, .t-series, .t-topics, .t-subscribe { grid-column: span 2; grid-row: span 2; }
         .t-post { grid-column: span 2; }
       }
 
@@ -360,6 +388,7 @@
       </div>
       <nav class="nav-links">
         <a href="/posts/">posts</a>
+        <a href="/series/">series</a>
         <a href="/tags/">topics</a>
       </nav>
     </header>

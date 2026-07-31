@@ -1,0 +1,220 @@
+---
+layout: bento.njk
+pagination:
+  data: seriesList
+  size: 1
+  alias: seriesData
+permalink: "/series/{{ seriesData.slug }}/"
+eleventyComputed:
+  title: "{{ seriesData.name }} — Jenish Jain"
+  seo_title: "{{ seriesData.name }} Series — Jenish Jain's Engineering Blog"
+  description: "{{ seriesData.description }}"
+---
+
+{% set seriesPosts = collections.posts | seriesPosts(seriesData.slug) %}
+
+<main class="series-page">
+
+  <nav class="series-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">home</a>
+    <span>/</span>
+    <a href="/series/">series</a>
+    <span>/</span>
+    <span>{{ seriesData.name }}</span>
+  </nav>
+
+  <div class="series-header">
+    <div class="series-kicker">/series</div>
+    <h1 class="series-title">{{ seriesData.name }}</h1>
+    <p class="series-desc">{{ seriesData.description }}</p>
+    <p class="series-sub">{{ seriesPosts | length }} part{% if seriesPosts | length != 1 %}s{% endif %} published</p>
+  </div>
+
+  {% if seriesPosts | length > 0 %}
+  <ol class="series-posts">
+    {% for post in seriesPosts %}
+      {% if post.data.url %}
+        {% set postHref = post.data.url %}
+        {% set isExternal = true %}
+      {% else %}
+        {% set postHref = "/" + post.data.slug + "/" %}
+        {% set isExternal = false %}
+      {% endif %}
+      <li>
+        <a class="series-post-card" href="{{ postHref }}"{% if isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
+          <div class="spc-index">{{ '%02d' | format(loop.index) }}</div>
+          <div class="spc-body">
+            <div class="spc-title">{{ post.data.title }}</div>
+            <p class="spc-desc">{{ post.data.description }}</p>
+            <div class="spc-meta">{{ post.date | simpleDate }}</div>
+          </div>
+          <div class="spc-arrow">→</div>
+        </a>
+      </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <div class="series-empty">
+    <p>No parts published yet — this series is in the works.</p>
+  </div>
+  {% endif %}
+
+  <a class="back-link" href="/series/">← all series</a>
+
+</main>
+
+<style>
+  .series-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px) 80px;
+  }
+  .series-breadcrumb {
+    padding: 20px 0 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .series-breadcrumb a { color: var(--muted); text-decoration: none; transition: color .15s; }
+  .series-breadcrumb a:hover { color: var(--ink); }
+
+  .series-header {
+    padding: clamp(32px, 5vw, 56px) 0 clamp(28px, 4vw, 40px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .series-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .series-kicker::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .series-title {
+    font-family: var(--display);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  .series-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 60ch;
+    margin: 0 0 12px;
+  }
+  .series-sub {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .series-posts {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .series-post-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--tile);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+  }
+  .series-post-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+  .spc-index {
+    font-family: var(--mono);
+    font-size: 22px;
+    color: var(--muted);
+    flex-shrink: 0;
+    width: 40px;
+  }
+  .spc-body { flex: 1; min-width: 0; }
+  .spc-title {
+    font-family: var(--display);
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .spc-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 8px 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .spc-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+  .spc-arrow {
+    font-family: var(--display);
+    font-size: 24px;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: transform .2s;
+  }
+  .series-post-card:hover .spc-arrow { transform: translateX(3px); color: var(--ink); }
+
+  .series-empty {
+    margin-top: 32px;
+    padding: 40px;
+    background: var(--tile);
+    border: 1px dashed var(--hair);
+    border-radius: var(--radius);
+    text-align: center;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 2px;
+    transition: color .18s, border-color .18s;
+  }
+  .back-link:hover { color: var(--ink); border-color: var(--ink); }
+</style>

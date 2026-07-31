@@ -54,6 +54,13 @@ description: >
     {% endif %}
   {% endfor %}
 
+  {% set featuredSeries = seriesList[0] %}
+  <a class="tile t-series" href="/series/{{ featuredSeries.slug }}/">
+    <div class="label">/series</div>
+    <h2>{{ featuredSeries.name }}</h2>
+    <p class="series-desc">{{ featuredSeries.description }}</p>
+  </a>
+
   <section class="tile t-topics">
     <div class="label">/topics</div>
     <div class="cloud">

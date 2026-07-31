@@ -209,6 +209,7 @@
       }
       .post-meta-bar .pill:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
       .post-meta-bar .pill.cat { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+      .post-meta-bar .pill.series { background: var(--accent-2); border-color: var(--accent-2); color: var(--paper); }
 
       /* ── Prose content ── */
       .post-body { grid-column: 1; }
@@ -465,6 +466,66 @@
       }
       .newsletter-tile a:hover { box-shadow: 0 4px 12px rgba(255,231,66,0.5); }
 
+      /* ── Series nav ── */
+      .series-nav {
+        grid-column: 1 / -1;
+        margin-top: 56px;
+        padding-top: 48px;
+        border-top: 1px solid var(--hair);
+      }
+      .series-nav-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .series-nav-label::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 1px;
+      }
+      .series-nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .series-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 18px;
+        background: var(--tile);
+        border: 1px solid var(--hair);
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--ink-soft);
+        transition: background .18s, border-color .18s;
+      }
+      .series-nav-item:hover { background: var(--tile-2); }
+      .series-nav-item--current {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+      }
+      .series-nav-index {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+      .series-nav-item--current .series-nav-index { color: rgba(243,237,225,0.5); }
+      .series-nav-title {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
       /* ── Related posts ── */
       .related-posts {
         grid-column: 1 / -1;
@@ -570,6 +631,7 @@
       </a>
       <nav class="nav-links">
         <a href="/posts/">posts</a>
+        <a href="/series/">series</a>
         <a href="/tags/">topics</a>
       </nav>
     </header>
@@ -589,6 +651,13 @@
         <div class="post-meta-bar">
           {% if category %}
           <a class="pill cat" href="/category/{{ category | lower | replace(' ', '-') }}/">{{ category }}</a>
+          {% endif %}
+          {% if series %}
+            {% for s in seriesList %}
+              {% if s.slug === series %}
+              <a class="pill series" href="/series/{{ s.slug }}/">series · {{ s.name }}</a>
+              {% endif %}
+            {% endfor %}
           {% endif %}
           <span class="pill">{{ date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}</span>
           <span class="pill">{{ content | readingTime }}</span>
@@ -622,6 +691,24 @@
         </div>
         {% endif %}
       </div>
+
+      {% if series %}
+        {% set currentSeriesPosts = collections.posts | seriesPosts(series) %}
+        {% if currentSeriesPosts.length > 1 %}
+        <aside class="series-nav">
+          <div class="series-nav-label">/series</div>
+          <div class="series-nav-list">
+            {% for sp in currentSeriesPosts %}
+            <a class="series-nav-item {% if sp.data.slug === slug %}series-nav-item--current{% endif %}"
+               href="{% if sp.data.url %}{{ sp.data.url }}{% else %}/{{ sp.data.slug }}/{% endif %}">
+              <span class="series-nav-index">{{ '%02d' | format(loop.index) }}</span>
+              <span class="series-nav-title">{{ sp.data.title }}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </aside>
+        {% endif %}
+      {% endif %}
 
       {% set relatedPostsList = collections.posts | relatedPosts(slug, tags, 3) %}
       {% if relatedPostsList.length > 0 %}
