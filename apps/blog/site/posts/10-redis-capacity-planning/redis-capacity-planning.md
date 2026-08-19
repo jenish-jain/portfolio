@@ -160,6 +160,30 @@ That's the answer I wish I'd had in that support thread: the CPU number
 everyone was staring at wasn't lying about the box — it was answering a
 question nobody was actually asking.
 
+## One more wrinkle: a replica's CPU isn't just its own read traffic
+
+Most real Redis deployments aren't a single instance — they're a primary
+with one or more replicas, reads split off so the primary can focus on
+writes. So I ran the whole staircase again against a real primary/replica
+pair to check: does the same CPU number mean the same thing on a replica?
+
+No. A replica's main-thread CPU is doing two jobs at once — serving the
+reads you send it, *and* continuously applying the stream of writes
+replicated from the primary — and the second job doesn't show up anywhere
+in your read traffic numbers. On a write-heavy staircase, the replica's
+CPU sat roughly **30 percentage points above** what its own (small) read
+volume alone would predict, tracking the primary's write rate instead:
+
+![Grafana dashboard comparing VM host CPU% against Redis main-thread CPU% for both the primary and replica, alongside achieved read/write throughput and server-side latency, across a full staircase test](./images/06-replica-cpu-debunk.png)
+
+Practical takeaway: **don't reuse the same 70%/90% thresholds on a
+replica.** Watch primary and replica CPU as two separate series, and watch
+the primary's write rate alongside replica CPU — a replica CPU spike with
+flat read traffic means the write rate went up, not the read rate. And
+when sizing read replicas for capacity, budget for the replication-apply
+tax, not just the read QPS you expect to send them — a replica never gives
+you a full standalone instance's worth of read headroom.
+
 ## Digging deeper
 
 The full write-up — every workload's complete load staircase, the raw
