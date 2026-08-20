@@ -163,7 +163,7 @@ full picture, host CPU% against Redis's own main-thread CPU% for both
 sides, plus achieved throughput and server-side latency, across the
 whole staircase:
 
-![Grafana dashboard comparing VM host CPU% against Redis main-thread CPU% for both the primary and replica, alongside achieved read/write throughput and server-side latency, across a full staircase test](./images/06-replica-cpu-debunk.png)
+![Grafana dashboard comparing VM host CPU% against Redis main-thread CPU% for both the primary and replica, alongside achieved read/write throughput and server-side latency, across a full staircase test](./images/08-replica-cpu-debunk-v2.png)
 
 ### Overload and latency: the same two findings, more pronounced
 
