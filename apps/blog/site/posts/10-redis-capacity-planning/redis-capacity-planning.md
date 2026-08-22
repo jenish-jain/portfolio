@@ -2,12 +2,12 @@
 date: 2026-08-16
 title: >
   Redis was at 50% CPU. It was already too late.
-seo_title: Redis Capacity Planning - Why CPU% Lies and When to Actually Scale | Redis Performance Guide
+seo_title: Redis Capacity Planning Guide - Why CPU% Lies When Self-Managing a Database | Redis Performance & Scaling
 slug: redis-capacity-planning
 description: >
-  A production support question — "our self-managed Redis was at 50% CPU on a 4-core box, but latencies were already climbing, how do we know when to scale?" — turned into a real benchmark investigation, on both a standalone instance and a real primary/replica pair. Here's the metric that actually matters, the thresholds to alert on, and when to scale up vs. scale out.
-category: productivity
-tags: [redis, capacity-planning, performance, devops, sre, monitoring, prometheus, engineering, software-engineering, databases]
+  A production support question — "our self-managed Redis was at 50% CPU on a 4-core box, but latencies were already climbing, how do we know when to scale?" — turned into a real benchmark investigation for anyone self-managing a database in production, on both a standalone instance and a real primary/replica pair. Here's the metric that actually matters, the thresholds to alert on, and when to scale up vs. scale out.
+category: engineering
+tags: [redis, capacity-planning, performance, devops, sre, monitoring, prometheus, engineering, software-engineering, databases, self-managed-database, database-scaling, redis-performance]
 series: database-systems
 seriesOrder: 1
 site: blogsite
@@ -166,6 +166,8 @@ sides, plus achieved throughput and server-side latency, across the
 whole staircase:
 
 ![Grafana dashboard comparing VM host CPU% against Redis main-thread CPU% for both the primary and replica, alongside achieved read/write throughput and server-side latency, across a full staircase test](./images/08-replica-cpu-debunk-v2.png)
+
+You can explore this dashboard yourself — here's a [live, interactive snapshot](https://snapshots.raintank.io/dashboard/snapshot/PAEEfhfMGghQI0M5BE9DwxJVUoJtwLcL?from=2026-08-19T17:30:00.000Z&to=2026-08-19T19:15:04.000Z&timezone=browser&refresh=10s) of the exact run above, panel-by-panel.
 
 ### Overload and latency: the same two findings, more pronounced
 

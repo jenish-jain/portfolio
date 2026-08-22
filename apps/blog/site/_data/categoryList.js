@@ -4,6 +4,7 @@ module.exports = function() {
     { name: 'work-culture', slug: 'work-culture' },
     { name: 'self-growth', slug: 'self-growth' },
     { name: 'automation', slug: 'automation' },
-    { name: 'diy', slug: 'diy' }
+    { name: 'diy', slug: 'diy' },
+    { name: 'engineering', slug: 'engineering' }
   ];
 };
