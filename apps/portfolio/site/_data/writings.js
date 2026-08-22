@@ -1,4 +1,6 @@
 module.exports = [
+  { yr: '2026', title: 'Redis was at 50% CPU. It was already too late.',              tag: 'Systems',     href: 'https://blog.jenishjain.in/redis-capacity-planning/' },
+  { yr: '2026', title: 'I built a private family wealth tracker — and it runs for free', tag: 'DIY',      href: 'https://blog.jenishjain.in/kosh-family-wealth-tracker/' },
   { yr: '2025', title: 'Build your own PDF → audiobook with GCP Vision & TTS',        tag: 'Cloud',       href: 'https://blog.jenishjain.in' },
   { yr: '2024', title: 'Exporting Google Cloud resources to Terraform',                tag: 'DevOps',      href: 'https://blog.jenishjain.in' },
   { yr: '2024', title: 'An automated tax-reporting tool in Go on Cloud Run',           tag: 'Engineering', href: 'https://medium.com/@jenishjain6/how-i-automated-tax-reporting-for-my-father-b4db1edbcbd2' },
