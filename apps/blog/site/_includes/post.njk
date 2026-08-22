@@ -701,7 +701,7 @@
             {% for sp in currentSeriesPosts %}
             <a class="series-nav-item {% if sp.data.slug === slug %}series-nav-item--current{% endif %}"
                href="{% if sp.data.url %}{{ sp.data.url }}{% else %}/{{ sp.data.slug }}/{% endif %}">
-              <span class="series-nav-index">{{ '%02d' | format(loop.index) }}</span>
+              <span class="series-nav-index">{{ loop.index | zeroPad }}</span>
               <span class="series-nav-title">{{ sp.data.title }}</span>
             </a>
             {% endfor %}

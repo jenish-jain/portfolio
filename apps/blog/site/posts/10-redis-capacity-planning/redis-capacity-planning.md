@@ -8,6 +8,8 @@ description: >
   A production support question — "our self-managed Redis was at 50% CPU on a 4-core box, but latencies were already climbing, how do we know when to scale?" — turned into a real benchmark investigation, on both a standalone instance and a real primary/replica pair. Here's the metric that actually matters, the thresholds to alert on, and when to scale up vs. scale out.
 category: productivity
 tags: [redis, capacity-planning, performance, devops, sre, monitoring, prometheus, engineering, software-engineering, databases]
+series: database-systems
+seriesOrder: 1
 site: blogsite
 ---
 

@@ -42,7 +42,7 @@ eleventyComputed:
       {% endif %}
       <li>
         <a class="series-post-card" href="{{ postHref }}"{% if isExternal %} target="_blank" rel="noopener noreferrer"{% endif %}>
-          <div class="spc-index">{{ '%02d' | format(loop.index) }}</div>
+          <div class="spc-index">{{ loop.index | zeroPad }}</div>
           <div class="spc-body">
             <div class="spc-title">{{ post.data.title }}</div>
             <p class="spc-desc">{{ post.data.description }}</p>
