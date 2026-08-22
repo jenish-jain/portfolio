@@ -234,6 +234,21 @@ That's the answer I wish I'd had in that support thread: the CPU number
 everyone was staring at wasn't lying about the box — it was answering a
 question nobody was actually asking.
 
+## What this actually cost
+
+I built the entire benchmark rig — provisioning both topologies, writing
+the YCSB workloads, wiring up Prometheus and Grafana, running every
+staircase, and pulling the findings together — working with Claude Code.
+Here's the actual bill for the whole exercise:
+
+![Anthropic console cost dashboard for August 1–22, 2026, showing ₹347 in usage minus ₹39.67 in savings for a total cost of ₹307, with a forecasted total of ₹317 for the month](./images/09-experiment-cost.png)
+
+**Around ₹300** for the compute this specific investigation used, on top
+of a Claude subscription I already pay for regardless. You don't need a
+research budget to go verify something like this for your own stack —
+just a weekend and curiosity about the number your dashboard is
+actually showing you.
+
 ## Digging deeper
 
 The full write-up — every workload's complete load staircase for both
