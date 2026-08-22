@@ -2,12 +2,12 @@
 date: 2026-08-16
 title: >
   Redis was at 50% CPU. It was already too late.
-seo_title: Redis Capacity Planning - Why CPU% Lies and When to Actually Scale | Redis Performance Guide
+seo_title: Redis Capacity Planning Guide - Why CPU% Lies When Self-Managing a Database | Redis Performance & Scaling
 slug: redis-capacity-planning
 description: >
-  A production support question — "our self-managed Redis was at 50% CPU on a 4-core box, but latencies were already climbing, how do we know when to scale?" — turned into a real benchmark investigation, on both a standalone instance and a real primary/replica pair. Here's the metric that actually matters, the thresholds to alert on, and when to scale up vs. scale out.
-category: productivity
-tags: [redis, capacity-planning, performance, devops, sre, monitoring, prometheus, engineering, software-engineering, databases]
+  A production support question — "our self-managed Redis was at 50% CPU on a 4-core box, but latencies were already climbing, how do we know when to scale?" — turned into a real benchmark investigation for anyone self-managing a database in production, on both a standalone instance and a real primary/replica pair. Here's the metric that actually matters, the thresholds to alert on, and when to scale up vs. scale out.
+category: engineering
+tags: [redis, capacity-planning, performance, devops, sre, monitoring, prometheus, engineering, software-engineering, databases, self-managed-database, database-scaling, redis-performance]
 series: database-systems
 seriesOrder: 1
 site: blogsite
@@ -167,6 +167,8 @@ whole staircase:
 
 ![Grafana dashboard comparing VM host CPU% against Redis main-thread CPU% for both the primary and replica, alongside achieved read/write throughput and server-side latency, across a full staircase test](./images/08-replica-cpu-debunk-v2.png)
 
+You can explore this dashboard yourself — here's a [live, interactive snapshot](https://snapshots.raintank.io/dashboard/snapshot/PAEEfhfMGghQI0M5BE9DwxJVUoJtwLcL?from=2026-08-19T17:30:00.000Z&to=2026-08-19T19:15:04.000Z&timezone=browser&refresh=10s) of the exact run above, panel-by-panel.
+
 ### Overload and latency: the same two findings, more pronounced
 
 Pushed to 4x overload, the split topology behaved exactly like Part 1 —
@@ -231,6 +233,21 @@ The real fix, almost always, is **scaling out**:
 That's the answer I wish I'd had in that support thread: the CPU number
 everyone was staring at wasn't lying about the box — it was answering a
 question nobody was actually asking.
+
+## What this actually cost
+
+I built the entire benchmark rig — provisioning both topologies, writing
+the YCSB workloads, wiring up Prometheus and Grafana, running every
+staircase, and pulling the findings together — working with Claude Code.
+Here's the actual bill for the whole exercise:
+
+![Anthropic console cost dashboard for August 1–22, 2026, showing ₹347 in usage minus ₹39.67 in savings for a total cost of ₹307, with a forecasted total of ₹317 for the month](./images/09-experiment-cost.png)
+
+**Around ₹300** for the compute this specific investigation used, on top
+of a Claude subscription I already pay for regardless. You don't need a
+research budget to go verify something like this for your own stack —
+just a weekend and curiosity about the number your dashboard is
+actually showing you.
 
 ## Digging deeper
 
