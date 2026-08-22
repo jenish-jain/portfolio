@@ -90,6 +90,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter('limit', (arr, n) => arr.slice(0, n));
 
+  eleventyConfig.addFilter('zeroPad', (num) => String(num).padStart(2, '0'));
+
   eleventyConfig.addFilter('simpleDate', (date) => {
     const d = date instanceof Date ? date : new Date(date);
     return d.toISOString().split('T')[0];
