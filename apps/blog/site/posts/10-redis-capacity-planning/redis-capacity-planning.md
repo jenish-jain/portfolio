@@ -208,15 +208,22 @@ budget for the replication-apply tax, not just the read QPS you expect
 to send them — a replica never gives you a full standalone instance's
 worth of read headroom.
 
-**When the alert fires, don't reach for a bigger box by reflex.** Since
-the bottleneck is one thread, adding vCPUs to the same instance does
-almost nothing — proven directly in my testing, where a 2-vCPU host
-behaved identically to what a single-core ceiling predicts regardless of
-the second core sitting idle. The only *vertical* levers that genuinely
-help are a CPU with a faster single core, or enabling Redis's I/O
-threading (which offloads network handling, not command execution).
+**When the alert fires, let the main-thread number decide — don't reach
+for a bigger box by reflex.** Since the bottleneck is one thread, adding
+vCPUs to the same instance does almost nothing for *that* number.
 
-The real fix, almost always, is **scaling out**:
+That said, main-thread CPU isn't the only reason to size up. If your
+dataset is growing and you're pushing memory limits, or the box also
+needs headroom for OS-level and background work — persistence
+(RDB/AOF), backups, monitoring agents, TLS termination — a bigger
+instance can be the right call even with main-thread usage nowhere near
+the ceiling. The point isn't "always scale out"; it's to base the
+decision on what the main-thread metric is actually telling you, and
+scale vertically when the constraint is memory or surrounding
+CPU/OS load rather than single-threaded command throughput.
+
+When the main-thread number itself is the constraint, the fix is
+**scaling out**:
 - **Read-heavy traffic → add read replicas.** Reads are the expensive
   operation; offloading them frees the primary's one core to focus on
   writes — just budget for the replication-apply tax above, not the raw
