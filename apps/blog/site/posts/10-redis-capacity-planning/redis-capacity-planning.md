@@ -45,18 +45,14 @@ one of them for the thing that actually matters.
 
 So on that 4-core box, Redis's ceiling isn't 400% CPU (all four cores) —
 it's **100% of one core**. Which is 25% of the *host's* total capacity.
-A host-level CPU chart showing "50%" on a 4-core machine could mean all
-sorts of things — but one very plausible one is that Redis's own single
-core is already maxed out, and something else is also busy, and the
-average across four cores just happens to land on 50%. **The aggregate
-number tells you almost nothing about whether the thing that actually
-processes your commands is out of room.**
-
-This is the debunk: **CPU% on the host is the wrong metric for Redis
-capacity, full stop.** You need CPU as a fraction of *one core*,
-specifically the core Redis's command loop runs on. Everything else in
-this post is what happens once you start watching the right number — on
-a standalone instance first, then on a primary/replica pair.
+A host-level CPU chart showing "50%" on a 4-core machine could mean
+Redis's own single core is already maxed out while something else on
+the box is also busy — the average across four cores just happens to
+land on 50%. **CPU% on the host is the wrong metric for Redis capacity,
+full stop.** You need CPU as a fraction of *one core*, specifically the
+core Redis's command loop runs on. Everything else in this post is what
+happens once you start watching the right number — on a standalone
+instance first, then on a primary/replica pair.
 
 ## Part 1: proving it on a standalone instance
 
@@ -212,15 +208,12 @@ worth of read headroom.
 for a bigger box by reflex.** Since the bottleneck is one thread, adding
 vCPUs to the same instance does almost nothing for *that* number.
 
-That said, main-thread CPU isn't the only reason to size up. If your
-dataset is growing and you're pushing memory limits, or the box also
-needs headroom for OS-level and background work — persistence
-(RDB/AOF), backups, monitoring agents, TLS termination — a bigger
-instance can be the right call even with main-thread usage nowhere near
-the ceiling. The point isn't "always scale out"; it's to base the
-decision on what the main-thread metric is actually telling you, and
-scale vertically when the constraint is memory or surrounding
-CPU/OS load rather than single-threaded command throughput.
+That said, main-thread CPU isn't the only reason to size up: a growing
+dataset pushing memory limits, or background work like persistence
+(RDB/AOF), backups, monitoring agents, and TLS termination competing
+for headroom, can justify a bigger box even with main-thread usage
+nowhere near the ceiling. Let the main-thread metric — not a blanket
+"always scale out" — decide which lever to pull.
 
 When the main-thread number itself is the constraint, the fix is
 **scaling out**:
