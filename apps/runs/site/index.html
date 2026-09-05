@@ -193,7 +193,8 @@ const svgRoute=(d,stroke,w)=>`<svg viewBox="0 0 100 100" fill="none" aria-hidden
 const timeOf=r=>{const h=r.hour%12||12,m=String(r.minute||0).padStart(2,"0");return `${h}:${m} ${r.hour<12?"am":"pm"}`};
 
 /* ---------- left rail ---------- */
-const week=RUNS.slice(-4);
+const thisIsoWeek=isoWeek(new Date().toISOString().slice(0,10));
+const week=RUNS.filter(r=>isoWeek(r.date)===thisIsoWeek);
 const kvs=rows=>rows.map(([k,v,u])=>`<div class="kv"><span class="k">${k}</span><span class="v">${v}${u?`<small>${u}</small>`:""}</span></div>`).join("");
 $("r-week").innerHTML=kvs([["Distance",week.reduce((s,r)=>s+r.km,0).toFixed(1),"km"],["Time",fmtDur(week.reduce((s,r)=>s+r.moving,0)),""],["Runs",week.length,""]]);
 const sp=weeklyVolume(14),spMax=Math.max(...sp.map(w=>w.km));
