@@ -133,7 +133,7 @@ footer{padding:24px var(--pad) 40px;border-top:1px solid var(--hair);display:fle
   <aside class="rail">
     <div class="avatar">JJ</div>
     <h1>Jenish Jain</h1>
-    <div class="who">Surat, India<br/>Running since 2023</div>
+    <div class="who">On the road<br/>Running since 2023</div>
     <div class="block">
       <div class="h">This week</div>
       <div id="r-week"></div>
@@ -157,7 +157,7 @@ footer{padding:24px var(--pad) 40px;border-top:1px solid var(--hair);display:fle
     <section class="hero">
       <div>
         <div class="eyebrow">Every run, drawn</div>
-        <h2>One year of <em>lines</em> around Surat.</h2>
+        <h2>One year of <em>lines</em>, from wherever I ran.</h2>
         <p class="sub">Each shape below is a real GPS trace, scaled to the same box so you can see the shape of a habit rather than a map. Click any one to open the numbers.</p>
       </div>
       <div class="feature" id="feature" role="button" tabindex="0"></div>
@@ -261,7 +261,7 @@ function render(pos){
   <div class="m-top">
     <div class="m-map">${svgRoute(r.path,"#ffe742",2.4)}</div>
     <div>
-      <div class="m-when">${fmtDate(r.date,{weekday:"long",day:"numeric",month:"long",year:"numeric"})} · ${timeOf(r)} · Surat</div>
+      <div class="m-when">${fmtDate(r.date,{weekday:"long",day:"numeric",month:"long",year:"numeric"})} · ${timeOf(r)}</div>
       <h3 class="m-title" id="m-title">${r.name}</h3>
       <div class="m-metrics">
         <div><div class="v">${r.km.toFixed(2)}<small>km</small></div><div class="l">distance</div></div>
