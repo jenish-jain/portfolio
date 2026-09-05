@@ -17,6 +17,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { cleanEnvValue } = require('./lib/env');
 
 const ROOT = path.join(__dirname, '..');
 const ENV_PATH = path.join(ROOT, '.env');
@@ -32,13 +33,19 @@ function upsertEnv(key, value) {
 }
 
 async function main() {
-  const { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET } = process.env;
+  const STRAVA_CLIENT_ID = cleanEnvValue(process.env.STRAVA_CLIENT_ID);
+  const STRAVA_CLIENT_SECRET = cleanEnvValue(process.env.STRAVA_CLIENT_SECRET);
   if (!STRAVA_CLIENT_ID || !STRAVA_CLIENT_SECRET) {
     console.error('Missing STRAVA_CLIENT_ID / STRAVA_CLIENT_SECRET.');
     console.error('Copy apps/runs/.env.example to apps/runs/.env and fill those two in first');
     console.error('(from https://www.strava.com/settings/api), then re-run this.');
     process.exit(1);
   }
+  console.log(
+    `Using client_id=${STRAVA_CLIENT_ID}, client_secret length=${STRAVA_CLIENT_SECRET.length}` +
+      ' (should be a short numeric ID and a 40-char hex secret — if either looks off, re-copy from' +
+      ' https://www.strava.com/settings/api into apps/runs/.env).',
+  );
 
   const authorizeUrl =
     `https://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}` +

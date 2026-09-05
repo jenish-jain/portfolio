@@ -13,6 +13,7 @@ const path = require('path');
 const { refreshAccessToken, listRunActivities, getActivityDetail } = require('./lib/strava-client');
 const { buildRun } = require('./lib/transform');
 const { renderDataFile } = require('./lib/data-file');
+const { cleanEnvValue } = require('./lib/env');
 
 const ROOT = path.join(__dirname, '..');
 const CACHE_PATH = path.join(__dirname, '.cache', 'activities.json');
@@ -33,13 +34,20 @@ function saveCache(cache) {
 }
 
 async function main() {
-  const { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN } = process.env;
+  const STRAVA_CLIENT_ID = cleanEnvValue(process.env.STRAVA_CLIENT_ID);
+  const STRAVA_CLIENT_SECRET = cleanEnvValue(process.env.STRAVA_CLIENT_SECRET);
+  const STRAVA_REFRESH_TOKEN = cleanEnvValue(process.env.STRAVA_REFRESH_TOKEN);
   if (!STRAVA_CLIENT_ID || !STRAVA_CLIENT_SECRET || !STRAVA_REFRESH_TOKEN) {
     console.error('Missing STRAVA_CLIENT_ID / STRAVA_CLIENT_SECRET / STRAVA_REFRESH_TOKEN.');
     console.error('Copy apps/runs/.env.example to apps/runs/.env and fill them in, then run:');
     console.error('  npm run sync:local');
     process.exit(1);
   }
+  console.log(
+    `Using client_id=${STRAVA_CLIENT_ID}, client_secret length=${STRAVA_CLIENT_SECRET.length},` +
+      ` refresh_token length=${STRAVA_REFRESH_TOKEN.length}` +
+      ' (sanity-check these against https://www.strava.com/settings/api if auth keeps failing).',
+  );
 
   const syncDays = Number(process.env.STRAVA_SYNC_DAYS || 365);
   const longRunKm = Number(process.env.LONG_RUN_KM || 12);
