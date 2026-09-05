@@ -162,6 +162,7 @@
       { id: 'gh', label: 'Open GitHub', kind: 'Link', action: function () { window.open('https://github.com/jenish-jain', '_blank'); } },
       { id: 'blog', label: 'Open blog', kind: 'Link', action: function () { window.open('https://blog.jenishjain.in', '_blank'); } },
       { id: 'art', label: 'Open drawings', kind: 'Link', action: function () { window.open('https://drawings.jenishjain.in', '_blank'); } },
+      { id: 'runs', label: 'See my runs', kind: 'Link', action: function () { window.open('https://runs.jenishjain.in', '_blank'); } },
       { id: 'mail', label: 'Email Jenish', kind: 'Link', action: function () { window.location.href = 'mailto:jenishjain6@gmail.com'; } },
       { id: 'theme', label: 'Toggle theme (paper ↔ ink)', kind: 'Action', action: function () {
         var r = document.documentElement;
@@ -189,6 +190,8 @@
         li.addEventListener('click', function () { it.action(); closePalette(); });
         paletteList.appendChild(li);
       });
+      var selEl = paletteList.children[sel];
+      if (selEl) selEl.scrollIntoView({ block: 'nearest' });
     }
 
     function openPalette() {

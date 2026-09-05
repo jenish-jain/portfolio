@@ -1,12 +1,21 @@
 # jenishjain-sites
 
-Monorepo for Jenish Jain's personal sites. Three independent [Eleventy](https://www.11ty.dev/) apps, each its own Netlify deployment to its own domain — merging the repos didn't merge the deploys, so each site keeps building and deploying on its own.
+Monorepo for Jenish Jain's personal sites. Four independent [Eleventy](https://www.11ty.dev/) apps, each its own Netlify deployment to its own domain — merging the repos didn't merge the deploys, so each site keeps building and deploying on its own.
 
 | App | Domain | Status |
 | --- | --- | --- |
 | [`apps/portfolio`](apps/portfolio) | [jenishjain.in](https://jenishjain.in) | [![Netlify Status](https://api.netlify.com/api/v1/badges/b1750240-5592-420d-91be-5c9caea0e885/deploy-status)](https://app.netlify.com/sites/jenishjain/deploys) |
 | [`apps/blog`](apps/blog) | [blog.jenishjain.in](https://blog.jenishjain.in) | [![Netlify Status](https://api.netlify.com/api/v1/badges/e5f62391-a2de-4aa3-a239-70cd1dad8858/deploy-status)](https://app.netlify.com/sites/jenishjain-blog/deploys) |
 | [`apps/drawings`](apps/drawings) | [drawings.jenishjain.in](https://drawings.jenishjain.in) | [![Netlify Status](https://api.netlify.com/api/v1/badges/6142976e-1d89-4558-b7cd-7940e175a260/deploy-status)](https://app.netlify.com/sites/jenishjain-drawings/deploys) |
+| [`apps/runs`](apps/runs) | [runs.jenishjain.in](https://runs.jenishjain.in) | [![Netlify Status](https://api.netlify.com/api/v1/badges/d5686fc7-517f-4957-b964-fb63b27d102b/deploy-status)](https://app.netlify.com/sites/jenishjain-runs/deploys) |
+
+`apps/runs` is a bit different from the other three: its data
+(`site/static/runs-data.js`) isn't hand-authored, it's synced from the
+Strava API by [`.github/workflows/sync-runs.yml`](.github/workflows/sync-runs.yml)
+on a weekly schedule (or `workflow_dispatch` on demand), which commits the
+regenerated file straight to `master` — Netlify's git-based deploy then
+picks it up like any other push. See [`apps/runs/README.md`](apps/runs/README.md)
+for the Strava credential setup and how to run the sync locally.
 
 ## Structure
 
@@ -20,6 +29,7 @@ npm install                          # once, from the repo root
 npm run dev --workspace=apps/portfolio
 npm run dev --workspace=apps/blog
 npm run dev --workspace=apps/drawings
+npm run dev --workspace=apps/runs
 
 npm run build --workspace=apps/<app> # outputs to apps/<app>/dist/
 ```
@@ -28,8 +38,8 @@ Or via the root `Makefile`:
 
 ```sh
 make install         # npm install, once from repo root
-make dev-portfolio    # or dev-blog / dev-drawings
-make build-portfolio   # or build-blog / build-drawings / build (all three)
+make dev-portfolio    # or dev-blog / dev-drawings / dev-runs
+make build-portfolio   # or build-blog / build-drawings / build-runs / build (all four)
 make clean             # remove dist/ and .cache/ in every app
 ```
 
