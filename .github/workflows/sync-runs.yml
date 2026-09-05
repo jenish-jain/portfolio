@@ -1,0 +1,43 @@
+name: Sync runs data
+
+on:
+  schedule:
+    # 20:30 UTC every Sunday ≈ 2:00am IST Monday — once a week.
+    - cron: '30 20 * * 0'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/cache@v4
+        with:
+          path: apps/runs/scripts/.cache
+          key: strava-activity-cache-${{ github.run_id }}
+          restore-keys: |
+            strava-activity-cache-
+
+      - run: npm ci
+
+      - run: npm run sync -w apps/runs
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add apps/runs/site/static/runs-data.js
+          git diff --cached --quiet || git commit -m "chore(runs): sync data from Strava"
+          git push

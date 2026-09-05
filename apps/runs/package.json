@@ -1,0 +1,19 @@
+{
+  "name": "runs.jenishjain.in",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Jenish Jain's running log",
+  "author": "jenishjain",
+  "license": "MIT",
+  "homepage": "https://runs.jenishjain.in",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "authorize": "node --env-file=.env scripts/authorize.js",
+    "sync": "node scripts/sync.js",
+    "sync:local": "node --env-file=.env scripts/sync.js"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
