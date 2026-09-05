@@ -190,6 +190,8 @@
         li.addEventListener('click', function () { it.action(); closePalette(); });
         paletteList.appendChild(li);
       });
+      var selEl = paletteList.children[sel];
+      if (selEl) selEl.scrollIntoView({ block: 'nearest' });
     }
 
     function openPalette() {
