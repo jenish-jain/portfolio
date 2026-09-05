@@ -12,18 +12,34 @@ re-run the sync instead.
 
 ### One-time Strava setup
 
-1. Create/open an API application at <https://www.strava.com/settings/api>.
-2. Authorize it with the `activity:read_all` scope (read-only access is
-   enough; `_all` is needed to include private activities) so you get a
-   `client_id`, `client_secret`, and a `refresh_token`. A bare access token
-   isn't enough for automation — it expires every 6 hours, while the
-   refresh token is what lets the script mint new ones indefinitely.
+1. Create/open an API application at <https://www.strava.com/settings/api>
+   and copy its **Client ID** and **Client Secret**.
+2. **Don't use the "Your Refresh Token" shown on that page** — it's scoped
+   to `read` only, which makes `/athlete/activities` fail with
+   `{"errors":[{"resource":"AccessToken","field":"activity:read_permission","code":"missing"}]}`.
+   You need a refresh token scoped to `activity:read_all` instead:
+
+   ```sh
+   cd apps/runs
+   cp .env.example .env          # fill in STRAVA_CLIENT_ID / STRAVA_CLIENT_SECRET
+   npm run authorize
+   ```
+
+   This opens a Strava authorization page in your browser (check the box
+   granting access to your activities), catches the redirect on a local
+   server, and writes a correctly-scoped `STRAVA_REFRESH_TOKEN` into `.env`
+   for you. If it errors with "redirect_uri does not match", set this
+   app's **Authorization Callback Domain** to `localhost` on the settings
+   page above and try again.
+
+   A bare access token isn't enough for automation either way — it expires
+   every 6 hours, while the refresh token is what lets the script mint new
+   ones indefinitely.
 
 ### Sync locally
 
 ```sh
 cd apps/runs
-cp .env.example .env   # fill in STRAVA_CLIENT_ID / _SECRET / _REFRESH_TOKEN
 npm run sync:local
 npm run build           # or `npm run dev` to preview
 ```
