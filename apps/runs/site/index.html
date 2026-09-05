@@ -263,14 +263,14 @@ function render(pos){
     <div>
       <div class="m-when">${fmtDate(r.date,{weekday:"long",day:"numeric",month:"long",year:"numeric"})} · ${timeOf(r)}</div>
       <h3 class="m-title" id="m-title">${r.name}</h3>
-      <div class="m-metrics">
-        <div><div class="v">${r.km.toFixed(2)}<small>km</small></div><div class="l">distance</div></div>
-        <div><div class="v">${fmtPace(r.paceSec)}<small>/km</small></div><div class="l">avg pace</div></div>
-        <div><div class="v">${fmtDur(r.moving)}</div><div class="l">moving time</div></div>
-        <div><div class="v">${r.elev}<small>m</small></div><div class="l">elev gain</div></div>
-        <div><div class="v">${r.hr}<small>bpm</small></div><div class="l">avg heart rate</div></div>
-        <div><div class="v">${r.cadence}<small>spm</small></div><div class="l">cadence</div></div>
-      </div>
+      <div class="m-metrics">${[
+        { v: r.km.toFixed(2), u: "km", l: "distance" },
+        { v: fmtPace(r.paceSec), u: "/km", l: "avg pace" },
+        { v: fmtDur(r.moving), u: "", l: "moving time" },
+        r.elev ? { v: r.elev, u: "m", l: "elev gain" } : null,
+        r.hr ? { v: r.hr, u: "bpm", l: "avg heart rate" } : null,
+        r.cadence ? { v: r.cadence, u: "spm", l: "cadence" } : null,
+      ].filter(Boolean).map(m=>`<div><div class="v">${m.v}${m.u?`<small>${m.u}</small>`:""}</div><div class="l">${m.l}</div></div>`).join("")}</div>
     </div>
   </div>
   <div class="m-splits">
