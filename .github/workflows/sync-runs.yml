@@ -2,9 +2,8 @@ name: Sync runs data
 
 on:
   schedule:
-    # 20:30 UTC ≈ 2:00am IST — nightly, matching the runs page's own
-    # "Synced nightly" footer.
-    - cron: '30 20 * * *'
+    # 20:30 UTC every Sunday ≈ 2:00am IST Monday — once a week.
+    - cron: '30 20 * * 0'
   workflow_dispatch: {}
 
 permissions:

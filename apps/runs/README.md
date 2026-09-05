@@ -54,19 +54,19 @@ If Strava ever rotates your refresh token, the script detects it and
 rewrites `.env` for you automatically — just re-check it's committed
 wherever you store the secret (never in git).
 
-### Nightly automation
+### Weekly automation
 
 `.github/workflows/sync-runs.yml` runs the same script on a schedule
-(~2am IST), commits the regenerated `runs-data.js` straight to the repo
-if it changed, and Netlify's existing git-based deploy picks it up from
-there — no extra hosting/functions needed.
+(Sundays, ~2am IST), commits the regenerated `runs-data.js` straight to
+the repo if it changed, and Netlify's existing git-based deploy picks it
+up from there — no extra hosting/functions needed.
 
 It needs three repository secrets (Settings → Secrets and variables →
 Actions): `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`,
 `STRAVA_REFRESH_TOKEN`. If Strava ever rotates the refresh token, the
-nightly run will fail on purpose (rather than leak the new token into CI
-logs) — when that happens, run `npm run sync:local` on your machine and
-update the `STRAVA_REFRESH_TOKEN` secret with the new value.
+scheduled run will fail on purpose (rather than leak the new token into
+CI logs) — when that happens, run `npm run sync:local` on your machine
+and update the `STRAVA_REFRESH_TOKEN` secret with the new value.
 
 You can also trigger a sync manually from the Actions tab
 (`workflow_dispatch`).
