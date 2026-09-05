@@ -190,7 +190,7 @@ footer{padding:24px var(--pad) 40px;border-top:1px solid var(--hair);display:fle
 <script>
 const $=id=>document.getElementById(id);
 const svgRoute=(d,stroke,w)=>`<svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="${d}" stroke="${stroke}" stroke-width="${w||2.4}" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const timeOf=r=>r.hour<12?`${r.hour}:10 am`:`${r.hour}:40 pm`;
+const timeOf=r=>{const h=r.hour%12||12,m=String(r.minute||0).padStart(2,"0");return `${h}:${m} ${r.hour<12?"am":"pm"}`};
 
 /* ---------- left rail ---------- */
 const week=RUNS.slice(-4);

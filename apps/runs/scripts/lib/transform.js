@@ -26,6 +26,7 @@ async function buildRun(activity, { accessToken, cache, getActivityDetail, longR
   // trailing "Z" — read it back with the UTC getters so we don't apply a
   // second timezone shift on top.
   const hour = startLocal.getUTCHours();
+  const minute = startLocal.getUTCMinutes();
 
   const km = +(activity.distance / 1000).toFixed(2);
   const paceSec = km > 0 ? Math.round(activity.moving_time / km) : 0;
@@ -41,6 +42,7 @@ async function buildRun(activity, { accessToken, cache, getActivityDetail, longR
     date,
     ts: startLocal.getTime(),
     hour,
+    minute,
     name: activity.name,
     km,
     moving: activity.moving_time,
