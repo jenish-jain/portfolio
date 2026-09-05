@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Runs — Jenish Jain</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#14110d;--ink-2:#1b1813;--paper:#f4efe6;--dim:rgba(244,239,230,.62);--dimmer:rgba(244,239,230,.42);--hair:rgba(244,239,230,.14);--accent:#ffe742;--display:"Instrument Serif",serif;--sans:"Geist",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;--pad:clamp(20px,3.4vw,40px)}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a.link{border-bottom:1px solid var(--hair);transition:border-color .2s,color .2s}
+a.link:hover{border-color:var(--accent);color:var(--accent)}
+::selection{background:var(--accent);color:var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dimmer);display:flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:14px;height:8px;background:var(--accent);border-radius:1px;flex-shrink:0}
+.strava{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer)}
+.strava svg{width:12px;height:12px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px var(--pad);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--hair);background:rgba(20,17,13,.86);backdrop-filter:blur(10px)}
+.nav .mark{display:flex;gap:9px;align-items:center}
+.nav .mark i{width:9px;height:9px;border-radius:99px;background:var(--accent);box-shadow:0 0 0 4px rgba(255,231,66,.28)}
+.nav .links{display:flex;gap:20px;color:var(--dim)}
+.nav .links a:hover{color:var(--paper)}
+.nav .links a.on{color:var(--paper)}
+@media(max-width:720px){.nav .links{display:none}}
+
+/* shell */
+.shell{display:grid;grid-template-columns:290px minmax(0,1fr);align-items:start}
+@media(max-width:900px){.shell{grid-template-columns:1fr}}
+
+/* left rail (from C) */
+.rail{position:sticky;top:49px;padding:28px var(--pad);border-right:1px solid var(--hair);min-height:calc(100vh - 49px)}
+@media(max-width:900px){.rail{position:static;min-height:0;border-right:0;border-bottom:1px solid var(--hair)}}
+.avatar{width:60px;height:60px;border-radius:99px;background:var(--accent);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:26px}
+.rail h1{font-family:var(--display);font-size:32px;line-height:1;margin:14px 0 5px;font-weight:400}
+.rail .who{font-family:var(--mono);font-size:10px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.09em;line-height:1.5}
+.block{margin-top:24px;padding-top:20px;border-top:1px solid var(--hair)}
+.block .h{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dimmer);margin-bottom:12px}
+.kv{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0}
+.kv .k{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.kv .v{font-family:var(--display);font-size:24px;line-height:1}
+.kv .v small{font-family:var(--sans);font-size:11px;color:var(--dimmer);margin-left:2px}
+.spark{display:flex;align-items:flex-end;gap:3px;height:42px;margin-top:12px}
+.spark i{flex:1;background:var(--dimmer);border-radius:1px;min-height:3px;display:block;transition:background .2s}
+.spark i.on{background:var(--accent)}
+.rail .foot{margin-top:26px;padding-top:20px;border-top:1px solid var(--hair);display:flex;flex-direction:column;gap:10px}
+
+/* hero (from B) */
+main{min-width:0}
+.hero{padding:40px var(--pad) 34px;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,400px);gap:44px;align-items:center}
+@media(max-width:1080px){.hero{grid-template-columns:1fr;gap:28px}}
+.hero h2{font-family:var(--display);font-size:clamp(42px,5.4vw,72px);line-height:.92;margin:16px 0 0;font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+.hero h2 em{font-style:italic;color:var(--accent)}
+.hero .sub{font-size:15.5px;color:var(--dim);line-height:1.6;max-width:46ch;margin-top:16px;text-wrap:pretty}
+.feature{border:1px solid var(--hair);border-radius:14px;padding:22px;background:rgba(244,239,230,.03);cursor:pointer;transition:border-color .25s,transform .25s}
+.feature:hover{border-color:rgba(255,231,66,.45);transform:translateY(-2px)}
+.feature svg{width:100%;height:auto;display:block}
+.feature .cap{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--hair)}
+.feature .cap .t{font-family:var(--display);font-size:21px;line-height:1.1}
+.feature .cap .d{font-family:var(--mono);font-size:10px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.feature .cap .km{font-family:var(--display);font-size:38px;color:var(--accent);line-height:.85;white-space:nowrap}
+.feature .cap .km small{font-family:var(--sans);font-size:14px;color:var(--dimmer);margin-left:2px}
+
+/* wall (from B) */
+.wall-sec{padding:8px var(--pad) 44px}
+.wall-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.filters{display:flex;gap:6px}
+.filters button{font:inherit;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);background:transparent;border:1px solid var(--hair);border-radius:99px;padding:6px 13px;cursor:pointer;transition:all .2s}
+.filters button:hover{color:var(--paper);border-color:var(--dimmer)}
+.filters button.on{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.wcell{aspect-ratio:1;border:1px solid var(--hair);border-radius:9px;padding:5px;position:relative;background:rgba(244,239,230,.02);cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.wcell:hover{border-color:var(--accent);background:rgba(255,231,66,.07);transform:translateY(-2px)}
+.wcell svg{width:100%;height:100%;display:block}
+.wcell .km{position:absolute;left:7px;bottom:5px;font-family:var(--mono);font-size:10px;color:var(--dimmer)}
+.wcell.long{border-color:rgba(255,231,66,.32)}
+.wcell.long .km{color:var(--accent)}
+.wcell:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{padding:24px var(--pad) 40px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.08em}
+
+/* modal (C's card, blown up) */
+.backdrop{position:fixed;inset:0;z-index:100;background:rgba(10,8,6,.72);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);opacity:0;pointer-events:none;transition:opacity .22s}
+.backdrop.open{opacity:1;pointer-events:auto}
+.modal{width:min(860px,100%);max-height:100%;overflow:auto;background:var(--ink-2);border:1px solid var(--hair);border-radius:18px;transform:translateY(12px) scale(.985);transition:transform .28s cubic-bezier(.2,.7,.2,1)}
+.backdrop.open .modal{transform:none}
+.m-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--hair);position:sticky;top:0;background:var(--ink-2);z-index:2}
+.m-bar .steps{display:flex;gap:6px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.08em}
+.m-bar button{font:inherit;font-family:var(--mono);font-size:13px;color:var(--dim);background:transparent;border:1px solid var(--hair);border-radius:8px;width:30px;height:30px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.m-bar button:hover:not(:disabled){color:var(--ink);background:var(--accent);border-color:var(--accent)}
+.m-bar button:disabled{opacity:.3;cursor:default}
+.m-top{display:grid;grid-template-columns:240px minmax(0,1fr);gap:26px;padding:24px}
+@media(max-width:680px){.m-top{grid-template-columns:1fr}}
+.m-map{border:1px solid var(--hair);border-radius:12px;padding:12px;background:rgba(244,239,230,.03)}
+.m-map svg{width:100%;height:auto;display:block}
+.m-when{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.09em}
+.m-title{font-family:var(--display);font-size:clamp(28px,3.4vw,40px);line-height:1.05;margin:8px 0 20px;font-weight:400}
+.m-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:18px}
+.m-metrics .v{font-family:var(--mono);font-size:20px;line-height:1}
+.m-metrics .v small{font-size:12px;color:var(--dimmer);margin-left:1px}
+.m-metrics .l{font-family:var(--mono);font-size:10px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+.m-splits{padding:20px 24px;border-top:1px solid var(--hair)}
+.m-splits .rows{max-height:290px;overflow-y:auto;padding-right:4px}
+.m-splits .rows::-webkit-scrollbar{width:6px}
+.m-splits .rows::-webkit-scrollbar-thumb{background:var(--hair);border-radius:99px}
+.m-splits .h{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--dimmer);margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.split{display:grid;grid-template-columns:26px minmax(0,1fr) 58px;gap:12px;align-items:center;margin-bottom:6px}
+.split .i{font-family:var(--mono);font-size:10.5px;color:var(--dimmer)}
+.split .track{height:12px;border-radius:3px;background:rgba(244,239,230,.07);overflow:hidden}
+.split .track i{display:block;height:100%;background:var(--dimmer);border-radius:3px}
+.split.fast .track i{background:var(--accent)}
+.split .p{font-family:var(--mono);font-size:11px;text-align:right}
+.split.fast .p{color:var(--accent)}
+.m-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 24px;border-top:1px solid var(--hair);font-family:var(--mono);font-size:10.5px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a href="https://jenishjain.in" class="mark"><i></i><span>JJ / Runs</span></a>
+  <nav class="links">
+    <a href="#" class="on">Routes</a>
+    <a href="https://blog.jenishjain.in">Blog</a>
+    <a href="https://jenishjain.in">Portfolio</a>
+  </nav>
+  <span class="strava"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.8 1.5 7.3 14.3h3.8L13.8 9l2.7 5.3h3.8z"/><path d="M16.5 14.3 14.6 18l-1.9-3.7h-2.8l4.7 9.2 4.7-9.2z"/></svg>Powered by Strava</span>
+</header>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="avatar">JJ</div>
+    <h1>Jenish Jain</h1>
+    <div class="who">Surat, India<br/>Running since 2023</div>
+    <div class="block">
+      <div class="h">This week</div>
+      <div id="r-week"></div>
+      <div class="spark" id="r-spark"></div>
+    </div>
+    <div class="block">
+      <div class="h">Last 12 months</div>
+      <div id="r-year"></div>
+    </div>
+    <div class="block">
+      <div class="h">Bests</div>
+      <div id="r-pr"></div>
+    </div>
+    <div class="foot">
+      <a class="link strava" href="https://www.strava.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.8 1.5 7.3 14.3h3.8L13.8 9l2.7 5.3h3.8z"/><path d="M16.5 14.3 14.6 18l-1.9-3.7h-2.8l4.7 9.2 4.7-9.2z"/></svg>View profile on Strava</a>
+      <span class="strava" style="color:var(--dimmer)">Synced nightly</span>
+    </div>
+  </aside>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Every run, drawn</div>
+        <h2>One year of <em>lines</em> around Surat.</h2>
+        <p class="sub">Each shape below is a real GPS trace, scaled to the same box so you can see the shape of a habit rather than a map. Click any one to open the numbers.</p>
+      </div>
+      <div class="feature" id="feature" role="button" tabindex="0"></div>
+    </section>
+
+    <section class="wall-sec">
+      <div class="wall-head">
+        <div class="eyebrow" id="wall-count"></div>
+        <div class="filters">
+          <button data-f="all" class="on">All</button>
+          <button data-f="long">Long runs</button>
+          <button data-f="fast">Fastest</button>
+        </div>
+      </div>
+      <div class="wall" id="wall"></div>
+    </section>
+
+    <footer>
+      <span>runs.jenishjain.in</span>
+      <span>Fetched from the Strava API · rendered as SVG</span>
+    </footer>
+  </main>
+</div>
+
+<div class="backdrop" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script src="runs-data.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const svgRoute=(d,stroke,w)=>`<svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="${d}" stroke="${stroke}" stroke-width="${w||2.4}" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const timeOf=r=>r.hour<12?`${r.hour}:10 am`:`${r.hour}:40 pm`;
+
+/* ---------- left rail ---------- */
+const week=RUNS.slice(-4);
+const kvs=rows=>rows.map(([k,v,u])=>`<div class="kv"><span class="k">${k}</span><span class="v">${v}${u?`<small>${u}</small>`:""}</span></div>`).join("");
+$("r-week").innerHTML=kvs([["Distance",week.reduce((s,r)=>s+r.km,0).toFixed(1),"km"],["Time",fmtDur(week.reduce((s,r)=>s+r.moving,0)),""],["Runs",week.length,""]]);
+const sp=weeklyVolume(14),spMax=Math.max(...sp.map(w=>w.km));
+$("r-spark").innerHTML=sp.map((w,i)=>`<i class="${i===sp.length-1?"on":""}" style="height:${Math.max(4,w.km/spMax*100)}%" title="${w.km} km"></i>`).join("");
+$("r-year").innerHTML=kvs([["Distance",Math.round(STATS.km).toLocaleString(),"km"],["Moving",Math.round(STATS.sec/3600),"h"],["Elevation",STATS.elev.toLocaleString(),"m"],["Runs",STATS.runs,""]]);
+$("r-pr").innerHTML=kvs([["Longest",STATS.longest.km.toFixed(1),"km"],["Fastest 5k+",fmtPace(STATS.fastest.paceSec),"/km"],["Avg pace",fmtPace(STATS.avgPace),"/km"]]);
+
+/* ---------- featured ---------- */
+const feat=STATS.longest;
+$("feature").innerHTML=`${svgRoute(feat.path,"#ffe742",2.2)}
+<div class="cap"><div><div class="t">${feat.name}</div><div class="d">${fmtDate(feat.date,{day:"numeric",month:"long",year:"numeric"})} · longest of the year</div></div>
+<div class="km">${feat.km.toFixed(1)}<small>km</small></div></div>`;
+$("feature").addEventListener("click",()=>{
+  const gi=RUNS.indexOf(feat);
+  if(!order.includes(gi))setFilter("all");
+  const pos=order.indexOf(gi);
+  if(pos>=0)open(pos);
+});
+$("feature").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("feature").click()}});
+
+/* ---------- wall ---------- */
+let filter="all",order=[];
+function buildWall(){
+  const idx=RUNS.map((r,i)=>i).reverse();
+  const fast=[...RUNS].filter(r=>r.km>=5).sort((a,b)=>a.paceSec-b.paceSec).slice(0,40).map(r=>RUNS.indexOf(r));
+  order = filter==="all"?idx : filter==="long"?idx.filter(i=>RUNS[i].long) : idx.filter(i=>fast.includes(i));
+  $("wall").innerHTML=order.map((i,pos)=>{const r=RUNS[i];return `
+    <div class="wcell${r.long?" long":""}" data-pos="${pos}" role="button" tabindex="0" aria-label="${r.name}, ${r.km} km">
+      ${svgRoute(r.path,r.long?"#ffe742":"rgba(244,239,230,.6)",r.long?2.6:2.2)}
+      <span class="km">${r.km.toFixed(0)}k</span>
+    </div>`}).join("");
+  $("wall-count").textContent=`${order.length} runs · newest first`;
+}
+function setFilter(f){
+  filter=f;
+  document.querySelectorAll(".filters button").forEach(x=>x.classList.toggle("on",x.dataset.f===f));
+  buildWall();
+}
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>setFilter(b.dataset.f)));
+$("wall").addEventListener("click",e=>{const c=e.target.closest(".wcell");if(c)open(+c.dataset.pos)});
+$("wall").addEventListener("keydown",e=>{const c=e.target.closest(".wcell");if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();open(+c.dataset.pos)}});
+buildWall();
+
+/* ---------- modal ---------- */
+let cur=-1;
+function splitsFor(r){
+  const n=Math.max(3,Math.floor(r.km));
+  const raw=Array.from({length:n},(_,i)=>Math.round(r.paceSec+Math.sin(i*2.3+r.id%9)*17+(i===n-1?-12:0)));
+  const best=Math.min(...raw),worst=Math.max(...raw);
+  return raw.map((p,i)=>({i:i+1,p,fast:p===best,w:worst===best?100:Math.round(30+(worst-p)/(worst-best)*70)}));
+}
+function render(pos){
+  const r=RUNS[order[pos]],s=splitsFor(r);
+  $("modal").innerHTML=`
+  <div class="m-bar">
+    <span class="steps">${pos+1} / ${order.length}</span>
+    <div style="display:flex;gap:6px">
+      <button id="m-prev" ${pos===0?"disabled":""} aria-label="Previous run">←</button>
+      <button id="m-next" ${pos===order.length-1?"disabled":""} aria-label="Next run">→</button>
+      <button id="m-close" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="m-top">
+    <div class="m-map">${svgRoute(r.path,"#ffe742",2.4)}</div>
+    <div>
+      <div class="m-when">${fmtDate(r.date,{weekday:"long",day:"numeric",month:"long",year:"numeric"})} · ${timeOf(r)} · Surat</div>
+      <h3 class="m-title" id="m-title">${r.name}</h3>
+      <div class="m-metrics">
+        <div><div class="v">${r.km.toFixed(2)}<small>km</small></div><div class="l">distance</div></div>
+        <div><div class="v">${fmtPace(r.paceSec)}<small>/km</small></div><div class="l">avg pace</div></div>
+        <div><div class="v">${fmtDur(r.moving)}</div><div class="l">moving time</div></div>
+        <div><div class="v">${r.elev}<small>m</small></div><div class="l">elev gain</div></div>
+        <div><div class="v">${r.hr}<small>bpm</small></div><div class="l">avg heart rate</div></div>
+        <div><div class="v">${r.cadence}<small>spm</small></div><div class="l">cadence</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="m-splits">
+    <div class="h"><span>Splits · all ${s.length} km</span><span>Fastest ${fmtPace(Math.min(...s.map(x=>x.p)))}</span></div>
+    <div class="rows">${s.map(x=>`<div class="split${x.fast?" fast":""}"><span class="i">${x.i}</span><div class="track"><i style="width:${x.w}%"></i></div><span class="p">${fmtPace(x.p)}</span></div>`).join("")}</div>
+  </div>
+  <div class="m-foot">
+    <span>${r.kudos} kudos</span>
+    <a class="link" href="https://www.strava.com/activities/${r.id}" target="_blank" rel="noopener">View on Strava →</a>
+  </div>`;
+  $("m-close").onclick=close;
+  $("m-prev").onclick=()=>{if(pos>0)render(cur=pos-1)};
+  $("m-next").onclick=()=>{if(pos<order.length-1)render(cur=pos+1)};
+}
+function open(pos){cur=pos;render(pos);$("backdrop").classList.add("open");document.body.style.overflow="hidden";$("modal").scrollTop=0}
+function close(){$("backdrop").classList.remove("open");document.body.style.overflow="";cur=-1}
+$("backdrop").addEventListener("click",e=>{if(e.target===$("backdrop"))close()});
+window.addEventListener("keydown",e=>{
+  if(cur<0)return;
+  if(e.key==="Escape")close();
+  else if(e.key==="ArrowLeft"&&cur>0)render(cur=cur-1);
+  else if(e.key==="ArrowRight"&&cur<order.length-1)render(cur=cur+1);
+});
+</script>
+</body>
+</html>

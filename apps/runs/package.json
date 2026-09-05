@@ -1,0 +1,16 @@
+{
+  "name": "runs.jenishjain.in",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Jenish Jain's running log",
+  "author": "jenishjain",
+  "license": "MIT",
+  "homepage": "https://runs.jenishjain.in",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
