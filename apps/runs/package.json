@@ -8,7 +8,9 @@
   "homepage": "https://runs.jenishjain.in",
   "scripts": {
     "build": "eleventy",
-    "dev": "eleventy --serve"
+    "dev": "eleventy --serve",
+    "sync": "node scripts/sync.js",
+    "sync:local": "node --env-file=.env scripts/sync.js"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1"
