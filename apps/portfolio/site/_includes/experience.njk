@@ -15,6 +15,11 @@
           <small>{{ r.sub }}</small>
         </div>
         <div class="at"><span class="badge">@ {{ r.at }}</span></div>
+        {% if r.details %}
+        <ul class="role-details">
+          {% for d in r.details %}<li>{{ d }}</li>{% endfor %}
+        </ul>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
