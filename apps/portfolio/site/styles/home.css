@@ -681,7 +681,47 @@
   color: var(--ink);
 }
 
-@media (max-width: 720px) { .role-row { grid-template-columns: 1fr; gap: 6px; } }
+.role-details {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 144px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, opacity .25s ease, margin-top .35s ease;
+}
+
+.role-row:hover .role-details,
+.role-row:focus-within .role-details {
+  max-height: 240px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.role-details li {
+  position: relative;
+  padding-left: 16px;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.role-details li + li { margin-top: 6px; }
+
+.role-details li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent-ink);
+  opacity: 0.5;
+}
+
+@media (max-width: 720px) {
+  .role-row { grid-template-columns: 1fr; gap: 6px; }
+  .role-details { padding-left: 0; }
+}
 
 /* === Projects === */
 .project-grid {
