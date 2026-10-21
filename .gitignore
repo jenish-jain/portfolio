@@ -5,3 +5,7 @@ build/
 .env
 .env.local
 .playwright-mcp/
+.tokensave
+
+# Local Netlify folder
+.netlify
