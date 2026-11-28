@@ -2,146 +2,126 @@
 date: 2026-06-09
 title: >
   I built a private family wealth tracker — and it runs for free
-seo_title: Kosh - Open Source Family Wealth Tracker | Private, Local-First, Built on Google Sheets
+seo_title: Kosh - Open Source Family Wealth Tracker | Private, Self-Hosted, Built on Google Sheets
 slug: kosh-family-wealth-tracker
 description: >
-  How I built Kosh, a private family wealth tracker using Go and React, backed by your own Google Sheet. No bank login, no third-party data storage. Covers mutual funds, stocks, FDs, insurance, gold, and loans across multiple family members. Self-host it for free on Railway.
+  How I built Kosh, a private family wealth tracker in Go and React, backed by your own Google Sheet. No bank login, no third-party data storage. Tracks mutual funds, stocks, FDs, NPS, gold, insurance and loans across the family, with AI tax planning. Self-host it on Google Cloud Run for free or close to it.
 category: diy
-tags: [diy, golang, react, google-sheets, finance, open-source, self-hosted, engineering, software-engineering, privacy, personal-finance]
+tags: [diy, golang, react, google-sheets, finance, open-source, self-hosted, engineering, software-engineering, privacy, personal-finance, cloud-run]
 cta: kosh
 site: blogsite
 thumb: 'https://res.cloudinary.com/jenishjain/image/upload/f_auto,q_auto/portfolio/02-dashboard.png'
 ---
 
-For the longest time, our family's finances lived across five different apps, two spreadsheets, and a WhatsApp message thread that somebody's dad keeps adding to.
+*Updated November 2026: hosting moved from Railway to Google Cloud Run, and a section on what's been built since launch.*
 
-One tab tracked the mutual funds. Another had the FDs. Insurance documents were a folder in Google Drive. The stock portfolio lived inside a broker app. Gold was just… a number someone remembered. And loans? Ask the relevant person and hope they have the latest EMI figure.
+For the longest time, our family's finances lived across five apps, two spreadsheets, and a WhatsApp thread that somebody's dad keeps adding to. Mutual funds in one tab, FDs in another, insurance PDFs in a Drive folder, stocks inside a broker app, and gold was just… a number someone remembered.
 
-I wanted one screen that answered "where are we, financially, right now?" — for the whole household, across every member, for every asset class. Something calm. Something I could check on a Sunday morning without logging into four apps.
+I wanted one calm screen that answered *"where are we, financially, right now?"* for the whole household. So I built **Kosh** (कोश, Sanskrit for treasury).
 
-So I built **Kosh** (कोश — Sanskrit for treasury).
+## What I was solving for
 
-## The problems I was actually trying to solve
-
-### 1. Privacy — I don't want to hand my bank login to anyone
-
-Every "wealth aggregator" app in India (there are many) has the same ask: connect your bank account or give us your credentials. I understand why — it's the fastest way to pull in real-time data — but it means your entire financial picture is sitting on someone else's server, queryable by people you don't know, under a terms-of-service you didn't fully read.
-
-Kosh doesn't do any of this. There is no sync, no API scraping, no broker OAuth. You type numbers in. You own all of it.
-
-### 2. The spreadsheet problem
-
-A Google Sheet works fine... until you have eight family members, twelve mutual fund folios, three FDs, and a ULIP from 2017 that nobody fully understands. At that point it becomes a maintenance job in itself — keeping formulas consistent, copy-pasting gain calculations, remembering which column is which.
-
-I wanted the *feel* of a spreadsheet (you decide what goes in, you can see everything) without the maintenance overhead.
-
-### 3. Multi-member tracking
-
-Most personal finance apps are personal. They track one person's portfolio. But household wealth is shared — my parent's FDs, my partner's SIPs, and my stocks should all roll up into one "where are we" number, while still being separately viewable.
+- **Privacy.** Every wealth aggregator wants your bank login. Kosh has no sync, no scraping, no broker OAuth. You enter the numbers, and they live in a Google Sheet *you* own.
+- **Spreadsheet fatigue.** A sheet works until you have eight members, twelve folios and a 2017 ULIP nobody understands. I wanted the control of a spreadsheet without maintaining formulas.
+- **Families, not individuals.** My parents' FDs, my partner's SIPs and my stocks should roll up into one number, while each person can still be viewed on their own.
 
 ---
 
-## What Kosh actually looks like
+## A quick tour
 
-![The Kosh login screen — clean, no onboarding forms](./images/01-login.png)
+![The Kosh login screen: clean, no onboarding forms](./images/01-login.png)
 
-The sign-in screen is intentionally sparse. There's a "Try the demo" button if you want to poke around before committing to anything.
+There's a **Try the demo** button on the sign-in screen. It loads a realistic sample portfolio, with no login and no setup.
 
-### Dashboard: one number for the whole household
+### Dashboard
 
 ![Net worth dashboard showing allocation breakdown, monthly commitment, and protection cover](./images/02-dashboard.png)
 
-The dashboard gives you the whole picture at a glance — total net worth, how it's allocated across asset classes, monthly SIP commitment, insurance cover in force, and a sparkline of how the number has moved over time. You can switch between "whole family" and individual members via the chips at the top.
+Net worth, allocation by asset class, monthly SIP commitment, insurance cover, and a trend line. Chips at the top switch between the whole family and each member.
 
-### Investments: every folio, every holding
+### Investments
 
 ![Investments screen showing mutual funds, stocks, FDs, gold and insurance tabs](./images/03-investments.png)
 
-Mutual funds, stocks, fixed deposits (FD & RD), gold, and insurance are all tracked here. Values are updated manually — which sounds like a chore but for a household portfolio is actually fine (once a week or once a month is enough). Fixed deposit and RD values are calculated automatically from the rate and date you entered, so you don't need to look those up.
+Mutual funds, stocks, FDs and RDs, NPS, gold and silver, and insurance, each in its own tab. FD values are calculated from the rate and dates, and gold and silver follow the day's IBJA rate, so there's little to update by hand.
 
-### SIPs & schedule: what's coming out this month
+### SIPs and outflows
 
 ![SIP schedule showing monthly commitments and upcoming debits](./images/04-sips.png)
 
-Active SIPs are tracked alongside a monthly calendar so you can see what's hitting your account and when. Particularly useful at the start of the month or if you're managing cash across accounts.
+SIPs, loan EMIs and insurance premiums on one calendar, so nothing leaves your account by surprise.
 
-### Tax view: actual numbers, across the family
+### Tax: the screen I use most
 
 ![Tax view showing income breakdown, capital gains, and deductions](./images/05-tax.png)
 
-This is my favourite screen. It shows your household's income tax position — gross income, deductions (80C, 80D, others), capital gains realised this year, income shifted to parents to utilise their lower tax slabs, and the net tax estimate under new vs old regime. All the numbers you need when you're doing your March planning.
+Income, deductions (80C, 80D and others), this year's capital gains, and old vs new regime side by side, for every member. It now also suggests tax-saving moves and exports a report for your CA (more below).
 
-### Family view: who owns what
+### Family
 
 ![Family members showing individual net worth breakdowns](./images/06-family.png)
 
-Each member has their own portfolio view. Click on any member from the dashboard to see their holdings, asset allocation, and net worth in isolation.
+Each member gets their own view, rolled up into the household total.
 
-### Loans & insurance
+---
 
-![Expenses screen showing active loans and insurance premiums](./images/07-expenses.png)
+## What's new since launch
 
-Loans track outstanding balance, EMI, and days until next payment. Insurance tracks premium, cover amount, and due dates. Both feed into the dashboard's "upcoming outflows" section so you never miss an EMI or premium renewal.
+- **Ask Kosh:** an AI assistant that answers questions about your own portfolio.
+- **AI tax planning:** tax-saving suggestions from your real numbers that follow up on last time's advice, an advance-tax schedule, and a one-click CA report (Excel or PDF).
+- **Upload instead of type:** FD receipts, policies, payslips and NPS statements fill in their own fields.
+- **NPS tracking** and **live gold and silver rates** from IBJA.
+- **Needs attention:** flags matured FDs, premiums due soon, and deposits above the ₹5L insured limit at one bank, plus per-bank FD totals.
+- **Income screen** for salary, freelance and rental income.
+- **Family sharing:** a read-only report link, unlocked with an authenticator-app code.
+- **PIN lock** and a proper **mobile layout**.
 
 ---
 
 ## The tech: deliberately boring
 
-The backend is **Go** talking directly to the **Google Sheets API** — no intermediate database. The sheet you point Kosh at *is* the database. You can open it in a browser, edit cells directly, export it as Excel, or back it up to Drive. No migrations, no backup scripts, no schema files.
-
-The frontend is **React + Vite** with a hand-rolled editorial design — serif numerals, hairline rules, a slightly ivory background. No component library. I wanted it to feel like a well-typeset ledger, not a SaaS dashboard.
-
-Auth is optional Google Sign-In, restricted to an allowlist of emails. If you're running it at home on a trusted network, you can skip auth entirely.
+**Go** talks directly to the **Google Sheets API**: the sheet *is* the database, so there are no migrations and you can open, edit or export it any time. The frontend is **React + Vite** with a hand-rolled editorial look and no component library. Sign-in is Google, limited to emails you allow. AI features are optional (Anthropic or a local Ollama model). Licensed AGPL-3.0.
 
 ---
 
-## Running it for free (or close to it)
+## Running it for free (or near free)
 
-Here's the cost breakdown for a self-hosted Kosh:
+Kosh is one small Docker container on **Google Cloud Run**. It scales to zero when idle and wakes on the next visit, so a family tool opened a few times a day stays inside the always-free monthly allowance.
 
-| Service | Tier | Cost |
+| Piece | What it's used for | Cost |
 |---|---|---|
-| Railway | Free tier (or Hobby at $5/month) | ₹0–₹420/month |
-| Google Sheets | Free | ₹0 |
-| Google Sign-In | Free | ₹0 |
-| Anthropic AI (document parsing) | Pay-per-use, optional | ~₹0–₹10/month at low usage |
+| Cloud Run | Runs the app | ₹0: free tier covers 2M requests, 180K vCPU-seconds and 360K GiB-seconds a month |
+| Artifact Registry | Stores the Docker image | ₹0 under 0.5 GB (clear out old images now and then) |
+| Google Sheets + Sign-In | Data and login | ₹0 |
+| Anthropic AI (optional) | Tax suggestions, Ask Kosh, document reading | Pay-per-use, a few rupees a month at family usage; ₹0 if you skip it or use Ollama |
 
-The only real decision is Railway vs. alternatives. Railway's free tier is enough for personal use (it sleeps after inactivity, which is fine for a family tool). If you want it always-on, the Hobby plan is $5/month. You could also run it on a Raspberry Pi, a VPS, or any machine that can run a Docker container — the Dockerfile is in the repo.
+**Realistic total: ₹0 a month, or a few rupees if you turn on the AI features.**
 
-**Total for most people: ₹0/month.** Google Sheets storage is free up to 15GB. The app itself is about 8MB Docker image.
+Two caveats: Google Cloud needs a billing account linked even inside the free tier, and the first load after a quiet spell takes a second or two. A GitHub Actions workflow in the repo deploys on every push, and the same Dockerfile runs on a VPS or a Raspberry Pi too.
 
 ---
 
-## Try it first, then self-host
+## Try it, then self-host
 
-The live demo is available at the sign-in screen — no Google login, no setup. It loads a realistic sample portfolio (fictional names and numbers) so you can click through all the screens.
-
-If it fits how you think about money, the self-hosting guide is at [github.com/jenish-jain/kosh](https://github.com/jenish-jain/kosh). The README has a quick start and there's a `docs/SELF_HOSTING.md` with the full guide — connecting your sheet, adding auth, deploying.
-
-The short version:
+Click **Try the demo** on the sign-in screen. If it fits, [github.com/jenish-jain/kosh](https://github.com/jenish-jain/kosh) has the code; `docs/SELF_HOSTING.md` walks through connecting your sheet, sign-in and the Cloud Run deploy.
 
 ```bash
 git clone https://github.com/jenish-jain/kosh
 cd kosh
 make install
-make dev       # Go on :8080, Vite on :5173, no credentials needed
+make dev       # Go on :8080, Vite on :5173, sample data, no credentials needed
 ```
 
-Open http://localhost:5173 and it loads with sample data immediately.
+A hosted version is on the way for families who'd rather not run it themselves; your data would still live in a Google Sheet in your own Drive.
 
 ---
 
-## Why I'm open sourcing it
+## Why open source
 
-This started as a purely personal tool — I wasn't sure anyone else would find it useful. But the more I talked about it, the more I realised the problem is universal: every Indian family has some combination of mutual funds, FDs, insurance, gold, and loans, and no clean way to see them together.
+Every Indian family has some mix of mutual funds, FDs, insurance, gold and loans, and no clean way to see them together. If something's missing, open an issue or send a PR. Good first contributions:
 
-If Kosh fits your family's setup, I'd love for you to self-host it. If something's missing or broken, open an issue or send a PR — the code is straightforward enough that a weekend contribution is very doable.
+- Import from a CAMS/KFintech CAS statement
+- XIRR returns for each holding
+- Better charts on the dashboard
 
-A few things that would make good first contributions:
-
-- Support for NPS tracking
-- A mobile-friendly layout
-- Import from CAMS/KFintech CAS statement
-- Better chart views on the dashboard
-
-The repo is at **[github.com/jenish-jain/kosh](https://github.com/jenish-jain/kosh)**. If you end up running it, I'd genuinely love to hear about it.
+The repo is at **[github.com/jenish-jain/kosh](https://github.com/jenish-jain/kosh)**. If you end up running it, I'd love to hear about it.
